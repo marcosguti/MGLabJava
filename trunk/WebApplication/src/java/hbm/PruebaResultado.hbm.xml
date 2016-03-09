@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <joined-subclass name="clases.PruebaResultado"
+    extends="clases.Prueba" table="pruebaresultado" lazy="false">
+        <key>
+            <column name="resultado_id" />
+        </key>
+        <id name="id" type="int">
+		  
+            <column name="id" length="15" />
+            <!-- 			<generator class="increment" /> -->
+            <generator class="sequence">
+                <param name="sequence">pruebaResultado_id_seq</param>
+            </generator>
+        </id>
+        <property name="valor" type="string">
+            <column name="valor" length="20" />
+        </property>
+        <many-to-one name="grupoPruebas" class="clases.GrupoPruebas"  access="field" fetch="join" >
+            <column name="grupopruebas_id" />
+        </many-to-one>
+        <many-to-one name="prueba" class="clases.Prueba"  access="field" fetch="join" >
+            <column name="prueba_id" />
+        </many-to-one>
+    </joined-subclass>
+  
+
+</hibernate-mapping>

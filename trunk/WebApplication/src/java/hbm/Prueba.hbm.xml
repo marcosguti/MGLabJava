@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="clases.Prueba" table="prueba" schema="public">
+        <id name="id" type="int">
+		  
+            <column name="id" length="15" />
+<!--             			<generator class="increment" /> 
+            <generator class="sequence">
+                <param name="sequence">prueba_id_seq</param>
+            </generator>-->
+        </id>
+		
+        <property name="nombre" type="string">
+            <column name="nombre" length="50"  />
+        </property>
+        <property name="unidad" type="string">
+            <column name="unidad" length="10"  />
+        </property>
+        <property name="limites" type="string">
+            <column name="cedula" length="20" />
+        </property>
+        <property name="edad" type="int">
+            <column name="edad" length="30" />
+        </property>
+        <property name="precio" type="int">
+            <column name="precio" length="15" />
+        </property>
+        <many-to-one name="grupoPruebas" class="clases.GrupoPruebas"  access="field" fetch="join" >
+            <column name="grupopruebas_id" />
+        </many-to-one>
+    </class>
+  
+
+</hibernate-mapping>
