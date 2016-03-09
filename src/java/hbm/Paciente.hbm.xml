@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 20/08/2013 04:45:09 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping >
+	<class name="clases.Paciente" table="paciente" schema="public">
+		<id name="id" type="int">
+		  
+			<column name="id" length="15" />
+ 			<generator class="increment" /> 
+<!--   <generator class="sequence">
+     <param name="sequence">paciente_id_seq</param>
+</generator>-->
+		</id>
+		
+		<property name="nombres" type="string">
+			<column name="nombres" length="30" not-null="true" />
+		</property>
+<!--		<property name="apellidos" type="string">
+			<column name="apellidos" length="30"  />
+		</property>-->
+		<property name="cedula" type="string">
+			<column name="cedula" length="30" not-null="true" />
+		</property>
+		<property name="edad" type="int">
+			<column name="edad" length="30" />
+		</property>
+		<property name="sexo" type="string">
+			<column name="sexo" length="20" />
+		</property>
+		<property name="telefono" type="string">
+			<column name="telefono" length="20" />
+		</property>
+                <property name="direccion" type="string">
+			<column name="direccion" length="250" />
+		</property>
+	</class>
+</hibernate-mapping>
