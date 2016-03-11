@@ -50,7 +50,7 @@ public class DefaultController  {
         return "home";
     }
 
-    @RequestMapping(value = "/somepage", method = RequestMethod.GET)
+    @RequestMapping(value = "/somepage", method = RequestMethod.POST)
     public String somepage(Model model, @RequestParam("id") String id) throws BussinessException {
 //        PacienteDAOImpl pacienteDAO = new PacienteDAOImpl();
           List<Paciente> pacientes= pacienteDAO.getAllOrdered();

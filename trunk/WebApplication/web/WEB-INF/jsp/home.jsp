@@ -4,7 +4,7 @@
 <!DOCTYPE HTML>
 <!-- Website Template by freewebsitetemplates.com -->
 <html>
-     <form action="/Laboratorio/somepage" method="GET">
+     <form action="/Laboratorio/somepage" method="POST">
         <input type="text" name="id" value=""/>
         <!--<input type="text" name="cedula" value=""/>-->
         <input type="submit"/>
