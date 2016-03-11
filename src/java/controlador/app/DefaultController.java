@@ -6,8 +6,11 @@
 package controlador.app;
 
 import controller.PacienteController;
+import dao.PacienteDAOImpl;
 import domain.Paciente;
 import hibernateUtil.BussinessException;
+import java.util.Date;
+import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -23,20 +26,22 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class DefaultController  {
-//    ApplicationContext applicationContext= new ClassPathXmlApplicationContext("controller/controller-business.xml");
-//        ApplicationContext applicationContext= new AnnotationConfigApplicationContext(AppConfig.class);
-//
-//    
-//    PacienteController pacienteController=(PacienteController )applicationContext.getBean("pacienteController");
-//
-//    PacienteController pacienteController = new PacienteController();
-//
-//    
-//       
-//    Paciente paciente =null;
+    PacienteDAOImpl pacienteDAO = new PacienteDAOImpl();
+
+    public DefaultController() {
+    }
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index() {
-        return "index";
+    public String index(Model model) throws BussinessException {
+      
+//        Paciente paciente= new Paciente("17322319", "Marco Gutierrez", "04120765408", "M", "Santa Cruz De Mora", 28);
+//        PacienteController pacienteController =new PacienteController();
+//        PacienteDAOImpl pacienteDAO = new PacienteDAOImpl();
+        Date date = new Date();
+        model.addAttribute("saludo", "Probando El Controller");
+        model.addAttribute("date",date.toString());
+      
+//        model.addAttribute("paciente",paciente);
+        return "home";
     }
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
@@ -46,8 +51,13 @@ public class DefaultController  {
     }
 
     @RequestMapping(value = "/somepage", method = RequestMethod.GET)
-    public String somepage(Model model, @RequestParam("nombre") String nombre) {
-        model.addAttribute("nombre", nombre);
+    public String somepage(Model model, @RequestParam("id") String id) throws BussinessException {
+//        PacienteDAOImpl pacienteDAO = new PacienteDAOImpl();
+          List<Paciente> pacientes= pacienteDAO.getAllOrdered();
+        Paciente paciente = pacienteDAO.get (Integer.parseInt(id));
+        model.addAttribute("id", id);
+        model.addAttribute("paciente",paciente);
+        model.addAttribute("pacientes",pacientes);
         return "somepage";
     }
 }

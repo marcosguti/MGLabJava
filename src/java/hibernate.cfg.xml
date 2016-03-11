@@ -9,10 +9,10 @@
     <property name="connection.driver_class">org.postgresql.Driver</property>
     <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
     <mapping resource="hbm/Paciente.hbm.xml"/>
-    <mapping resource="hbm/GrupoPruebas.hbm.xml"/>
-    <!--<mapping resource="hbm/Prueba.hbm.xml"/>-->
+<!--    <mapping resource="hbm/GrupoPruebas.hbm.xml"/>
+    <mapping resource="hbm/Prueba.hbm.xml"/>
     <mapping class="domain.Prueba"/>
     <mapping class="domain.PruebaResultado"/>
-    <mapping class="domain.Resultado"/>
+    <mapping class="domain.Resultado"/>-->
   </session-factory>
 </hibernate-configuration>
