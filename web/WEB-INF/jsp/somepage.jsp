@@ -13,7 +13,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-     <table >
+        
+        <table border="1" >
          <c:forEach var="ob" varStatus="status" items="${pacientes}">
     <tr>
         <td><c:out value="${ob.nombres}"/></td>
