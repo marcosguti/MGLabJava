@@ -6,7 +6,7 @@
 
 <hibernate-mapping>
     <joined-subclass name="clases.PruebaResultado"
-    extends="clases.Prueba" table="pruebaresultado" lazy="false">
+    extends="domain.Prueba" table="pruebaresultado" lazy="false">
         <key>
             <column name="resultado_id" />
         </key>
