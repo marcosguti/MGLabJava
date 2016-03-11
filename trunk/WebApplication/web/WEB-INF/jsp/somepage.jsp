@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,7 +13,16 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <p style="text-align: center"><h1>${nombre}</h1></p>
+     <table >
+         <c:forEach var="ob" varStatus="status" items="${pacientes}">
+    <tr>
+        <td><c:out value="${ob.nombres}"/></td>
+        <td><c:out value="${ob.cedula}"/></td>
+
+    </tr>
+             </c:forEach></table>
+        <p style="text-align: center"><h1>nombre: ${paciente.nombres}</h1></p>
+    <p style="text-align: center"><h1>cedula: ${paciente.cedula}</h1></p>
     </body>
 
 </html>
