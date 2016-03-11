@@ -5,7 +5,7 @@
   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="clases.Prueba" table="prueba" schema="public">
+    <class name="domain.Prueba" table="prueba" schema="public">
         <id name="id" type="int">
 		  
             <column name="id" length="15" />

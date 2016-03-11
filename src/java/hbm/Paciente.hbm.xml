@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 20/08/2013 04:45:09 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping >
-	<class name="clases.Paciente" table="paciente" schema="public">
+	<class name="domain.Paciente" table="paciente" schema="public">
 		<id name="id" type="int">
 		  
 			<column name="id" length="15" />
