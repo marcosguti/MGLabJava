@@ -59,7 +59,8 @@
         <title>JSP Page</title>
     </head>
     <body> 
-<div class="col-lg-12">
+        <div class="row">
+<div class="col-lg-10">
                                     <div class="table-responsive">
                                         <table class="table table-bordered table-hover table-striped">
                                             <thead>
@@ -88,7 +89,36 @@
                                     </div>
                                     <!-- /.table-responsive -->
                                 </div>
-                                                        <!-- jQuery -->
+                                  </div>
+        <div class="row">
+            <form class="cmxform" id="commentForm" method="get" action="">
+  <fieldset>
+    <legend>Please provide your name, email address (won't be published) and a comment</legend>
+    <p>
+      <label for="cname">Name (required, at least 2 characters)</label>
+      <input id="cname" name="name" minlength="4" type="text" required>
+    </p>
+    <p>
+      <label for="cemail">E-Mail (required)</label>
+      <input id="cemail" type="email" name="email" required>
+    </p>
+    <p>
+      <label for="curl">URL (optional)</label>
+      <input id="curl" type="url" name="url">
+    </p>
+    <p>
+      <label for="ccomment">Your comment (required)</label>
+      <textarea id="ccomment" name="comment" required></textarea>
+    </p>
+    <p>
+      <input class="submit" type="submit" value="Submit">
+    </p>
+  </fieldset>
+</form>
+<script>
+$("#commentForm").validate();
+</script>
+        </div>
     <script src="<c:url value='/resources/bower_components/jquery/dist/jquery.min.js' />"></script>
 
     <!-- Bootstrap Core JavaScript -->

@@ -34,16 +34,6 @@ public class DefaultController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model) throws BussinessException {
-
-//        Paciente paciente= new Paciente("17322319", "Marco Gutierrez", "04120765408", "M", "Santa Cruz De Mora", 28);
-//        PacienteController pacienteController =new PacienteController();
-//        PacienteDAOImpl pacienteDAO = new PacienteDAOImpl();
-        Date date = new Date();
-        List<Paciente> pacientes = pacienteDAO.getAllOrdered();
-        model.addAttribute("saludo", "Probando El Controller");
-        model.addAttribute("date", date.toString());
-        model.addAttribute("pacientes", pacientes);
-//        model.addAttribute("paciente",paciente);
         return "home";
     }
 
@@ -61,12 +51,15 @@ public class DefaultController {
         return "registrarpaciente";
     }
 
-    @RequestMapping(value = "registro", method = RequestMethod.POST)
-    public String registrarPaciente(Model model, @RequestParam("nombre") String nombre, @RequestParam("cedula") String cedula , @RequestParam("edad") String edad) throws BussinessException {
+    @RequestMapping(value = "/registro", method = RequestMethod.POST)
+    public String registrarPaciente(Model model, @RequestParam("nombre") String nombre,@RequestParam("cedula") String cedula,@RequestParam("selectDoc") String selectDoc, @RequestParam("edad") String edad, @RequestParam("sexo") String sexo, @RequestParam("direccion") String direccion, @RequestParam("telefono") String telefono) throws BussinessException {
         Paciente paciente = new Paciente();
         paciente.setNombres(nombre);
+        paciente.setCedula(selectDoc+"-"+cedula);
+        paciente.setSexo(sexo);
+        paciente.setDireccion(direccion);
         paciente.setEdad(Integer.parseInt(edad));
-        paciente.setCedula(cedula);
+        paciente.setTelefono(telefono);
         pacienteDAO.saveOrUpdate(paciente);
         return "home";
     }
