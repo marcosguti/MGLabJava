@@ -53,24 +53,24 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <form role="form" action="/Laboratorio/registro" method="POST" id="register-form" novalidate="novalidate">
+                                <form role="form" action="/Laboratorio/registro" method="POST" id="register-form" >
                                     <div class="col-lg-6">
 
 
                                         <div class="form-group">
                                             <label>Nombre</label>
-                                            <input  id="cname" name="nombre" class="form-control" placeholder="Nombre" data-fv-field="email"  required>
+                                            <input  id="nombre" name="nombre" class="form-control" maxlength="40" placeholder="Nombre" pattern="[a-zA-ZñÑ\s]"  title="Introduzca Solo Letras" data-fv-field="email"  required autofocus>
                                         </div>
 
                                         <div class="form-group ">
                                             <label>Edad</label>
                                             <div class="form-inline">
-                                                <input name="edad" class="form-control " placeholder="Edad">
+                                                <input id="age" name="edad" class="form-control " placeholder="Edad" maxlength="3" pattern="[0-1]{1}[0-9]{0,2}" title="Introduzca Una Edad Valida" size="4" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Sexo</label>
-                                            <select name="sexo" class="form-control">
+                                            <select name="sexo" class="form-control" >
                                                 <option>M</option>
                                                 <option>F</option>
 
@@ -108,27 +108,25 @@
                                                     <option>E</option>
                                                     <option>J</option>
                                                 </select>
-                                                <input name="cedula" class="form-control " placeholder="N° de Documento">
+                                                <input name="cedula" class="form-control " minlength="8" maxlength="8" pattern="[0-9]{1,9}(\.[0-9]{0,2})?$" title="Introduzca Solo Numeros" placeholder="N° de Documento" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Direccion</label>
-                                            <input name="direccion" class="form-control" placeholder="Direccion">
+                                            <input name="direccion" class="form-control" maxlength="40" placeholder="Direccion" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Telefono</label>
-                                            <input name="telefono"  class="form-control" placeholder="Telefono">
+                                            <input name="telefono"  class="form-control" maxlength="13" placeholder="Telefono" pattern="^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$" required>
                                         </div>
-                                        <div class="btn-group">
+                                        <div>
                                             <!--<button type="submit" class="btn btn-primary " data-toggle="modal" data-tar ="#myModal">Guardar</button>-->
                                             <button type="submit" class="btn btn-primary">Guardar</button>
                                             <button type="reset" class="btn btn-primary">Borrar</button>
                                         </div>
                                     </div>
                                 </form>
-<script>
-$("#register-form").validate();
-</script>
+                                
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
                             <!-- /.row (nested) -->

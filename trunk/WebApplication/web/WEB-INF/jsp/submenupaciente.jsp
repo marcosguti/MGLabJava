@@ -59,39 +59,16 @@
         <title>JSP Page</title>
     </head>
     <body> 
-        <div class="row">
-            <div class="col-lg-10">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover table-striped">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Cedula</th>
-                                <th>Edad</th>
-                                <th>Sexo</th>
-                                <th>Telefono</th>
-                                <th>Direccion</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach var="ob" varStatus="status" items="${pacientes}">
-                                <tr>
-                                    <td><c:out value="${ob.nombres}"/></td>
-                                    <td><c:out value="${ob.cedula}"/></td>
-                                    <td><c:out value="${ob.edad}"/></td>
-                                    <td><c:out value="${ob.sexo}"/></td>
-                                    <td><c:out value="${ob.telefono}"/></td>
-                                    <td><c:out value="${ob.direccion}"/></td>
-                                </tr>
 
-                            </c:forEach></tbody>
-                    </table>
-                </div>
-                <!-- /.table-responsive -->
-            </div>
-        </div>
-        
-       
+
+        <ul class="nav nav-second-level" id="listMenu">
+            <li>
+                <a href="#" id="registrarPacientes"><i class="fa fa-plus fa-fw "></i>  Registrar</a>
+            </li>
+            <li>
+                <a href="#" id="tablaPacientes"><i class="fa fa-search fa-fw "></i>  Buscar</a>
+            </li>
+        </ul>
         <script src="<c:url value='/resources/bower_components/jquery/dist/jquery.min.js' />"></script>
 
         <!-- Bootstrap Core JavaScript -->
