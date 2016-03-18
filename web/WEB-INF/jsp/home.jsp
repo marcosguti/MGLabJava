@@ -45,17 +45,21 @@
             $(document).ready(function(){
                 $('#listMenu').hide();
                 //              var a= clone.$('#listMenu');
-                $('#botonMenu').mouseenter(function(){
+                $('.botonMenu').mouseenter(function(){
                     $('#listMenu').show();
-                    $('#listMenu').insertAfter('#botonMenu');
+                    $('#listMenu').insertAfter('.botonMenu');
                     
                 });
-                $('#bigMenu').mouseleave(function(){
+                $('.bigMenu').mouseleave(function(){
                     $('#listMenu').hide();
                     
                 });
+                $('#registrarPacientes').click(function(){
+                    $("#includedContent").load("/Laboratorio/registrarpaciente"); 
+                });
                 $('#tablaPacientes').click(function(){
-                    $("#includedContent").load("tables"); 
+                    $("#includedContent").load("/Laboratorio/tables"); 
+                 
                 });
             });
         </script>
@@ -91,18 +95,13 @@
                                 <!-- /input-group -->
                             </li>
                                 
-                            <li id ="bigMenu">
-                                <a href="#" id="botonMenu"><i class="fa fa-user fa-fw "></i>Paciente<span class="fa arrow"></span></a>
-                                <!--/.nav-second-level--> 
+                            <li class ="bigMenu">
+                                <a href="#" class="botonMenu"><i class="fa fa-user fa-fw "></i>Paciente<span class="fa arrow"></span></a>
                             </li>
-                            <li id ="bigMenu">
-                                <a href="#" id="tablaPacientes"><i class="fa fa-user fa-fw "></i>Tabla<span class="fa arrow"></span></a>
-                                <!--/.nav-second-level--> 
-                            </li>
-                            <li id ="bigMenu">
-                                <a href="#" id="botonMenu"><i class="fa fa-user fa-fw "></i>Paciente<span class="fa arrow"></span></a>
-                                <!--/.nav-second-level--> 
-                            </li>
+<!--                            <li class ="bigMenu">
+                                <a href="#" class="botonMenu"><i class="fa fa-user fa-fw "></i>Tabla<span class="fa arrow"></span></a>
+                            </li>-->
+                           
                                 
                     </div>
                 </div>
@@ -119,10 +118,10 @@
                 <div class="row">
                     <ul class="nav nav-second-level" id="listMenu">
                         <li>
-                            <a href="registrarpaciente"><i class="fa fa-plus fa-fw "></i>  Registrar</a>
+                            <a href="#" id="registrarPacientes"><i class="fa fa-plus fa-fw "></i>  Registrar</a>
                         </li>
                         <li>
-                            <a href="tables"><i class="fa fa-search fa-fw "></i>  Buscar</a>
+                            <a href="#" id="tablaPacientes"><i class="fa fa-search fa-fw "></i>  Buscar</a>
                         </li>
                     </ul>
                                     
@@ -135,7 +134,7 @@
         </div>
         <!-- /#page-wrapper -->
             
-    </div>
+        <div class=""></div>
     <!-- /#wrapper -->
         
     <!-- jQuery -->
