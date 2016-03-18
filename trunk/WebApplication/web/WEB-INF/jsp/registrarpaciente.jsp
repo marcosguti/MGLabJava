@@ -59,7 +59,7 @@
 
                                         <div class="form-group">
                                             <label>Nombre</label>
-                                            <input name="nombre" class="form-control" placeholder="Nombre" data-fv-field="email">
+                                            <input  id="cname" name="nombre" class="form-control" placeholder="Nombre" data-fv-field="email"  required>
                                         </div>
 
                                         <div class="form-group ">
@@ -126,7 +126,9 @@
                                         </div>
                                     </div>
                                 </form>
-
+<script>
+$("#register-form").validate();
+</script>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
                             <!-- /.row (nested) -->
