@@ -41,7 +41,8 @@
 
         <!-- Bootstrap Core CSS -->
         <link href="<c:url value='/resources/bower_components/bootstrap/dist/css/bootstrap.min.css' />" rel="stylesheet">
-
+        <!-- JQuery  -->
+        <script src="<c:url value='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js' />"></script>
         <!-- MetisMenu CSS -->
         <link href="<c:url value='/resources/bower_components/metisMenu/dist/metisMenu.min.css' />" rel="stylesheet">
 
@@ -57,6 +58,15 @@
         <!-- Custom Fonts -->
         <link href="<c:url value='/resources/bower_components/font-awesome/css/font-awesome.min.css' />" rel="stylesheet" type="text/css">
         <title>JSP Page</title>
+        <script>
+            $(document).ready(function () {
+
+                $('a').click(function () {
+                    alert("hola);
+                            $('#listSubMenuPacientes').slideToggle();
+                });
+            });
+        </script>
     </head>
     <body> 
         <div class="row">
@@ -71,17 +81,29 @@
                                 <th>Sexo</th>
                                 <th>Telefono</th>
                                 <th>Direccion</th>
+                                <th>ID</th>
+                                <th style="text-align: center;"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <c:forEach var="ob" varStatus="status" items="${pacientes}">
-                                <tr>
+                                <tr >
                                     <td><c:out value="${ob.nombres}"/></td>
                                     <td><c:out value="${ob.cedula}"/></td>
                                     <td><c:out value="${ob.edad}"/></td>
                                     <td><c:out value="${ob.sexo}"/></td>
                                     <td><c:out value="${ob.telefono}"/></td>
                                     <td><c:out value="${ob.direccion}"/></td>
+                                    <td><c:out value="${ob.id}"/></td>
+                                    <td><div class="btn-group" role="group" aria-label="...">
+                                            <div class="btn-group" role="group">
+                                                <button type="button" class="btn btn-default" data-toggle="tooltip" title="Editar"><i class="fa fa-pencil-square-o"></i></button>
+                                            </div>
+                                            <div class="btn-group" role="group">
+                                                <button type="button" class="btn btn-default" data-toggle="tooltip" title="Eliminar"><i class="fa fa-times"></i></button>
+                                            </div>
+                                        
+                                        </div></td>
                                 </tr>
 
                             </c:forEach></tbody>
@@ -90,8 +112,8 @@
                 <!-- /.table-responsive -->
             </div>
         </div>
-        
-       
+
+
         <script src="<c:url value='/resources/bower_components/jquery/dist/jquery.min.js' />"></script>
 
         <!-- Bootstrap Core JavaScript -->
