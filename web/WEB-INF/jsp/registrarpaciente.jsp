@@ -59,7 +59,7 @@
 
                                         <div class="form-group">
                                             <label>Nombre</label>
-                                            <input  id="nombre" name="nombre" class="form-control" maxlength="40" placeholder="Nombre" pattern="[a-zA-ZñÑ\s]"  title="Introduzca Solo Letras" data-fv-field="email"  required autofocus>
+                                            <input  id="nombre" name="nombre" class="form-control" maxlength="40" placeholder="Nombre"   required autofocus>
                                         </div>
 
                                         <div class="form-group ">
@@ -120,13 +120,13 @@
                                             <input name="telefono"  class="form-control" maxlength="13" placeholder="Telefono" pattern="^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$" required>
                                         </div>
                                         <div>
-                                            <!--<button type="submit" class="btn btn-primary " data-toggle="modal" data-tar ="#myModal">Guardar</button>-->
-                                            <button type="submit" class="btn btn-primary">Guardar</button>
+                                            <button  class="btn btn-primary " data-toggle="modal" data-tar ="#myModal">Guardar</button>
+                                            <!--<button type="submit" class="btn btn-primary">Guardar</button>-->
                                             <button type="reset" class="btn btn-primary">Borrar</button>
                                         </div>
                                     </div>
                                 </form>
-                                
+
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
                             <!-- /.row (nested) -->
@@ -160,9 +160,6 @@
     <script src="<c:url value='/resources/bower_components/raphael/raphael-min.js' />"></script>
     <script src="<c:url value='/resources/bower_components/morrisjs/morris.min.js' />"></script>
     <script src="<c:url value='/resources/js/morris-data.js' />"></script>
-
-
-
 
 </body>
 </html>
