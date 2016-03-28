@@ -1,0 +1,162 @@
+<%-- 
+    Document   : home
+    Created on : 12/02/2016, 08:50:49 AM
+    Author     : eimar
+--%>
+<!--Reconocer ficheros .jss y .js-->
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!---->
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>SB Admin 2 - Bootstrap Admin Theme</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="<c:url value='/resources/bower_components/bootstrap/dist/css/bootstrap.min.css' />" rel="stylesheet">
+        <script src="<c:url value='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js' />"></script>
+   <!--<script src="<c:url value='/resources/marco/marco.js' />"></script>-->
+        <!-- MetisMenu CSS -->
+        <link href="<c:url value='/resources/bower_components/metisMenu/dist/metisMenu.min.css' />" rel="stylesheet">
+
+        <!-- Timeline CSS -->
+        <link href="<c:url value='/resources/dist/css/timeline.css' />" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="<c:url value='/resources/dist/css/sb-admin-2.css' />" rel="stylesheet">
+
+        <!-- Morris Charts CSS -->
+        <link href="<c:url value='/resources/bower_components/morrisjs/morris.css' />" rel="stylesheet">
+        <!-- DataTables CSS -->
+        <link href="<c:url value='/resources/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css' />" rel="stylesheet">
+
+        <!-- DataTables Responsive CSS -->
+        <link href="<c:url value='/resources/bower_components/datatables-responsive/css/dataTables.responsive.css' />" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="<c:url value='/resources/bower_components/font-awesome/css/font-awesome.min.css' />" rel="stylesheet" type="text/css">
+        <title>JSP Page</title>
+        <style>
+
+
+        </style>
+        <script>
+            $(document).ready(function () {
+
+                $('.botonMenuPacientes').click(function () {
+                    $('#listSubMenuPacientes').slideDown();
+                });
+                $('.menuPacientes').mouseleave(function () {
+                    $('#listSubMenuPacientes').slideUp();
+                });
+                $('.botonMenuResultados').click(function () {
+                    $('#listSubMenuResultados').slideDown();
+                });
+                $('.menuResultados').mouseleave(function () {
+                    $('#listSubMenuResultados').slideUp();
+                });
+                $('.botonMenuPruebas').click(function () {
+                    $('#listSubMenuPruebas').slideDown();
+                });
+                $('.menuPruebas').mouseleave(function () {
+                    $('#listSubMenuPruebas').slideUp();
+                });
+
+                $('#registrarPacientes').click(function () {
+                    $("#includedContent").re
+                    $("#includedContent").load("/Laboratorio/registrarpaciente");
+                });
+                $('#tablaPacientes').click(function () {
+                    $("#includedContent").load("/Laboratorio/tables");
+                });
+            });</script>
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">MGLab</a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class ="dropdown menuResultados">
+                                <a href="#" class="dropdown-toggle botonMenuResultados" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-file-text fa-fw "></i> Resultado</a>
+                                <ul class="dropdown-menu" id="listSubMenuResultados" style="display: none;">
+                                    <li>
+                                        <a href="#" id="nuevoResultado"><i class="fa fa-plus fa-fw "></i>  Nuevo</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="buscarResultado"><i class="fa fa-search fa-fw "></i>  Buscar</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown menuPacientes">
+                                <a href="#" class="dropdown-toggle botonMenuPacientes" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw "></i> Paciente</a>
+                                <ul class="dropdown-menu" id="listSubMenuPacientes" style="display: none;">
+                                    <li>
+                                        <a href="#" id="registrarPacientes"><i class="fa fa-plus fa-fw "></i>  Registrar</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="tablaPacientes"><i class="fa fa-search fa-fw "></i>  Buscar</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </nav>
+            <div class="container" id="includedContent"></div>
+            <!--            <footer class="footer">
+                            <div class="container">
+                                <p class="text-muted">Marco Gutierrez</p>
+                            </div>
+                        </footer>-->
+        </div>
+
+        <!-- jQuery -->
+        <script src="<c:url value='/resources/bower_components/jquery/dist/jquery.min.js' />"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="<c:url value='/resources/bower_components/bootstrap/dist/js/bootstrap.min.js' />"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="<c:url value='/resources/bower_components/metisMenu/dist/metisMenu.min.js' />"></script>
+
+        <!-- Morris Charts JavaScript -->
+        <script src="<c:url value='/resources/bower_components/raphael/raphael-min.js' />"></script>
+        <script src="<c:url value='/resources/bower_components/morrisjs/morris.min.js' />"></script>
+        <script src="<c:url value='/resources/js/morris-data.js' />"></script>
+        <!-- DataTables JavaScript -->
+        <script src="<c:url value='/resources/bower_components/datatables/media/js/jquery.dataTables.min.js' />"></script>
+        <script src="<c:url value='/resources/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js' />"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="<c:url value='/resources/dist/js/sb-admin-2.js' />"></script>
+        <!-- Custom Theme JavaScript -->
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').DataTable({
+                    responsive: true
+                });
+            });
+        </script>
+
+    </body>
+</html>
