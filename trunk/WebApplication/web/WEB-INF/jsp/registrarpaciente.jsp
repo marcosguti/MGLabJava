@@ -98,17 +98,21 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-6" >
 
                                         <div class="form-group">
                                             <label>Cedula</label>
                                             <div class="form-inline"> 
-                                                <select name="selectDoc" class="form-control">
-                                                    <option>V</option>
-                                                    <option>E</option>
-                                                    <option>J</option>
-                                                </select>
-                                                <input name="cedula" class="form-control " minlength="8" maxlength="8" pattern="[0-9]{1,9}(\.[0-9]{0,2})?$" title="Introduzca Solo Numeros" placeholder="N° de Documento" required>
+                                                <div class="col-xs-4">
+                                                    <select name="selectDoc" class="form-control">
+                                                        <option>V</option>
+                                                        <option>E</option>
+                                                        <option>J</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-xs-8">
+                                                    <input name="cedula" class="form-control" minlength="8" maxlength="8" pattern="[0-9]{1,9}(\.[0-9]{0,2})?$" title="Introduzca Solo Numeros" placeholder="N° de Documento" required>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -142,6 +146,7 @@
 
             <!-- /.row -->
         </div>
+        
         <!-- /#page-wrapper -->
 
     </div>

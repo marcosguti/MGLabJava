@@ -47,7 +47,7 @@
         </style>
         <script>
             $(document).ready(function () {
-                
+
                 $('.botonMenuPacientes').click(function () {
                     $('#listSubMenuPacientes').slideToggle();
                 });
@@ -77,7 +77,7 @@
     </head>
     <body>
         <div id="wrapper">
-            
+
             <div class="row ">
                 <div class="col-lg-12">
                     <!-- Navigation -->
@@ -145,18 +145,21 @@
                     </nav>
                 </div>
             </div>
-            <div id="row">
-                <div id="page-wrapper">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h1 class="page-header">LabSolution</h1>
-                        </div>
+
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">LabSolution</h1>
                     </div>
-                    <div class="row" id="includedContent"></div>
                 </div>
+                <div class="row" id="includedContent"></div>
             </div>
 
-            <!-- /.row -->
+            <footer class="footer">
+                <div class="container">
+                    <p class="text-muted">Marco Gutierrez</p>
+                </div>
+            </footer>
         </div>
 
         <!-- jQuery -->
