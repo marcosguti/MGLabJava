@@ -34,7 +34,7 @@ public class DefaultController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model) throws BussinessException {
-        return "home";
+        return "home_1";
     }
 
     @RequestMapping(value = "/tables", method = RequestMethod.GET)
