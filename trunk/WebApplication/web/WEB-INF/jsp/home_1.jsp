@@ -73,7 +73,6 @@
                 });
 
                 $('#registrarPacientes').click(function () {
-                    $("#includedContent").re
                     $("#includedContent").load("/Laboratorio/registrarpaciente");
                 });
                 $('#tablaPacientes').click(function () {
