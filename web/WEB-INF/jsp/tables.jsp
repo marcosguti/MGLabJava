@@ -64,11 +64,14 @@
             <!--<div id="page-wrapper">-->
 
             <!--<div class="container">-->
-            <div class="col-lg-10 ">
+            <div class="col-lg-12 ">
                 <div class="panel panel-default">
 
                     <!--/.panel-heading--> 
-                    <div class="panel-body">
+                    <div class="panel-heading">
+                        Pacientes
+                    </div>
+                    <div class="panel-body center">
                         <div class="dataTable_wrapper">
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
