@@ -5,7 +5,7 @@
     <property name="connection.url">jdbc:postgresql://localhost:5432/Laboratorio</property>
     <property name="connection.username">postgres</property>
     <property name="current_session_context_class">thread</property>
-    <property name="connection.password">postgres</property>
+    <property name="connection.password">312967</property>
     <property name="connection.driver_class">org.postgresql.Driver</property>
     <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
     <mapping resource="hbm/Paciente.hbm.xml"/>
@@ -14,5 +14,6 @@
     <mapping class="domain.Prueba"/>
     <mapping class="domain.PruebaResultado"/>
     <mapping class="domain.Resultado"/>-->
+    <mapping class="domain.Resultado"/>
   </session-factory>
 </hibernate-configuration>
