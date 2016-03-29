@@ -76,13 +76,16 @@
                     $("#includedContent").load("/Laboratorio/registrarpaciente");
                 });
                 $('#tablaPacientes').click(function () {
-                    $("#includedContent").load("/Laboratorio/tables");
+                    $("#includedContent").load("/Laboratorio/buscarpaciente");
+                });
+                $('#buscarResultado').click(function () {
+                    $("#includedContent").load("/Laboratorio/buscarresultado");
                 });
             });</script>
     </head>
     <body>
         <div class="container">
-            <nav class="navbar navbar-default">
+            <nav class="navbar navbar-inverse">
                 <div class="container">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
@@ -96,7 +99,7 @@
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li class ="dropdown menuResultados">
-                                <a href="#" class="dropdown-toggle botonMenuResultados" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-file-text fa-fw "></i> Resultado</a>
+                                <a href="" class="dropdown-toggle botonMenuResultados" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-file-text fa-fw "></i> Resultado</a>
                                 <ul class="dropdown-menu" id="listSubMenuResultados" style="display: none;">
                                     <li>
                                         <a href="#" id="nuevoResultado"><i class="fa fa-plus fa-fw "></i>  Nuevo</a>
@@ -107,13 +110,24 @@
                                 </ul>
                             </li>
                             <li class="dropdown menuPacientes">
-                                <a href="#" class="dropdown-toggle botonMenuPacientes" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw "></i> Paciente</a>
+                                <a href="" class="dropdown-toggle botonMenuPacientes" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw "></i> Paciente</a>
                                 <ul class="dropdown-menu" id="listSubMenuPacientes" style="display: none;">
                                     <li>
                                         <a href="#" id="registrarPacientes"><i class="fa fa-plus fa-fw "></i>  Registrar</a>
                                     </li>
                                     <li>
                                         <a href="#" id="tablaPacientes"><i class="fa fa-search fa-fw "></i>  Buscar</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown menuPruebas">
+                                <a href="" class="dropdown-toggle botonMenuPruebas" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-medkit fa-fw "></i> Prueba</a>
+                                <ul class="dropdown-menu" id="listSubMenuPruebas" style="display: none;">
+                                    <li>
+                                        <a href="#" id="registrarPruebas"><i class="fa fa-plus fa-fw "></i>  Nueva</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="tablaPruebas"><i class="fa fa-search fa-fw "></i>  Buscar</a>
                                     </li>
                                 </ul>
                             </li>
