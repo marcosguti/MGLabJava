@@ -64,7 +64,7 @@
             <!--<div id="page-wrapper">-->
 
             <!--<div class="container">-->
-            <div class="col-lg-11 ">
+            <div class="col-lg-12 ">
                 <div class="panel panel-default">
 
                     <!--/.panel-heading--> 
@@ -72,27 +72,7 @@
                         Crear Resultado
                     </div>
                     <div class="panel-body center">
-                        <!--                        <div class="dataTable_wrapper">
-                                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Clave</th>
-                        
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>  <c:forEach var="grupo" varStatus="status" items="${pruebas}">
-                                                                <tr class="odd gradeX">
-                                                                    <td><c:out value="${grupo.key}"/></td>
-                            <c:forEach var="ob" varStatus="status" items="${grupo.value}">
-                                <td>  <c:out value="${ob.nombre}"/></td>
-                            </c:forEach>
-
-                        </c:forEach>
-
-                </tbody>
-            </table>
-
-        </div>-->
+              
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="panel panel-primary ">
@@ -112,7 +92,7 @@
                                                     <div id="${grupo.key}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                                                         <div class="panel-body">
                                                             <c:forEach var="ob" varStatus="status" items="${grupo.value}">
-                                                                <button type="button" class="btn btn-primary btn-md btn-block"><c:out value="${ob.nombre}"/></button>
+                                                                <button id="${ob.id}" type="button" class="btn btn-primary btn-md btn-block"><c:out value="${ob.nombre}"/></button>
                                                             </c:forEach>
                                                         </div>
                                                     </div>
@@ -144,9 +124,9 @@
                                     <div class="panel-body center">
                                         <div class="dataTable_wrapper">
                                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                                <thead>
+                                                 <thead>
                                                     <tr>
-                                                        <th>Nombre</th>
+                                                        <th><Nombre</th>
                                                         <th>Cedula</th>
 
                                                         <th>ID</th>
@@ -160,12 +140,8 @@
 
                                                             <td><c:out value="${ob.id}"/></td>
                                                             <td><div class="btn-group" role="group" aria-label="...">
-                                                                    <div class="btn-group" role="group">
-                                                                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Editar"><i class="fa fa-pencil-square-o"></i></button>
-                                                                    </div>
-                                                                    <div class="btn-group" role="group">
-                                                                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Eliminar"><i class="fa fa-times"></i></button>
-                                                                    </div>
+                                                                    <button type="button" class="btn btn-info btn-circle"><i class="fa fa-check"></i>
+                                                                    </button>
 
                                                                 </div></td>
                                                         </tr>
@@ -178,51 +154,51 @@
                                     </div>
                                     <!-- /.panel-body -->
                                 </div>
-                                
+
                                 <!-- /.panel -->
                             </div> </div>
-                            <div class="col-lg-8">
+                        <div class="col-lg-8">
 
-                            </div>
-                            <!-- /.col-lg-12 -->
                         </div>
+                        <!-- /.col-lg-12 -->
                     </div>
-                    <!-- /.panel-body -->
                 </div>
-                <!-- /.panel -->
-            </div> 
-            <!-- /.col-lg-12 -->
-        </div>
-        <!-- /.row -->
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div> 
+        <!-- /.col-lg-12 -->
     </div>
-    <!-- /#page-wrapper -->
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
 
-    <!--</div>-->
-    <!-- /#wrapper -->
+<!--</div>-->
+<!-- /#wrapper -->
 
-    <script src="<c:url value='/resources/bower_components/jquery/dist/jquery.min.js' />"></script>
+<script src="<c:url value='/resources/bower_components/jquery/dist/jquery.min.js' />"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="<c:url value='/resources/bower_components/bootstrap/dist/js/bootstrap.min.js' />"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="<c:url value='/resources/bower_components/bootstrap/dist/js/bootstrap.min.js' />"></script>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="<c:url value='/resources/bower_components/metisMenu/dist/metisMenu.min.js' />"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="<c:url value='/resources/bower_components/metisMenu/dist/metisMenu.min.js' />"></script>
 
 
-    <script src="<c:url value='/resources/bower_components/datatables/media/js/jquery.dataTables.min.js' />"></script>
-    <script src="<c:url value='/resources/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js' />"></script>
+<script src="<c:url value='/resources/bower_components/datatables/media/js/jquery.dataTables.min.js' />"></script>
+<script src="<c:url value='/resources/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js' />"></script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="<c:url value='/resources/dist/js/sb-admin-2.js' />"></script>
+<!-- Custom Theme JavaScript -->
+<script src="<c:url value='/resources/dist/js/sb-admin-2.js' />"></script>
 
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-        $(document).ready(function () {
-            $('#dataTables-example').DataTable({
-                responsive: true
-            });
+<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+<script>
+    $(document).ready(function () {
+        $('#dataTables-example').DataTable({
+            responsive: true
         });
-    </script>
+    });
+</script>
 
 </body>
 
