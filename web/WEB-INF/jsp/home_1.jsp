@@ -81,6 +81,9 @@
                 $('#buscarResultado').click(function () {
                     $("#includedContent").load("/Laboratorio/buscarresultado");
                 });
+                $('#crearResultado').click(function () {
+                    $("#includedContent").load("/Laboratorio/crearresultado");
+                });
             });</script>
     </head>
     <body>
@@ -102,7 +105,7 @@
                                 <a href="" class="dropdown-toggle botonMenuResultados" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-file-text fa-fw "></i> Resultado</a>
                                 <ul class="dropdown-menu" id="listSubMenuResultados" style="display: none;">
                                     <li>
-                                        <a href="#" id="nuevoResultado"><i class="fa fa-plus fa-fw "></i>  Nuevo</a>
+                                        <a href="#" id="crearResultado"><i class="fa fa-plus fa-fw "></i>  Nuevo</a>
                                     </li>
                                     <li>
                                         <a href="#" id="buscarResultado"><i class="fa fa-search fa-fw "></i>  Buscar</a>
