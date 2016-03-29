@@ -6,13 +6,20 @@
 package controlador.app;
 
 import controller.PacienteController;
+import dao.GrupoPruebasDAOImpl;
 import dao.PacienteDAOImpl;
+import dao.PruebaDAOImpl;
 import dao.ResultadoDAOImpl;
+import domain.GrupoPruebas;
 import domain.Paciente;
+import domain.Prueba;
 import domain.Resultado;
 import hibernateUtil.BussinessException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -29,8 +36,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class DefaultController {
 
+    PruebaDAOImpl pruebaDAO = new PruebaDAOImpl();
+    GrupoPruebasDAOImpl grupoPruebasDAO = new GrupoPruebasDAOImpl();
+
     PacienteDAOImpl pacienteDAO = new PacienteDAOImpl();
-    ResultadoDAOImpl resultadoDAO= new ResultadoDAOImpl();
+    ResultadoDAOImpl resultadoDAO = new ResultadoDAOImpl();
+
     public DefaultController() {
     }
 
@@ -47,13 +58,21 @@ public class DefaultController {
         return "buscarpaciente";
     }
 
-     @RequestMapping(value = "/buscarresultado", method = RequestMethod.GET)
+    @RequestMapping(value = "/buscarresultado", method = RequestMethod.GET)
     public String buscarResultado(Model model) throws BussinessException {
         List<Resultado> resultados = resultadoDAO.getAllOrdered();
         model.addAttribute("resultados", resultados);
         return "buscarresultado";
     }
-    
+       @RequestMapping(value = "/crearresultado", method = RequestMethod.GET)
+    public String crearResultado(Model model) throws BussinessException {
+      Map<String, List<Prueba>> mapPruebas = getTreePruebas();
+      List<Paciente> pacientes = pacienteDAO.getAllOrdered();
+        model.addAttribute("pruebas", mapPruebas);
+         model.addAttribute("pacientes", pacientes);
+        return "crearresultado";
+    }
+
     @RequestMapping(value = "/registrarpaciente", method = RequestMethod.GET)
     public String pacienteView() {
 
@@ -61,10 +80,10 @@ public class DefaultController {
     }
 
     @RequestMapping(value = "/registro", method = RequestMethod.POST)
-    public String registrarPaciente(Model model, @RequestParam("nombre") String nombre,@RequestParam("cedula") String cedula,@RequestParam("selectDoc") String selectDoc, @RequestParam("edad") String edad, @RequestParam("sexo") String sexo, @RequestParam("direccion") String direccion, @RequestParam("telefono") String telefono) throws BussinessException {
+    public String registrarPaciente(Model model, @RequestParam("nombre") String nombre, @RequestParam("cedula") String cedula, @RequestParam("selectDoc") String selectDoc, @RequestParam("edad") String edad, @RequestParam("sexo") String sexo, @RequestParam("direccion") String direccion, @RequestParam("telefono") String telefono) throws BussinessException {
         Paciente paciente = new Paciente();
         paciente.setNombres(nombre);
-        paciente.setCedula(selectDoc+"-"+cedula);
+        paciente.setCedula(selectDoc + "-" + cedula);
         paciente.setSexo(sexo);
         paciente.setDireccion(direccion);
         paciente.setEdad(Integer.parseInt(edad));
@@ -87,5 +106,17 @@ public class DefaultController {
         model.addAttribute("paciente", paciente);
         model.addAttribute("pacientes", pacientes);
         return "somepage";
+    }
+
+    public Map<String, List<Prueba>> getTreePruebas() throws BussinessException {
+        List<GrupoPruebas> grupoPruebas = grupoPruebasDAO.findAll();
+        Map<String, List<Prueba>> mapPruebas = new HashMap<String, List<Prueba>>();
+        for (GrupoPruebas grupoPrueba : grupoPruebas) {
+            List<Prueba> pruebas = new ArrayList<Prueba>();
+            pruebas = pruebaDAO.getPruebas(grupoPrueba.getNombre());
+            if(pruebas!=null)
+                mapPruebas.put(grupoPrueba.getNombre(), pruebas);
+        }
+        return mapPruebas;
     }
 }
