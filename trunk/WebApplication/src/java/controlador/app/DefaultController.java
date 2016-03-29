@@ -7,7 +7,9 @@ package controlador.app;
 
 import controller.PacienteController;
 import dao.PacienteDAOImpl;
+import dao.ResultadoDAOImpl;
 import domain.Paciente;
+import domain.Resultado;
 import hibernateUtil.BussinessException;
 import java.util.Date;
 import java.util.List;
@@ -28,7 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class DefaultController {
 
     PacienteDAOImpl pacienteDAO = new PacienteDAOImpl();
-
+    ResultadoDAOImpl resultadoDAO= new ResultadoDAOImpl();
     public DefaultController() {
     }
 
@@ -37,14 +39,21 @@ public class DefaultController {
         return "home_1";
     }
 
-    @RequestMapping(value = "/tables", method = RequestMethod.GET)
-    public String home(Model model) throws BussinessException {
+    @RequestMapping(value = "/buscarpaciente", method = RequestMethod.GET)
+    public String buscarPaciente(Model model) throws BussinessException {
         List<Paciente> pacientes = pacienteDAO.getAllOrdered();
         model.addAttribute("pacientes", pacientes);
         model.addAttribute("saludo", "Probando El Controller");
-        return "tables";
+        return "buscarpaciente";
     }
 
+     @RequestMapping(value = "/buscarresultado", method = RequestMethod.GET)
+    public String buscarResultado(Model model) throws BussinessException {
+        List<Resultado> resultados = resultadoDAO.getAllOrdered();
+        model.addAttribute("resultados", resultados);
+        return "buscarresultado";
+    }
+    
     @RequestMapping(value = "/registrarpaciente", method = RequestMethod.GET)
     public String pacienteView() {
 
