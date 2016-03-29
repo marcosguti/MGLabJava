@@ -138,7 +138,7 @@
                     </div><!--/.nav-collapse -->
                 </div>
             </nav>
-            <div class="container" id="includedContent"></div>
+            <div class="row-border" id="includedContent"></div>
             <!--            <footer class="footer">
                             <div class="container">
                                 <p class="text-muted">Marco Gutierrez</p>
