@@ -65,7 +65,7 @@
 
             <!--<div class="container">-->
             <div class="col-lg-11 ">
-                <div class="panel panel-default">
+                 <div class="panel panel-primary">
 
                     <!--/.panel-heading--> 
                     <div class="panel-heading">

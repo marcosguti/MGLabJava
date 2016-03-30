@@ -51,7 +51,10 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>
 
+
+    </script>
 </head>
 
 <body>
@@ -65,7 +68,7 @@
 
             <!--<div class="container">-->
             <div class="col-lg-11 ">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
 
                     <!--/.panel-heading--> 
                     <div class="panel-heading">
@@ -73,10 +76,10 @@
                     </div>
                     <div class="panel-body center">
                         <div class="dataTable_wrapper">
-                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <table class="table table-striped table-bordered table-hover " id="dataTables-example">
                                 <thead>
                                     <tr>
-                                         <th>Fecha</th>
+                                        <th>Fecha</th>
                                         <th>Nombre</th>
                                         <th>Cedula</th>
                                         <th>Precio</th>
@@ -86,7 +89,7 @@
                                 </thead>
                                 <tbody>  <c:forEach var="ob" varStatus="status" items="${resultados}">
                                         <tr class="odd gradeX">
-                                              <td><c:out value="${ob.fecha}"/></td>
+                                            <td><c:out value="${ob.fecha}"/></td>
                                             <td><c:out value="${ob.paciente.nombres}"/></td>
                                             <td><c:out value="${ob.paciente.cedula}"/></td>
                                             <td><c:out value="${ob.precio}"/></td>
@@ -139,8 +142,56 @@
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
         $(document).ready(function () {
-            $('#dataTables-example').DataTable({
-                responsive: true
+//            $('#dataTables-example').DataTable({
+//                responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100],
+//                "language": {
+//                    "lengthMenu": "Mostrando _MENU_ Elementos por pagina",
+//                    "zeroRecords": "Nothing found - sorry",
+//                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+//                    "search": "Buscar:",
+//                    "infoEmpty": "No records available", "paginate": {
+//                        "first": "First",
+//                        "last": "Last",
+//                        "next": "Sig",
+//                        "previous": "Ant"
+//                    },
+//                    "infoFiltered": "(filtered from _MAX_ total records)"
+//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json
+//                    "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+//                }
+//            });
+//            var table = $('#dataTables-example').DataTable();
+//
+//            $('#dataTables-example tbody').on('click', 'tr', function () {
+//                var data = table.row(this).data();
+//                alert('Paciente: ' + data[1]);
+//            });
+            var table = $('#dataTables-example').DataTable({
+                responsive: true, 
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+                },
+                "lengthMenu": [2,5, 10, 15, 20, 50, 100],
+                "columnDefs": [
+                    {"visible": false, "targets": 0}
+                ],
+                "order": [[2, 'asc']],
+                "displayLength": 25,
+                "drawCallback": function (settings) {
+                    var api = this.api();
+                    var rows = api.rows({page: 'current'}).nodes();
+                    var last = null;
+
+                    api.column(0, {page: 'current'}).data().each(function (group, i) {
+                        if (last !== group) {
+                            $(rows).eq(i).before(
+                                    '<tr class="group"><td colspan="5">' + group + '</td></tr>'
+                                    );
+
+                            last = group;
+                        }
+                    });
+                }
             });
         });
     </script>

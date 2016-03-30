@@ -65,16 +65,16 @@
 
             <!--<div class="container">-->
             <div class="col-lg-12 ">
-                <div class="panel panel-default">
+                <div class="panel panel-warning">
 
                     <!--/.panel-heading--> 
                     <div class="panel-heading">
                         Crear Resultado
                     </div>
                     <div class="panel-body center">
-              
+
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-3">
                                 <div class="panel panel-primary ">
                                     <div class="panel-heading">
                                         Pruebas
@@ -98,68 +98,57 @@
                                                     </div>
                                                 </div>
                                             </c:forEach>
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion" href="#aaa" aria-expanded="false" class="collapsed">asdasdad</a>
-                                                    </h4>
-                                                </div>
-                                                <div id="aaa" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-                                                    <div class="panel-body">
-                                                        assasdadaadas
-                                                    </div>
-                                                </div>
-                                            </div>
+                                          
 
                                         </div>
                                     </div>
                                     <!-- .panel-body -->
                                 </div>
-                                <div class="panel panel-default">
+<!--                                <div class="panel panel-primary">
 
-                                    <!--/.panel-heading--> 
+                                  
                                     <div class="panel-heading">
                                         Pacientes
                                     </div>
                                     <div class="panel-body center">
                                         <div class="dataTable_wrapper">
                                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                                 <thead>
+                                                <thead>
                                                     <tr>
-                                                        <th><Nombre</th>
-                                                        <th>Cedula</th>
+                                                        <th>Nombre</th>
+                                                    <th>Cedula</th>
 
-                                                        <th>ID</th>
-                                                        <th style="text-align: center;"></th>
+                                                    <th>ID</th>
+                                                    <th style="text-align: center;"></th>
                                                     </tr>
-                                                </thead>
-                                                <tbody>  <c:forEach var="ob" varStatus="status" items="${pacientes}">
-                                                        <tr class="odd gradeX">
-                                                            <td><c:out value="${ob.nombres}"/></td>
-                                                            <td><c:out value="${ob.cedula}"/></td>
+                                                    </thead>
+                                                    <tbody>  <c:forEach var="ob" varStatus="status" items="${pacientes}">
+                                                            <tr class="odd gradeX">
+                                                                <td><c:out value="${ob.nombres}"/></td>
+                                                                <td><c:out value="${ob.cedula}"/></td>
 
                                                             <td><c:out value="${ob.id}"/></td>
-                                                            <td><div class="btn-group" role="group" aria-label="...">
-                                                                    <button type="button" class="btn btn-info btn-circle"><i class="fa fa-check"></i>
-                                                                    </button>
+                                                                <td><div class="btn-group" role="group" aria-label="...">
+                                                                        <button type="button" class="btn btn-info btn-circle"><i class="fa fa-check"></i>
+                                                                        </button>
 
-                                                                </div></td>
-                                                        </tr>
+                                                                    </div></td>
+                                                            </tr>
 
-                                                    </c:forEach>
-                                                </tbody>
+                                                        </c:forEach>
+                                                    </tbody>
                                             </table>
                                         </div>
 
                                     </div>
-                                    <!-- /.panel-body -->
-                                </div>
+                                   
+                                </div>-->
 
                                 <!-- /.panel -->
-                            </div> </div>
-                        <div class="col-lg-8">
+                            </div> 
+                            <div class="col-lg-9">
 
-                        </div>
+                            </div></div>
                         <!-- /.col-lg-12 -->
                     </div>
                 </div>
@@ -195,7 +184,7 @@
 <script>
     $(document).ready(function () {
         $('#dataTables-example').DataTable({
-            responsive: true
+            responsive: true,"scrollX": true
         });
     });
 </script>
