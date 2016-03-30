@@ -155,9 +155,11 @@
 //                        "next": "Sig",
 //                        "previous": "Ant"
 //                    },
-//                    "infoFiltered": "(filtered from _MAX_ total records)"
-//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json
+//                    "infoFiltered": "(filtered from _MAX_ total records)",
+//
+//                       "language": {
 //                    "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+//                
 //                }
 //            });
 //            var table = $('#dataTables-example').DataTable();
@@ -167,11 +169,11 @@
 //                alert('Paciente: ' + data[1]);
 //            });
             var table = $('#dataTables-example').DataTable({
-                responsive: true, 
+                responsive: true, responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100],
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
                 },
-                "lengthMenu": [2,5, 10, 15, 20, 50, 100],
+                "lengthMenu": [1, 100],
                 "columnDefs": [
                     {"visible": false, "targets": 0}
                 ],

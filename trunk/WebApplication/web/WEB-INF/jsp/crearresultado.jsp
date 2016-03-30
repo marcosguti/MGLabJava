@@ -51,7 +51,11 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <style>
+      #dataTables-example_length, #dataTables-example_info, #dataTables-example_paginate, #tablaResultados_info, #tablaResultados_paginate, #tablaResultados_filter, #tablaResultados_length {
+            visibility: hidden;
+        }
+    </style>
 </head>
 
 <body>
@@ -74,7 +78,7 @@
                     <div class="panel-body center">
 
                         <div class="row">
-                            <div class="col-lg-3">
+                            <div class="col-lg-6">
                                 <div class="panel panel-primary ">
                                     <div class="panel-heading">
                                         Pruebas
@@ -98,15 +102,16 @@
                                                     </div>
                                                 </div>
                                             </c:forEach>
-                                          
+                                            <button id="addRow" type="button" class="btn btn-primary btn-md btn-block">add</button>
+
 
                                         </div>
                                     </div>
                                     <!-- .panel-body -->
                                 </div>
-<!--                                <div class="panel panel-primary">
+                                <div class="panel panel-primary">
 
-                                  
+
                                     <div class="panel-heading">
                                         Pacientes
                                     </div>
@@ -116,38 +121,76 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Nombre</th>
-                                                    <th>Cedula</th>
+                                                        <th>Cedula</th>
 
-                                                    <th>ID</th>
-                                                    <th style="text-align: center;"></th>
+                                                        <th>ID</th>
+                                                        <th style="text-align: center;"></th>
                                                     </tr>
-                                                    </thead>
-                                                    <tbody>  <c:forEach var="ob" varStatus="status" items="${pacientes}">
-                                                            <tr class="odd gradeX">
-                                                                <td><c:out value="${ob.nombres}"/></td>
-                                                                <td><c:out value="${ob.cedula}"/></td>
+                                                </thead>
+                                                <tbody>  <c:forEach var="ob" varStatus="status" items="${pacientes}">
+                                                        <tr class="odd gradeX">
+                                                            <td><c:out value="${ob.nombres}"/></td>
+                                                            <td><c:out value="${ob.cedula}"/></td>
 
                                                             <td><c:out value="${ob.id}"/></td>
-                                                                <td><div class="btn-group" role="group" aria-label="...">
-                                                                        <button type="button" class="btn btn-info btn-circle"><i class="fa fa-check"></i>
-                                                                        </button>
+                                                            <td><div class="btn-group" role="group" aria-label="...">
+                                                                    <button type="button" class="btn btn-info btn-circle"><i class="fa fa-check"></i>
+                                                                    </button>
 
-                                                                    </div></td>
-                                                            </tr>
+                                                                </div></td>
+                                                        </tr>
 
-                                                        </c:forEach>
-                                                    </tbody>
+                                                    </c:forEach>
+                                                </tbody>
                                             </table>
                                         </div>
 
                                     </div>
-                                   
-                                </div>-->
+
+                                </div>
 
                                 <!-- /.panel -->
                             </div> 
-                            <div class="col-lg-9">
+                            <div class="col-lg-6">
+                                <div class="panel panel-primary">
 
+
+                                    <div class="panel-heading">
+                                        Resultado
+                                    </div>
+                                    <div class="panel-body center">
+                                        <div class="dataTable_wrapper">
+                                            <table class="table table-striped table-bordered table-hover" id="tablaResultados">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Nombre</th>
+                                                        <!--<th>Cedula</th>-->
+
+                                                        <!--<th>ID</th>-->
+                                                        <th style="text-align: center;"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>  <c:forEach var="ob" varStatus="status" items="${pacientes}">
+                                                        <tr class="odd gradeX">
+                                                            <td><c:out value="${ob.nombres}"/></td>
+                                                            <!--<td><c:out value="${ob.cedula}"/></td>-->
+
+                                                            <!--<td><c:out value="${ob.id}"/></td>-->
+                                                            <td><div class="btn-group" role="group" aria-label="...">
+                                                                    <button type="button" class="btn btn-info btn-circle"><i class="fa fa-check"></i>
+                                                                    </button>
+
+                                                                </div></td>
+                                                        </tr>
+
+                                                    </c:forEach>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+
+                                </div>
                             </div></div>
                         <!-- /.col-lg-12 -->
                     </div>
@@ -183,9 +226,24 @@
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
     $(document).ready(function () {
+//        $("#tablaResultados_length").remove();
         $('#dataTables-example').DataTable({
-            responsive: true,"scrollX": true
+            responsive: false, "scrollX": true, "lengthMenu": [1]
         });
+        var t = $('#tablaResultados').DataTable();
+        var counter = 1;
+
+        $('#addRow').on('click', function () {
+            t.row.add([
+                counter + '.1',
+                counter + '.2'
+            ]).draw(false);
+
+            counter++;
+        });
+
+        // Automatically add a first row of data
+//        $('#addRow').click();
     });
 </script>
 
