@@ -47,7 +47,7 @@
 
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="panel panel-default">
+                    <div class="panel panel-primary">
                         <div class="panel-heading">
                             Registro de Paciente
                         </div>
