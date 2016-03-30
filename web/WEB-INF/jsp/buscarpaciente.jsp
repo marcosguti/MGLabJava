@@ -144,7 +144,7 @@
     <script>
         $(document).ready(function () {
             $('#dataTables-example').DataTable({
-                responsive: true
+                responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100]
             });
         });
     </script>
