@@ -40,6 +40,8 @@
 
     <!-- Morris Charts CSS -->
     <link href="<c:url value='/resources/bower_components/morrisjs/morris.css' />" rel="stylesheet">
+     <!-- Mi CSS -->
+    <link href="<c:url value='/resources/marco/common.css' />" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="<c:url value='/resources/bower_components/font-awesome/css/font-awesome.min.css' />" rel="stylesheet" type="text/css">
@@ -52,9 +54,11 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
-      #dataTables-example_length, #dataTables-example_info, #dataTables-example_paginate, #tablaResultados_info, #tablaResultados_paginate, #tablaResultados_filter, #tablaResultados_length {
+        #dataTables-example_paginate{
             visibility: hidden;
         }
+        
+       
     </style>
 </head>
 
@@ -69,26 +73,26 @@
 
             <!--<div class="container">-->
             <div class="col-lg-12 ">
-                <div class="panel panel-warning">
+                <div class="panel panel-primary panelBorderColor">
 
                     <!--/.panel-heading--> 
-                    <div class="panel-heading">
+                    <div class="panel-heading panelHeaderColor">
                         Crear Resultado
                     </div>
                     <div class="panel-body center">
 
                         <div class="row">
                             <div class="col-lg-6">
-                                <div class="panel panel-primary ">
-                                    <div class="panel-heading">
+                                <div class="panel panel-primary panelBorderColor ">
+                                    <div class="panel-heading panelHeaderColor">
                                         Pruebas
                                     </div>
                                     <!-- .panel-heading -->
                                     <div class="panel-body">
                                         <div class="panel-group" id="accordion">
                                             <c:forEach var="grupo" varStatus="status" items="${pruebas}">
-                                                <div class="panel panel-default">
-                                                    <div class="panel-heading">
+                                                <div class="panel panel-primary">
+                                                    <div class="panel-heading panelHeaderColor">
                                                         <h4 class="panel-title">
                                                             <a data-toggle="collapse" data-parent="#accordion" href="#${grupo.key}" aria-expanded="false" class="collapsed"><c:out value="${grupo.key}"/></a>
                                                         </h4>
@@ -96,7 +100,7 @@
                                                     <div id="${grupo.key}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                                                         <div class="panel-body">
                                                             <c:forEach var="ob" varStatus="status" items="${grupo.value}">
-                                                                <button id="${ob.id}" type="button" class="btn btn-primary btn-md btn-block"><c:out value="${ob.nombre}"/></button>
+                                                                <button id="${ob.id}" type="button" class="btn btn-outline btn-primary btn-md btn-block"><c:out value="${ob.nombre}"/></button>
                                                             </c:forEach>
                                                         </div>
                                                     </div>
@@ -109,16 +113,16 @@
                                     </div>
                                     <!-- .panel-body -->
                                 </div>
-                                <div class="panel panel-primary">
+                                <div class="panel panel-primary panelBorderColor">
 
 
-                                    <div class="panel-heading">
+                                    <div class="panel-heading panelHeaderColor">
                                         Pacientes
                                     </div>
                                     <div class="panel-body center">
                                         <div class="dataTable_wrapper">
-                                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                                <thead>
+                                            <table class="table table-striped table-bordered table-hover" width="100%" id="dataTables-example">
+                                                <thead id="tablaPacientesHead">
                                                     <tr>
                                                         <th>Nombre</th>
                                                         <th>Cedula</th>
@@ -133,7 +137,7 @@
                                                             <td><c:out value="${ob.cedula}"/></td>
 
                                                             <td><c:out value="${ob.id}"/></td>
-                                                            <td><div class="btn-group" role="group" aria-label="...">
+                                                            <td style="text-align: center;"><div class="btn-group" role="group" aria-label="...">
                                                                     <button type="button" class="btn btn-info btn-circle"><i class="fa fa-check"></i>
                                                                     </button>
 
@@ -152,38 +156,33 @@
                                 <!-- /.panel -->
                             </div> 
                             <div class="col-lg-6">
-                                <div class="panel panel-primary">
+                                <div class="panel panel-primary panelBorderColor">
 
 
-                                    <div class="panel-heading">
+                                    <div class="panel-heading panelHeaderColor">
                                         Resultado
                                     </div>
                                     <div class="panel-body center">
+                                        <div class="panel panel-primary panelBorderColor "> 
+                                            <div class="panel-heading panelHeaderColor">
+                                                Datos del Paciente
+                                            </div>
+                                            <div class="panel-body center">
+                                                
+                                            </div>
+                                        </div>
                                         <div class="dataTable_wrapper">
-                                            <table class="table table-striped table-bordered table-hover" id="tablaResultados">
+                                            <table class="table table-striped table-bordered table-hover" width="100%" id="tablaResultados">
                                                 <thead>
                                                     <tr>
-                                                        <th>Nombre</th>
+                                                        <th></th>
                                                         <!--<th>Cedula</th>-->
 
                                                         <!--<th>ID</th>-->
                                                         <th style="text-align: center;"></th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>  <c:forEach var="ob" varStatus="status" items="${pacientes}">
-                                                        <tr class="odd gradeX">
-                                                            <td><c:out value="${ob.nombres}"/></td>
-                                                            <!--<td><c:out value="${ob.cedula}"/></td>-->
-
-                                                            <!--<td><c:out value="${ob.id}"/></td>-->
-                                                            <td><div class="btn-group" role="group" aria-label="...">
-                                                                    <button type="button" class="btn btn-info btn-circle"><i class="fa fa-check"></i>
-                                                                    </button>
-
-                                                                </div></td>
-                                                        </tr>
-
-                                                    </c:forEach>
+                                                <tbody>  
                                                 </tbody>
                                             </table>
                                         </div>
@@ -226,9 +225,24 @@
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
     $(document).ready(function () {
-//        $("#tablaResultados_length").remove();
+//        $("#dataTables-example_length, #dataTables-example_info, #dataTables-example_paginate, #tablaResultados_info, #tablaResultados_paginate, #tablaResultados_filter, #tablaResultados_length").remove();
         $('#dataTables-example').DataTable({
-            responsive: false, "scrollX": true, "lengthMenu": [1]
+//              "paging":   false,
+            "bLengthChange": false,
+            "ordering": false,
+            "info": false,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+            }, "scrollX": true, "lengthMenu": [1]
+        });
+        $('#tablaResultados').DataTable({
+            "paging": false,
+            "ordering": false,
+            "info": false,
+            "searching": false,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+            }, "scrollX": true,
         });
         var t = $('#tablaResultados').DataTable();
         var counter = 1;

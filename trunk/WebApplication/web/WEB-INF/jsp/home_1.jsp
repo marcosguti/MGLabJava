@@ -48,7 +48,13 @@
         <title>JSP Page</title>
         <style>
 
-
+            #barraPrincipal{
+                /*background-color: #337ab7 !important;*/
+            }
+            .panelColor{
+                background-color: #1E1A1A;
+                border-color: #1E1A1A;
+            }
         </style>
         <script>
             $(document).ready(function () {
@@ -88,7 +94,7 @@
     </head>
     <body>
         <div class="container">
-            <nav class="navbar navbar-inverse">
+            <nav class="navbar navbar-inverse navbar-fixed-top" id="barraPrincipal">
                 <div class="container">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
@@ -138,6 +144,7 @@
                     </div><!--/.nav-collapse -->
                 </div>
             </nav>
+            <br><br><br><br>
             <div class="row-border" id="includedContent"></div>
             <!--            <footer class="footer">
                             <div class="container">
@@ -168,9 +175,7 @@
         <!-- Custom Theme JavaScript -->
         <script>
             $(document).ready(function () {
-                $('#dataTables-example').DataTable({
-                    responsive: true
-                });
+//               $("#barraPrincipal").css("background-color", "#337ab7 !important");
             });
         </script>
 

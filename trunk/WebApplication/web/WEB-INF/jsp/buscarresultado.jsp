@@ -164,10 +164,10 @@
 //            });
 //            var table = $('#dataTables-example').DataTable();
 //
-//            $('#dataTables-example tbody').on('click', 'tr', function () {
-//                var data = table.row(this).data();
-//                alert('Paciente: ' + data[1]);
-//            });
+            $('#dataTables-example tbody').on('click', 'tr', function () {
+                var data = table.row(this).data();
+                alert('Paciente: ' + data[1]);
+            });
             var table = $('#dataTables-example').DataTable({
                 responsive: true, responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100],
                 "language": {
