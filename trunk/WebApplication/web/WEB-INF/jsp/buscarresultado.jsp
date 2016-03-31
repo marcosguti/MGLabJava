@@ -164,7 +164,7 @@
 //            });
 //            var table = $('#dataTables-example').DataTable();
 //
-            $('#dataTables-example tbody').on('click', 'tr', function () {
+            $('#dataTables-example tbody ').on('click', 'tr', function () {
                 var data = table.row(this).data();
                 alert('Paciente: ' + data[1]);
             });
