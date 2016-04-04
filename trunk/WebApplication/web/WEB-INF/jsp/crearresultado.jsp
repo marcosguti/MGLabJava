@@ -180,7 +180,13 @@
                                                 
                                             </div>
                                         </div>
-                                        <div class="dataTable_wrapper">
+                                        <div class="panel panel-primary panelBorderColor "> 
+                                            <div class="panel-heading panelHeaderColor">
+                                                Datos de las Pruebas
+                                              
+                                            </div>
+                                            <div class="panel-body center" id ="datosResultado">
+                                                 <div class="dataTable_wrapper">
                                             <table class="table table-striped table-bordered table-hover" width="100%" id="tablaResultados">
                                                 <thead>
                                                     <tr>
@@ -195,6 +201,9 @@
                                                 </tbody>
                                             </table>
                                         </div>
+                                            </div>
+                                        </div>
+                                       
 
                                     </div>
 
@@ -273,7 +282,7 @@
 //                fecha   .toLocaleFormat('%d-%b-%Y');
 //                $( "#datosPaciente" ).append( "<label>Nombre: </label><p>"+data[0]+"</p>" );
 //"<div class=\"form-group\"><label>Nombre:</label><p class=\"form-control-static\">"+data[0]+"</p></div>"
-                 $( "#datosPaciente" ).append("<div class=\"form-group\"><label class=\"control-label\">Nombre: </label><input type=\"text\" class=\"form-control\" placeholder=\"Disabled input\" disabled=\"disabled\" value="+data[1]+"></div><div class=\"form-group\"<label>  Cedula: </label><p class=\"form-control-static\">"+data[1]+"</p></div>" );
+                 $( "#datosPaciente" ).append("<div class=\"form-group\"><label class=\"control-label\">Nombre: </label><input type=\"text\" class=\"form-control\" placeholder=\"Disabled input\" disabled=\"disabled\" value=\""+data[0]+"\"></div><div class=\"form-group\"<label>  Cedula: </label><p class=\"form-control-static\">"+data[1]+"</p></div>" );
 //                                     $( "#datosPaciente" ).append("<div class=\"form-group\"><label class=\"control-label col-xs-2\">Email</label> <div class=\"col-xs-10\"> <p class=\"form-control-static\">harrypotter@mail.com</p> </div></div>" );
          
 //             " <h1><c:out value="${mapPacientes['22'].nombres}"/></h1>"
