@@ -64,12 +64,15 @@ public class DefaultController {
         model.addAttribute("resultados", resultados);
         return "buscarresultado";
     }
-       @RequestMapping(value = "/crearresultado", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/crearresultado", method = RequestMethod.GET)
     public String crearResultado(Model model) throws BussinessException {
-      Map<String, List<Prueba>> mapPruebas = getTreePruebas();
-      List<Paciente> pacientes = pacienteDAO.getAllOrdered();
-        model.addAttribute("pruebas", mapPruebas);
-         model.addAttribute("pacientes", pacientes);
+        Map<String, List<Prueba>> mapTreePruebas = getTreePruebas();
+//        List<Paciente> pacientes = pacienteDAO.getAllOrdered();
+        Map<String, Paciente> mapPacientes = pacienteDAO.getMapAll();
+        Map<String, Prueba> mapPruebas = pruebaDAO.getMapAll();
+        model.addAttribute("treePruebas", mapTreePruebas);
+        model.addAttribute("mapPacientes", mapPacientes);
         return "crearresultado";
     }
 
@@ -114,8 +117,9 @@ public class DefaultController {
         for (GrupoPruebas grupoPrueba : grupoPruebas) {
             List<Prueba> pruebas = new ArrayList<Prueba>();
             pruebas = pruebaDAO.getPruebas(grupoPrueba.getNombre());
-            if(pruebas!=null)
+            if (pruebas != null) {
                 mapPruebas.put(grupoPrueba.getNombre(), pruebas);
+            }
         }
         return mapPruebas;
     }

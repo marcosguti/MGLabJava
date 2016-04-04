@@ -9,6 +9,8 @@ import org.hibernate.Session;
 import domain.Paciente;
 
 import hibernateUtil.BussinessException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PacienteDAOImpl extends GenericDAOImplHibernate<Paciente, Integer> implements PacienteDAO {
 
@@ -120,6 +122,16 @@ public class PacienteDAOImpl extends GenericDAOImplHibernate<Paciente, Integer> 
 			}
 			throw new RuntimeException(ex);
 		}
+    }
+
+ 
+    public Map <String, Paciente> getMapAll() throws BussinessException {
+      List<Paciente> pacientes=getAllOrdered();
+      Map <String, Paciente> map=new HashMap<String, Paciente>();
+        for (Paciente paciente : pacientes) {
+            map.put(String.valueOf(paciente.getId()), paciente);
+        }
+      return map;
     }
 
   

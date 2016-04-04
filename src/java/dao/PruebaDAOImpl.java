@@ -8,7 +8,9 @@ package dao;
 import domain.Paciente;
 import domain.Prueba;
 import hibernateUtil.BussinessException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -90,5 +92,15 @@ public class PruebaDAOImpl extends GenericDAOImplHibernate<Prueba, Integer> impl
             w.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public Map<String, Prueba> getMapAll() throws BussinessException {
+         List<Prueba> pruebas=findAll();
+      Map <String, Prueba> map=new HashMap<String, Prueba>();
+        for (Prueba prueba : pruebas) {
+            map.put(String.valueOf(prueba.getId()), prueba);
+        }
+      return map;
     }
 }
