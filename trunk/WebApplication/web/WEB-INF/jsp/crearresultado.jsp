@@ -82,15 +82,16 @@
                     <div class="panel-body center">
 
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <div class="panel panel-primary panelBorderColor ">
                                     <div class="panel-heading panelHeaderColor">
                                         Pruebas
                                     </div>
                                     <!-- .panel-heading -->
                                     <div class="panel-body">
+                                        
                                         <div class="panel-group" id="accordion">
-                                            <c:forEach var="grupo" varStatus="status" items="${pruebas}">
+                                            <c:forEach var="grupo" varStatus="status" items="${treePruebas}">
                                                 <div class="panel panel-primary">
                                                     <div class="panel-heading panelHeaderColor">
                                                         <h4 class="panel-title">
@@ -131,12 +132,13 @@
                                                         <th style="text-align: center;"></th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>  <c:forEach var="ob" varStatus="status" items="${pacientes}">
+<!--                                                <h1><c:out value="${mapPacientes['22'].nombres}"/></h1>-->
+                                                <tbody>  <c:forEach var="ob" varStatus="status" items="${mapPacientes}">
                                                         <tr class="odd gradeX">
-                                                            <td><c:out value="${ob.nombres}"/></td>
-                                                            <td><c:out value="${ob.cedula}"/></td>
+                                                            <td><c:out value="${ob.value.nombres}"/></td>
+                                                            <td><c:out value="${ob.value.cedula}"/></td>
 
-                                                            <td><c:out value="${ob.id}"/></td>
+                                                            <td><c:out value="${ob.value.id}"/></td>
                                                             <td style="text-align: center;"><div class="btn-group" role="group" aria-label="...">
                                                                     <button type="button" class="btn btn-info btn-circle"><i class="fa fa-check"></i>
                                                                     </button>
@@ -155,10 +157,10 @@
 
                                 <!-- /.panel -->
                             </div> 
-                            <div class="col-lg-6">
+                            <div class="col-lg-8">
                                 <div class="panel panel-primary panelBorderColor">
 
-
+  <!--<input type="text" value="un \"gran\" hombre" />-->
                                     <div class="panel-heading panelHeaderColor">
                                         Resultado
                                     </div>
@@ -166,8 +168,9 @@
                                         <div class="panel panel-primary panelBorderColor "> 
                                             <div class="panel-heading panelHeaderColor">
                                                 Datos del Paciente
+                                              
                                             </div>
-                                            <div class="panel-body center">
+                                            <div class="panel-body center" id ="datosPaciente">
                                                 
                                             </div>
                                         </div>
@@ -226,16 +229,51 @@
 <script>
     $(document).ready(function () {
 //        $("#dataTables-example_length, #dataTables-example_info, #dataTables-example_paginate, #tablaResultados_info, #tablaResultados_paginate, #tablaResultados_filter, #tablaResultados_length").remove();
-        $('#dataTables-example').DataTable({
+//        var table = $('#dataTables-example').dataTable();
+//    var tableTools = new $.fn.dataTable.TableTools( table, {
+//        "buttons": [
+//            "copy",
+//            "csv",
+//            "xls",
+//            "pdf",
+//            { "type": "print", "buttonText": "Print me!" }
+//        ]
+//    } );
+//      
+//    $( tableTools.fnContainer() ).insertAfter('div.info');
+   
+       var tt =  $('#dataTables-example').DataTable({
+//            "dom": '<"top"f><"clear">',
+//           "dom": 'T<"clear">frt',
+           "dom":'<"pull-left"f>t',
+//        "tableTools": {
+//            "sSwfPath": "/swf/copy_csv_xls_pdf.swf"
+//        },
+//            "sDom": '<"H"lr>t<"F"ip>' ,
 //              "paging":   false,
-            "bLengthChange": false,
+               "pageLength": 1,
+//            "bLengthChange": false,
             "ordering": false,
-            "info": false,
+            
+//            "info": false,
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
-            }, "scrollX": true, "lengthMenu": [1]
+            }, "scrollX": true, 
+//            "lengthMenu": [1]
         });
+             $('#dataTables-example tbody ').on('click', 'tr', function () {
+                var data = tt.row(this).data();
+                var fecha= new Date();
+//                fecha   .toLocaleFormat('%d-%b-%Y');
+//                $( "#datosPaciente" ).append( "<label>Nombre: </label><p>"+data[0]+"</p>" );
+//"<div class=\"form-group\"><label>Nombre:</label><p class=\"form-control-static\">"+data[0]+"</p></div>"
+                 $( "#datosPaciente" ).append("<div class=\"form-group\"><label>Nombre:</label><p class=\"form-control-static\">"+data[0]+"</p></div>" );
+//              <h1><c:out value="${mapPacientes['22'].nombres}"/></h1>
+//                alert('Paciente: ' + data[1]);
+            });
+        
         $('#tablaResultados').DataTable({
+            
             "paging": false,
             "ordering": false,
             "info": false,
