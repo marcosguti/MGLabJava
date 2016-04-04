@@ -66,6 +66,7 @@
         }
         .selected{
             background-color: #337ab7;
+            color: white;
         }
     </style>
 </head>
@@ -91,38 +92,7 @@
 
                         <div class="row">
                             <div class="col-lg-4">
-                                <div class="panel panel-primary panelBorderColor ">
-                                    <div class="panel-heading panelHeaderColor">
-                                        Pruebas
-                                    </div>
-                                    <!-- .panel-heading -->
-                                    <div class="panel-body">
-
-                                        <div class="panel-group" id="accordion">
-                                            <c:forEach var="grupo" varStatus="status" items="${treePruebas}">
-                                                <div class="panel panel-primary">
-                                                    <div class="panel-heading panelHeaderColor">
-                                                        <h4 class="panel-title">
-                                                            <a data-toggle="collapse" data-parent="#accordion" href="#${grupo.key}" aria-expanded="false" class="collapsed"><c:out value="${grupo.key}"/></a>
-                                                        </h4>
-                                                    </div>
-                                                    <div id="${grupo.key}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-                                                        <div class="panel-body">
-                                                            <c:forEach var="ob" varStatus="status" items="${grupo.value}">
-                                                                <button id="${ob.id}" type="button" class="btn btn-outline btn-primary btn-md btn-block"><c:out value="${ob.nombre}"/></button>
-                                                            </c:forEach>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </c:forEach>
-                                            <button id="addRow" type="button" class="btn btn-primary btn-md btn-block">add</button>
-
-
-                                        </div>
-                                    </div>
-                                    <!-- .panel-body -->
-                                </div>
-                                <div class="panel panel-primary panelBorderColor">
+                                 <div class="panel panel-primary panelBorderColor">
 
 
                                     <div class="panel-heading panelHeaderColor">
@@ -162,6 +132,39 @@
                                     </div>
 
                                 </div>
+                                <div class="panel panel-primary panelBorderColor ">
+                                    <div class="panel-heading panelHeaderColor">
+                                        Pruebas
+                                    </div>
+                                    <!-- .panel-heading -->
+                                    <div class="panel-body">
+
+                                        <div class="panel-group" id="accordion">
+                                            <c:forEach var="grupo" varStatus="status" items="${treePruebas}">
+                                                <div class="panel panel-primary">
+                                                    <div class="panel-heading panelHeaderColor">
+                                                        <h4 class="panel-title">
+                                                            <a data-toggle="collapse" data-parent="#accordion" href="#${grupo.key}" aria-expanded="false" class="collapsed"><c:out value="${grupo.key}"/></a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="${grupo.key}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                                        <div class="panel-body">
+                                                            <c:forEach var="ob" varStatus="status" items="${grupo.value}">
+                                                                <button id="${ob.id}" data-nombre="${ob.nombre}" data-unidad="${ob.unidad}"  type="button" class="btn btn-outline btn-primary btn-md btn-block addRow"><c:out value="${ob.nombre}"/></button>
+                                                            </c:forEach>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </c:forEach>
+                                            <button  data-nombre="tgp" data-unidad="d/s" type="button" class="btn btn-primary btn-md btn-block addRow">TGP</button>
+                                            <button data-nombre="tgo" data-unidad="d/f" type="button" class="btn btn-primary btn-md btn-block addRow">TGO</button>
+                                            <button data-nombre="tga" data-unidad="d/sf" type="button" class="btn btn-primary btn-md btn-block addRow">TGA</button>
+
+                                        </div>
+                                    </div>
+                                    <!-- .panel-body -->
+                                </div>
+                               
 
                                 <!-- /.panel -->
                             </div> 
@@ -191,7 +194,7 @@
                                                 <div class="panel-group">
                                                     <div class="dataTable_wrapper">
 
-                                                        <table class="table table-striped table-bordered table-hover" width="100%" id="tablaResultados">
+                                                        <table class="table  table-bordered " width="100%" id="tablaResultados">
                                                             <thead>
                                                                 <tr>
                                                                     <th>Prueba</th>
@@ -272,18 +275,11 @@
 
         var tt = $('#dataTables-example').DataTable({
 //            "dom": '<"top"f><"clear">',
-//           "dom": 'T<"clear">frt',
+//           "dom": 'rt',
             "dom": '<"pull-left"f>t',
             "order": [[0, "asc"]],
-//        "tableTools": {
-//            "sSwfPath": "/swf/copy_csv_xls_pdf.swf"
-//        },
-//            "sDom": '<"H"lr>t<"F"ip>' ,
-//              "paging":   false,
             "pageLength": 1,
-//            "bLengthChange": false,
             "ordering": false,
-//            "info": false,
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
             }, "scrollX": true,
@@ -312,19 +308,23 @@
             }, "scrollX": true,
         });
         var t = $('#tablaResultados').DataTable();
-        var counter = 1;
 
-        $('#addRow').on('click', function () {
+        $('.addRow').on('click', function () {
+            var valor = $(this);
+
             t.row.add([
-                "Hematologia",
-                "<input type=\"text\" class=\"form-control\" id=\"inputSuccess\">", '(4-50)ml/s'
+                valor.attr("data-nombre"),
+                "<input type=\"text\" class=\"form-control\" name=\"name\" pattern=\"[0-9]\" title=\"Introduzca el Valor del Resultado\" id=\"inputSuccess\" required>", valor.attr("data-unidad")
             ]).draw(false);
 
-            counter++;
+
+//            $(this).addClass('btn-disabled btn-block disabled');
+            $(this).attr('disabled', 'disabled');
         });
 //        var t = $('#tablaResultados').DataTable();
         $('#tablaResultados tbody').on('click', 'tr', function () {
 //            alert("hola");
+//            $(this).toggleClass('selected');
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
             } else {
@@ -334,7 +334,11 @@
         });
 
         $('#buttonBorrarPrueba').click(function () {
+             var select= t.row('.selected');
+
             t.row('.selected').remove().draw(false);
+          
+           
         });
 
         // Automatically add a first row of data
