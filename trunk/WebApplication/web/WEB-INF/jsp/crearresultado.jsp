@@ -57,7 +57,13 @@
         #dataTables-example_paginate{
             visibility: hidden;
         }
-        
+    .bs-example{
+    	margin: 20px;
+    }
+	/* Fix alignment issue of label on extra small devices in Bootstrap 3.2 */
+    .form-horizontal .control-label{
+        padding-top: 7px;
+    }
        
     </style>
 </head>
@@ -267,8 +273,10 @@
 //                fecha   .toLocaleFormat('%d-%b-%Y');
 //                $( "#datosPaciente" ).append( "<label>Nombre: </label><p>"+data[0]+"</p>" );
 //"<div class=\"form-group\"><label>Nombre:</label><p class=\"form-control-static\">"+data[0]+"</p></div>"
-                 $( "#datosPaciente" ).append("<div class=\"form-group\"><label>Nombre:</label><p class=\"form-control-static\">"+data[0]+"</p></div>" );
-//              <h1><c:out value="${mapPacientes['22'].nombres}"/></h1>
+                 $( "#datosPaciente" ).append("<div class=\"form-group\"><label class=\"control-label\">Nombre: </label><input type=\"text\" class=\"form-control\" placeholder=\"Disabled input\" disabled=\"disabled\" value="+data[1]+"></div><div class=\"form-group\"<label>  Cedula: </label><p class=\"form-control-static\">"+data[1]+"</p></div>" );
+//                                     $( "#datosPaciente" ).append("<div class=\"form-group\"><label class=\"control-label col-xs-2\">Email</label> <div class=\"col-xs-10\"> <p class=\"form-control-static\">harrypotter@mail.com</p> </div></div>" );
+         
+//             " <h1><c:out value="${mapPacientes['22'].nombres}"/></h1>"
 //                alert('Paciente: ' + data[1]);
             });
         
