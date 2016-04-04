@@ -40,7 +40,7 @@
 
     <!-- Morris Charts CSS -->
     <link href="<c:url value='/resources/bower_components/morrisjs/morris.css' />" rel="stylesheet">
-     <!-- Mi CSS -->
+    <!-- Mi CSS -->
     <link href="<c:url value='/resources/marco/common.css' />" rel="stylesheet">
 
     <!-- Custom Fonts -->
@@ -57,14 +57,16 @@
         #dataTables-example_paginate{
             visibility: hidden;
         }
-    .bs-example{
-    	margin: 20px;
-    }
-	/* Fix alignment issue of label on extra small devices in Bootstrap 3.2 */
-    .form-horizontal .control-label{
-        padding-top: 7px;
-    }
-       
+        .bs-example{
+            margin: 20px;
+        }
+        /* Fix alignment issue of label on extra small devices in Bootstrap 3.2 */
+        .form-horizontal .control-label{
+            padding-top: 7px;
+        }
+        .selected{
+            background-color: #337ab7;
+        }
     </style>
 </head>
 
@@ -95,7 +97,7 @@
                                     </div>
                                     <!-- .panel-heading -->
                                     <div class="panel-body">
-                                        
+
                                         <div class="panel-group" id="accordion">
                                             <c:forEach var="grupo" varStatus="status" items="${treePruebas}">
                                                 <div class="panel panel-primary">
@@ -166,7 +168,7 @@
                             <div class="col-lg-8">
                                 <div class="panel panel-primary panelBorderColor">
 
-  <!--<input type="text" value="un \"gran\" hombre" />-->
+                                    <!--<input type="text" value="un \"gran\" hombre" />-->
                                     <div class="panel-heading panelHeaderColor">
                                         Resultado
                                     </div>
@@ -174,36 +176,47 @@
                                         <div class="panel panel-primary panelBorderColor "> 
                                             <div class="panel-heading panelHeaderColor">
                                                 Datos del Paciente
-                                              
+
                                             </div>
                                             <div class="panel-body center" id ="datosPaciente">
-                                                
+
                                             </div>
                                         </div>
                                         <div class="panel panel-primary panelBorderColor "> 
                                             <div class="panel-heading panelHeaderColor">
                                                 Datos de las Pruebas
-                                              
+
                                             </div>
                                             <div class="panel-body center" id ="datosResultado">
-                                                 <div class="dataTable_wrapper">
-                                            <table class="table table-striped table-bordered table-hover" width="100%" id="tablaResultados">
-                                                <thead>
-                                                    <tr>
-                                                        <th></th>
-                                                        <!--<th>Cedula</th>-->
+                                                <div class="panel-group">
+                                                    <div class="dataTable_wrapper">
 
-                                                        <!--<th>ID</th>-->
-                                                        <th style="text-align: center;"></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>  
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                                        <table class="table table-striped table-bordered table-hover" width="100%" id="tablaResultados">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Prueba</th>
+                                                                    <th>Valor</th>
+                                                                    <th>limites</th>
+                                                                    <!--<th>Cedula</th>-->
+
+                                                                    <!--<th>ID</th>-->
+                                                                    <!--<th style="text-align: center;"></th>-->
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody> 
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div><br>
+                                                    <div class="row"> 
+                                                        <button type="submit" class="btn btn-default">Guardar</button>
+                                                        <button type="reset" class="btn btn-default">Imprimir</button>
+                                                        <button type="button" class="btn btn-danger " id="buttonBorrarPrueba">Borrar Columna</button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                       
+
 
                                     </div>
 
@@ -256,41 +269,40 @@
 //    } );
 //      
 //    $( tableTools.fnContainer() ).insertAfter('div.info');
-   
-       var tt =  $('#dataTables-example').DataTable({
+
+        var tt = $('#dataTables-example').DataTable({
 //            "dom": '<"top"f><"clear">',
 //           "dom": 'T<"clear">frt',
-           "dom":'<"pull-left"f>t',
+            "dom": '<"pull-left"f>t',
+            "order": [[0, "asc"]],
 //        "tableTools": {
 //            "sSwfPath": "/swf/copy_csv_xls_pdf.swf"
 //        },
 //            "sDom": '<"H"lr>t<"F"ip>' ,
 //              "paging":   false,
-               "pageLength": 1,
+            "pageLength": 1,
 //            "bLengthChange": false,
             "ordering": false,
-            
 //            "info": false,
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
-            }, "scrollX": true, 
+            }, "scrollX": true,
 //            "lengthMenu": [1]
         });
-             $('#dataTables-example tbody ').on('click', 'tr', function () {
-                var data = tt.row(this).data();
-                var fecha= new Date();
+        $('#dataTables-example tbody ').on('click', 'tr', function () {
+            var data = tt.row(this).data();
+            var fecha = new Date();
 //                fecha   .toLocaleFormat('%d-%b-%Y');
 //                $( "#datosPaciente" ).append( "<label>Nombre: </label><p>"+data[0]+"</p>" );
 //"<div class=\"form-group\"><label>Nombre:</label><p class=\"form-control-static\">"+data[0]+"</p></div>"
-                 $( "#datosPaciente" ).append("<div class=\"form-group\"><label class=\"control-label\">Nombre: </label><input type=\"text\" class=\"form-control\" placeholder=\"Disabled input\" disabled=\"disabled\" value=\""+data[0]+"\"></div><div class=\"form-group\"<label>  Cedula: </label><p class=\"form-control-static\">"+data[1]+"</p></div>" );
+            $("#datosPaciente").append("<div class=\"form-group\"><label class=\"control-label\">Nombre: </label><input type=\"text\" class=\"form-control\" placeholder=\"Disabled input\" disabled=\"disabled\" value=\"" + data[0] + "\"></div><div class=\"form-group\"<label>  Cedula: </label><p class=\"form-control-static\">" + data[1] + "</p></div>");
 //                                     $( "#datosPaciente" ).append("<div class=\"form-group\"><label class=\"control-label col-xs-2\">Email</label> <div class=\"col-xs-10\"> <p class=\"form-control-static\">harrypotter@mail.com</p> </div></div>" );
-         
+
 //             " <h1><c:out value="${mapPacientes['22'].nombres}"/></h1>"
 //                alert('Paciente: ' + data[1]);
-            });
-        
+        });
+
         $('#tablaResultados').DataTable({
-            
             "paging": false,
             "ordering": false,
             "info": false,
@@ -304,11 +316,25 @@
 
         $('#addRow').on('click', function () {
             t.row.add([
-                counter + '.1',
-                counter + '.2'
+                "Hematologia",
+                "<input type=\"text\" class=\"form-control\" id=\"inputSuccess\">", '(4-50)ml/s'
             ]).draw(false);
 
             counter++;
+        });
+//        var t = $('#tablaResultados').DataTable();
+        $('#tablaResultados tbody').on('click', 'tr', function () {
+//            alert("hola");
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                t.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+
+        $('#buttonBorrarPrueba').click(function () {
+            t.row('.selected').remove().draw(false);
         });
 
         // Automatically add a first row of data
