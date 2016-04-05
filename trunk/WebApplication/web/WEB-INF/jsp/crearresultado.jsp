@@ -19,10 +19,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>MGLab</title>
-<!--  <link  href="<c:url value='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css' />" rel="stylesheet">
-  <script src="<c:url value='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js' />"></script>
-  <script src="<c:url value='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js' />"></script>-->
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+
     <!-- Bootstrap Core CSS -->
     <link href="<c:url value='/resources/bower_components/bootstrap/dist/css/bootstrap.min.css' />" rel="stylesheet">
     <!-- JQuery  -->
@@ -56,7 +54,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
-        #dataTables-example_paginate{
+        #tablaPaciente_paginate{
             visibility: hidden;
         }
         .bs-example{
@@ -69,6 +67,10 @@
         .selected{
             background-color: #337ab7;
             color: white;
+        }
+        #tablaPaciente{
+            text-align: center;
+            font-size: 11px;
         }
     </style>
 </head>
@@ -94,261 +96,281 @@
 
                         <div class="row">
                             <div class="col-lg-4">
-                                 <div class="panel panel-primary panelBorderColor">
+                                <div class="panel panel-primary panelBorderColor">
 
 
                                     <div class="panel-heading panelHeaderColor">
                                         Pacientes
                                     </div>
-                                    <div class="panel-body center" id="panelBuscarPaciente">
-                                        <div class="dataTable_wrapper" >
-                                            <table class="table table-striped table-bordered table-hover" width="100%" id="dataTables-example">
-                                                <thead id="tablaPacientesHead">
-                                                    <tr>
+                                    <div class="panel-body center">
+                                        <div class="dataTable_wrapper">
+                                            <table  style="font-size: 11px;" class="table table-striped table-bordered table-hover" width="100%" id="tablaPaciente">
+                                                <thead   id="tablaPacientesHead">
+                                                <strong> 
+                                                    <tr style=" text-align: center;">
                                                         <th>Nombre</th>
                                                         <th>Cedula</th>
-
                                                         <th>ID</th>
-                                                        <th style="text-align: center;"></th>
+                                                        <th ></th>
                                                     </tr>
-                                                </thead>
-<!--                                                <h1><c:out value="${mapPacientes['22'].nombres}"/></h1>-->
-                                                <tbody>  <c:forEach var="ob" varStatus="status" items="${mapPacientes}">
-                                                        <tr class="odd gradeX">
-                                                            <td><c:out value="${ob.value.nombres}"/></td>
-                                                            <td><c:out value="${ob.value.cedula}"/></td>
+                                                    <strong>
+                                                        </thead>
+        <!--                                                <h1><c:out value="${mapPacientes['22'].nombres}"/></h1>-->
+                                                        <tbody style=" text-align: center;" >  <c:forEach var="ob" varStatus="status" items="${mapPacientes}">
+                                                            <strong> <tr class="odd gradeX">
 
-                                                            <td><c:out value="${ob.value.id}"/></td>
-                                                            <td style="text-align: center;"><div class="btn-group" role="group" aria-label="...">
-                                                                    <button type="button" class="btn btn-info btn-circle"><i class="fa fa-check"></i>
-                                                                    </button>
+                                                                    <td><c:out value="${ob.value.nombres}"/></td>
+                                                                    <td><c:out value="${ob.value.cedula}"/></td>
 
-                                                                </div></td>
-                                                        </tr>
+                                                                    <td><c:out value="${ob.value.id}"/></td>
+                                                                    <td "><div class="btn-group" role="group" aria-label="...">
+                                                                            <button type="button" class="btn btn-info btn-circle"><i class="fa fa-check"></i>
+                                                                            </button>
 
-                                                    </c:forEach>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                                                        </div></td>
+                                                                </tr>                                                         
+                                                            </strong>
 
-                                    </div>
 
-                                </div>
-                                <div class="panel panel-primary panelBorderColor ">
-                                    <div class="panel-heading panelHeaderColor">
-                                        Pruebas
-                                    </div>
-                                    <!-- .panel-heading -->
-                                    <div class="panel-body">
-
-                                        <div class="panel-group" id="accordion">
-                                            <c:forEach var="grupo" varStatus="status" items="${treePruebas}">
-                                                <div class="panel panel-primary">
-                                                    <div class="panel-heading panelHeaderColor">
-                                                        <h4 class="panel-title">
-                                                            <a data-toggle="collapse" data-parent="#accordion" href="#${grupo.key}" aria-expanded="false" class="collapsed"><c:out value="${grupo.key}"/></a>
-                                                        </h4>
-                                                    </div>
-                                                    <div id="${grupo.key}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-                                                        <div class="panel-body">
-                                                            <c:forEach var="ob" varStatus="status" items="${grupo.value}">
-                                                                <button id="${ob.id}" data-nombre="${ob.nombre}" data-unidad="${ob.unidad}"  type="button" class="btn btn-outline btn-primary btn-md btn-block addRow"><c:out value="${ob.nombre}"/></button>
-                                                            </c:forEach>
+                                                        </c:forEach>
+                                                        </tbody>
+                                                        </table>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </c:forEach>
+
+                                                        </div>
+
+                                                        </div>
+                                                        <div class="panel panel-primary panelBorderColor ">
+                                                            <div class="panel-heading panelHeaderColor">
+                                                                Pruebas
+                                                            </div>
+                                                            <!-- .panel-heading -->
+                                                            <div class="panel-body">
+
+                                                                <div class="panel-group" id="accordion">
+                                                                    <c:forEach var="grupo" varStatus="status" items="${treePruebas}">
+                                                                        <div class="panel panel-primary">
+                                                                            <div class="panel-heading panelHeaderColor">
+                                                                                <h4 class="panel-title">
+                                                                                    <a data-toggle="collapse" data-parent="#accordion" href="#${grupo.key}" aria-expanded="false" class="collapsed"><c:out value="${grupo.key}"/></a>
+                                                                                </h4>
+                                                                            </div>
+                                                                            <div id="${grupo.key}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                                                                <div class="panel-body">
+                                                                                    <c:forEach var="ob" varStatus="status" items="${grupo.value}">
+                                                                                        <button id="${ob.id}" data-nombre="${ob.nombre}" data-unidad="${ob.unidad}"  type="button" class="btn btn-outline btn-primary btn-md btn-block addRow"><c:out value="${ob.nombre}"/></button>
+                                                                                    </c:forEach>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </c:forEach>
                                             <button  data-nombre="tgp" data-unidad="d/s" type="button" class="btn btn-primary btn-md btn-block addRow">TGP</button>
                                             <button data-nombre="tgo" data-unidad="d/f" type="button" class="btn btn-primary btn-md btn-block addRow">TGO</button>
                                             <button data-nombre="tga" data-unidad="d/sf" type="button" class="btn btn-primary btn-md btn-block addRow">TGA</button>
 
-                                        </div>
-                                    </div>
-                                    <!-- .panel-body -->
-                                </div>
-                               
-
-                                <!-- /.panel -->
-                            </div> 
-                            <div class="col-lg-8">
-                                <div class="panel panel-primary panelBorderColor">
-
-                                    <!--<input type="text" value="un \"gran\" hombre" />-->
-                                    <div class="panel-heading panelHeaderColor">
-                                        Resultado
-                                    </div>
-                                    <div class="panel-body center">
-                                        <div class="panel panel-primary panelBorderColor "> 
-                                            <div class="panel-heading panelHeaderColor">
-                                                Datos del Paciente
-
-                                            </div>
-                                            <div class="panel-body center" id ="datosPaciente">
-
-                                            </div>
-                                        </div>
-                                        <div class="panel panel-primary panelBorderColor "> 
-                                            <div class="panel-heading panelHeaderColor">
-                                                Datos de las Pruebas
-
-                                            </div>
-                                            <div class="panel-body center" id ="datosResultado">
-                                                <div class="panel-group">
-                                                    <div class="dataTable_wrapper">
-
-                                                        <table class="table  table-bordered " width="100%" id="tablaResultados">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Prueba</th>
-                                                                    <th>Valor</th>
-                                                                    <th>limites</th>
-                                                                    <!--<th>Cedula</th>-->
-
-                                                                    <!--<th>ID</th>-->
-                                                                    <!--<th style="text-align: center;"></th>-->
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody> 
-
-                                                            </tbody>
-                                                        </table>
-                                                    </div><br>
-                                                    <div class="row"> 
-                                                        <button type="submit" class="btn btn-default">Guardar</button>
-                                                        <button type="reset" class="btn btn-default">Imprimir</button>
-                                                        <button type="button" class="btn btn-danger " id="buttonBorrarPrueba">Borrar Columna</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- .panel-body -->
+                                                        </div>
 
 
-                                    </div>
+                                                        <!-- /.panel -->
+                                                        </div> 
+                                                        <div class="col-lg-8">
+                                                            <div class="panel panel-primary panelBorderColor">
 
-                                </div>
-                            </div></div>
-                        <!-- /.col-lg-12 -->
-                    </div>
-                </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div> 
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-</div>
-<!-- /#page-wrapper -->
+                                                                <!--<input type="text" value="un \"gran\" hombre" />-->
+                                                                <div class="panel-heading panelHeaderColor">
+                                                                    Resultado
+                                                                </div>
+                                                                <div class="panel-body center">
+                                                                    <div class="panel panel-primary panelBorderColor "> 
+                                                                        <div class="panel-heading panelHeaderColor">
+                                                                            Datos del Paciente
 
-<!--</div>-->
-<!-- /#wrapper -->
+                                                                        </div>
+                                                                        <div class="panel-body center" id ="datosPaciente">
 
-<script src="<c:url value='/resources/bower_components/jquery/dist/jquery.min.js' />"></script>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="panel panel-primary panelBorderColor "> 
+                                                                        <div class="panel-heading panelHeaderColor">
+                                                                            Datos de las Pruebas
 
-<!-- Bootstrap Core JavaScript -->
-<script src="<c:url value='/resources/bower_components/bootstrap/dist/js/bootstrap.min.js' />"></script>
+                                                                        </div>
+                                                                        <div class="panel-body center" id ="datosResultado">
+                                                                            <div class="panel-group">
+                                                                                <div class="dataTable_wrapper">
 
-<!-- Metis Menu Plugin JavaScript -->
-<script src="<c:url value='/resources/bower_components/metisMenu/dist/metisMenu.min.js' />"></script>
+                                                                                    <table class="table  table-bordered " width="100%" id="tablaResultados">
+                                                                                        <thead>
+                                                                                            <tr>
+                                                                                                <th>Prueba</th>
+                                                                                                <th>Valor</th>
+                                                                                                <th>limites</th>
+                                                                                                <!--<th>Cedula</th>-->
 
+                                                                                                <!--<th>ID</th>-->
+                                                                                                <!--<th style="text-align: center;"></th>-->
+                                                                                            </tr>
+                                                                                        </thead>
+                                                                                        <tbody> 
 
-<script src="<c:url value='/resources/bower_components/datatables/media/js/jquery.dataTables.min.js' />"></script>
-<script src="<c:url value='/resources/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js' />"></script>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div><br>
 
-<!-- Custom Theme JavaScript -->
-<script src="<c:url value='/resources/dist/js/sb-admin-2.js' />"></script>
+                                                                            </div>
 
-<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-<script>
-    $(document).ready(function () {
-//        $("#dataTables-example_length, #dataTables-example_info, #dataTables-example_paginate, #tablaResultados_info, #tablaResultados_paginate, #tablaResultados_filter, #tablaResultados_length").remove();
-//        var table = $('#dataTables-example').dataTable();
-//    var tableTools = new $.fn.dataTable.TableTools( table, {
-//        "buttons": [
-//            "copy",
-//            "csv",
-//            "xls",
-//            "pdf",
-//            { "type": "print", "buttonText": "Print me!" }
-//        ]
-//    } );
-//      
-//    $( tableTools.fnContainer() ).insertAfter('div.info');
-
-        var tt = $('#dataTables-example').DataTable({
-//            "dom": '<"top"f><"clear">',
-//           "dom": 'rt',
-            "dom": '<"pull-left"f>t',
-            "order": [[0, "asc"]],
-            "pageLength": 1,
-            "ordering": false,
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
-            }, "scrollX": true,
-//            "lengthMenu": [1]
-        });
-        $('#dataTables-example tbody ').on('click', 'tr', function () {
-            var data = tt.row(this).data();
-            var fecha = new Date();
-//                fecha   .toLocaleFormat('%d-%b-%Y');
-//                $( "#datosPaciente" ).append( "<label>Nombre: </label><p>"+data[0]+"</p>" );
-//"<div class=\"form-group\"><label>Nombre:</label><p class=\"form-control-static\">"+data[0]+"</p></div>"
-            $("#datosPaciente").append("<div class=\"form-group\"><label class=\"control-label\">Nombre: </label><input type=\"text\" class=\"form-control\" placeholder=\"Disabled input\" disabled=\"disabled\" value=\"" + data[0] + "\"></div><div class=\"form-group\"<label>  Cedula: </label><p class=\"form-control-static\">" + data[1] + "</p></div>");
-//                                     $( "#datosPaciente" ).append("<div class=\"form-group\"><label class=\"control-label col-xs-2\">Email</label> <div class=\"col-xs-10\"> <p class=\"form-control-static\">harrypotter@mail.com</p> </div></div>" );
-                $('#panelBuscarPaciente').attr('disabled', 'disabled');
-//             " <h1><c:out value="${mapPacientes['22'].nombres}"/></h1>"
-//                alert('Paciente: ' + data[1]);
-        });
-
-        $('#tablaResultados').DataTable({
-            "paging": false,
-            "ordering": false,
-            "info": false,
-            "searching": false,
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
-            }, "scrollX": true,
-        });
-        var t = $('#tablaResultados').DataTable();
-
-        $('.addRow').on('click', function () {
-            var valor = $(this);
-
-            t.row.add([
-                valor.attr("data-nombre"),
-                "<input type=\"text\" class=\"form-control\" name=\"name\" pattern=\"[0-9]\" title=\"Introduzca el Valor del Resultado\" id=\"inputSuccess\" required>", valor.attr("data-unidad")
-            ]).draw(false);
+                                                                        </div>
+                                                                        <div class="panel-body center-block">
+                                                                            <!--<div class="bs-example">--> 
+                                                                            <button type="submit" class="btn btn-default">Guardar</button>
+                                                                            <button type="reset" class="btn btn-default">Imprimir</button>
+                                                                            <button type="button" class="btn btn-danger " id="buttonBorrarPrueba" disabled="disabled">Borrar Prueba</button>
+                                                                            <!--</div>-->
+                                                                        </div>
+                                                                    </div>
 
 
-//            $(this).addClass('btn-disabled btn-block disabled');
-            $(this).attr('disabled', 'disabled');
-//            $('#tablaResultados').collapse();
-        });
-//        var t = $('#tablaResultados').DataTable();
-        $('#tablaResultados tbody').on('click', 'tr', function () {
-//            alert("hola");
-//            $(this).toggleClass('selected');
-            if ($(this).hasClass('selected')) {
-                $(this).removeClass('selected');
-            } else {
-                t.$('tr.selected').removeClass('selected');
-                $(this).addClass('selected');
-            }
-        });
+                                                                </div>
 
-        $('#buttonBorrarPrueba').click(function () {
-             var select= t.row('.selected');
+                                                            </div>
+                                                        </div></div>
+                                                        <!-- /.col-lg-12 -->
+                                                        </div>
+                                                        </div>
+                                                        <!-- /.panel-body -->
+                                                        </div>
+                                                        <!-- /.panel -->
+                                                        </div> 
+                                                        <!-- /.col-lg-12 -->
+                                                        </div>
+                                                        <!-- /.row -->
+                                                        </div>
+                                                        <!-- /#page-wrapper -->
 
-            t.row('.selected').remove().draw(false);
-          
-           
-        });
+                                                        <!--</div>-->
+                                                        <!-- /#wrapper -->
 
-        // Automatically add a first row of data
-//        $('#addRow').click();
-    });
-</script>
+                                                        <script src="<c:url value='/resources/bower_components/jquery/dist/jquery.min.js' />"></script>
 
-</body>
+                                                        <!-- Bootstrap Core JavaScript -->
+                                                        <script src="<c:url value='/resources/bower_components/bootstrap/dist/js/bootstrap.min.js' />"></script>
 
-</html>
+                                                        <!-- Metis Menu Plugin JavaScript -->
+                                                        <script src="<c:url value='/resources/bower_components/metisMenu/dist/metisMenu.min.js' />"></script>
+
+
+                                                        <script src="<c:url value='/resources/bower_components/datatables/media/js/jquery.dataTables.min.js' />"></script>
+                                                        <script src="<c:url value='/resources/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js' />"></script>
+
+                                                        <!-- Custom Theme JavaScript -->
+                                                        <script src="<c:url value='/resources/dist/js/sb-admin-2.js' />"></script>
+
+                                                        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+                                                        <script>
+                                                            $(document).ready(function () {
+                                                                var prueba;
+                                                                //        $("#tablaPaciente_length, #tablaPaciente_info, #tablaPaciente_paginate, #tablaResultados_info, #tablaResultados_paginate, #tablaResultados_filter, #tablaResultados_length").remove();
+                                                                //        var table = $('#tablaPaciente').dataTable();
+                                                                //    var tableTools = new $.fn.dataTable.TableTools( table, {
+                                                                //        "buttons": [
+                                                                //            "copy",
+                                                                //            "csv",
+                                                                //            "xls",
+                                                                //            "pdf",
+                                                                //            { "type": "print", "buttonText": "Print me!" }
+                                                                //        ]
+                                                                //    } );
+                                                                //      
+                                                                //    $( tableTools.fnContainer() ).insertAfter('div.info');
+
+                                                                var tt = $('#tablaPaciente').DataTable({
+                                                                    //            "dom": '<"top"f><"clear">',
+                                                                    //           "dom": 'rt',
+                                                                    "dom": '<"pull-left"f>t',
+                                                                    "order": [[0, "asc"]],
+                                                                    "pageLength": 1,
+                                                                    "ordering": false,
+                                                                    "language": {
+                                                                        "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+                                                                    }, "scrollX": true,
+                                                                    //            "lengthMenu": [1]
+                                                                });
+                                                                $('#tablaPaciente tbody ').on('click', 'tr', function () {
+
+                                                                    var data = tt.row(this).data();
+                                                                    var fecha = new Date();
+                                                                    //                fecha   .toLocaleFormat('%d-%b-%Y');
+                                                                    //                $( "#datosPaciente" ).append( "<label>Nombre: </label><p>"+data[0]+"</p>" );
+                                                                    //"<div class=\"form-group\"><label>Nombre:</label><p class=\"form-control-static\">"+data[0]+"</p></div>"
+                                                                    $("#datosPaciente").append("<div class=\"form-group\"><label class=\"control-label\">Nombre: </label><input type=\"text\" class=\"form-control\" placeholder=\"Disabled input\" disabled=\"disabled\" value=\"" + data[0] + "\"></div><div class=\"form-group\"<label>  Cedula: </label><p class=\"form-control-static\">" + data[1] + "</p></div>");
+                                                                    //                                     $( "#datosPaciente" ).append("<div class=\"form-group\"><label class=\"control-label col-xs-2\">Email</label> <div class=\"col-xs-10\"> <p class=\"form-control-static\">harrypotter@mail.com</p> </div></div>" );
+
+                                                                    //             " <h1><c:out value="${mapPacientes['22'].nombres}"/></h1>"
+                                                                    //                alert('Paciente: ' + data[1]);
+                                                                });
+
+                                                                $('#tablaResultados').DataTable({
+                                                                    "dom": 'rt',
+                                                                    "ordering": false,
+                                                                    "language": {
+                                                                        "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+                                                                    }, "scrollX": true,
+                                                                });
+                                                                var t = $('#tablaResultados').DataTable();
+
+                                                                $('.addRow').on('click', function () {
+                                                                    var valor = $(this);
+
+                                                                    var rowNode = t.row.add([
+                                                                        valor.attr("data-nombre"),
+                                                                        "<input type=\"text\" class=\"form-control\" name=\"name\" pattern=\"[0-9]\" title=\"Introduzca el Valor del Resultado\" id=\"inputSuccess\" required>", valor.attr("data-unidad")
+                                                                    ]).draw(false).draw().node();
+                                                                    //            $(rowNode).attr('data-id', valor.attr("id"));
+                                                                    $(rowNode).attr('data-id', valor.attr("id"));
+                                                                    //            t.row.addClass(  'asaass' );
+                                                                    //                $(rt).attr('id', valor.attr("data-nombre"));
+                                                                    //            $(this).addClass('btn-disabled btn-block disabled');
+                                                                    $(this).attr('disabled', 'disabled');
+                                                                });
+                                                                //        var t = $('#tablaResultados').DataTable();
+                                                                $('#tablaResultados tbody').on('click', 'tr', function () {
+
+                                                                    //        alert( 'You clicked on '+name+'\'s row' );
+                                                                    //            alert("hola");td:nth-child(3)
+                                                                    //            $(this).toggleClass('selected');
+                                                                    if ($(this).hasClass('selected')) {
+                                                                        $(this).removeClass('selected');
+                                                                        $('#buttonBorrarPrueba').attr('disabled', 'disabled');
+                                                                    } else {
+                                                                        t.$('tr.selected').removeClass('selected');
+                                                                        $(this).addClass('selected');
+                                                                        $('#buttonBorrarPrueba').removeAttr('disabled');
+                                                                    }
+                                                                    //             prueba = $('td', this).eq(0).text();
+                                                                    prueba = $(this).attr('data-id');
+                                                                    //                alert(prueba);
+                                                                });
+                                                                $('#buttonBorrarPrueba').click(function () {
+                                                                    //                alert(prueba);
+                                                                    //                alert(t.row('.selected').data());
+                                                                    //            alert("antes " + prueba);
+
+                                                                    $('#' + prueba).removeAttr('disabled');
+                                                                    //            alert("despues " + prueba);
+                                                                    t.row('.selected').remove().draw(false);
+                                                                    $('#buttonBorrarPrueba').attr('disabled', 'disabled');
+
+
+                                                                });
+
+
+                                                            });
+                                                        </script>
+
+                                                        </body>
+
+                                                        </html>
+
