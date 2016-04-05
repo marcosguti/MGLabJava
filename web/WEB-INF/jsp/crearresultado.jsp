@@ -19,8 +19,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
-
+    <title>MGLab</title>
+<!--  <link  href="<c:url value='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css' />" rel="stylesheet">
+  <script src="<c:url value='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js' />"></script>
+  <script src="<c:url value='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js' />"></script>-->
     <!-- Bootstrap Core CSS -->
     <link href="<c:url value='/resources/bower_components/bootstrap/dist/css/bootstrap.min.css' />" rel="stylesheet">
     <!-- JQuery  -->
@@ -98,8 +100,8 @@
                                     <div class="panel-heading panelHeaderColor">
                                         Pacientes
                                     </div>
-                                    <div class="panel-body center">
-                                        <div class="dataTable_wrapper">
+                                    <div class="panel-body center" id="panelBuscarPaciente">
+                                        <div class="dataTable_wrapper" >
                                             <table class="table table-striped table-bordered table-hover" width="100%" id="dataTables-example">
                                                 <thead id="tablaPacientesHead">
                                                     <tr>
@@ -293,7 +295,7 @@
 //"<div class=\"form-group\"><label>Nombre:</label><p class=\"form-control-static\">"+data[0]+"</p></div>"
             $("#datosPaciente").append("<div class=\"form-group\"><label class=\"control-label\">Nombre: </label><input type=\"text\" class=\"form-control\" placeholder=\"Disabled input\" disabled=\"disabled\" value=\"" + data[0] + "\"></div><div class=\"form-group\"<label>  Cedula: </label><p class=\"form-control-static\">" + data[1] + "</p></div>");
 //                                     $( "#datosPaciente" ).append("<div class=\"form-group\"><label class=\"control-label col-xs-2\">Email</label> <div class=\"col-xs-10\"> <p class=\"form-control-static\">harrypotter@mail.com</p> </div></div>" );
-
+                $('#panelBuscarPaciente').attr('disabled', 'disabled');
 //             " <h1><c:out value="${mapPacientes['22'].nombres}"/></h1>"
 //                alert('Paciente: ' + data[1]);
         });
@@ -320,6 +322,7 @@
 
 //            $(this).addClass('btn-disabled btn-block disabled');
             $(this).attr('disabled', 'disabled');
+//            $('#tablaResultados').collapse();
         });
 //        var t = $('#tablaResultados').DataTable();
         $('#tablaResultados tbody').on('click', 'tr', function () {
