@@ -68,10 +68,7 @@
             background-color: #337ab7;
             color: white;
         }
-        #tablaPaciente{
-            text-align: center;
-            font-size: 11px;
-        }
+      
     </style>
 </head>
 
@@ -164,10 +161,6 @@
                                                                             </div>
                                                                         </div>
                                                                     </c:forEach>
-                                            <button  data-nombre="tgp" data-unidad="d/s" type="button" class="btn btn-primary btn-md btn-block addRow">TGP</button>
-                                            <button data-nombre="tgo" data-unidad="d/f" type="button" class="btn btn-primary btn-md btn-block addRow">TGO</button>
-                                            <button data-nombre="tga" data-unidad="d/sf" type="button" class="btn btn-primary btn-md btn-block addRow">TGA</button>
-
                                                                 </div>
                                                             </div>
                                                             <!-- .panel-body -->
