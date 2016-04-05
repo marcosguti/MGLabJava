@@ -68,6 +68,7 @@ public class DefaultController {
     @RequestMapping(value = "/crearresultado", method = RequestMethod.GET)
     public String crearResultado(Model model) throws BussinessException {
         Map<String, List<Prueba>> mapTreePruebas = getTreePruebas();
+        mapTreePruebas.remove("QUIMICA SANGUINEA");
 //        List<Paciente> pacientes = pacienteDAO.getAllOrdered();
         Map<String, Paciente> mapPacientes = pacienteDAO.getMapAll();
         Map<String, Prueba> mapPruebas = pruebaDAO.getMapAll();
