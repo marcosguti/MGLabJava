@@ -55,6 +55,10 @@
                 background-color: #1E1A1A;
                 border-color: #1E1A1A;
             }
+            .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+                 /*background-color: #2F79BA !important;*/
+            }
+            
         </style>
         <script>
             $(document).ready(function () {
@@ -105,7 +109,7 @@
                         </button>
                         <a class="navbar-brand" href="#">MGLab</a>
                     </div>
-                    <div class="navbar-collapse collapse">
+                    <div class="navbar-left ">
                         <ul class="nav navbar-nav">
                             <li class ="dropdown menuResultados">
                                 <a href="" class="dropdown-toggle botonMenuResultados" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-file-text fa-fw "></i> Resultado</a>
@@ -141,7 +145,14 @@
                                 </ul>
                             </li>
                         </ul>
-                    </div><!--/.nav-collapse -->
+
+                    </div>
+<!--                    <div class="navbar-right">
+                        <iframe src="http://free.timeanddate.com/clock/i554y0y9/n4067/tlve4/fn7/fs20/fcfff/tct/pct/ftb/th2" frameborder="0" width="82" height="25" allowTransparency="true"></iframe>
+
+                    </div>-->
+
+                    <!--/.nav-collapse -->
                 </div>
             </nav>
             <br><br><br><br>
