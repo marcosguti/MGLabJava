@@ -155,7 +155,7 @@
                                                                             <div id="${grupo.key}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                                                                                 <div class="panel-body">
                                                                                     <c:forEach var="ob" varStatus="status" items="${grupo.value}">
-                                                                                        <button id="${ob.id}" data-nombre="${ob.nombre}" data-unidad="${ob.unidad}"  type="button" class="btn btn-outline btn-primary btn-md btn-block addRow"><c:out value="${ob.nombre}"/></button>
+                                                                                        <button id="${ob.id}" data-nombre="${ob.nombre}" data-grupo="${ob.grupoPruebas.nombre}"  data-unidad="${ob.unidad}"  type="button" class="btn btn-outline btn-primary btn-md btn-block addRow"><c:out value="${ob.nombre}"/></button>
                                                                                     </c:forEach>
                                                                                 </div>
                                                                             </div>
@@ -198,6 +198,7 @@
                                                                                     <table class="table  table-bordered " width="100%" id="tablaResultados">
                                                                                         <thead>
                                                                                             <tr>
+                                                                                                <th>Grupo</th>
                                                                                                 <th>Prueba</th>
                                                                                                 <th>Valor</th>
                                                                                                 <th>limites</th>
@@ -265,7 +266,6 @@
                                                         <script>
                                                             $(document).ready(function () {
                                                                 var prueba;
-
                                                                 var tt = $('#tablaPaciente').DataTable({
                                                                     //            "dom": '<"top"f><"clear">',
                                                                     "dom": '<"pull-left"f>t',
@@ -290,8 +290,7 @@
                                                                         $("#datosPaciente").empty();
                                                                         var id = data[2];
 //                                                                        $("#datosPaciente").append("<div class=\"form-group\"><label class=\"control-label\">Nombre: </label><input type=\"text\" class=\"form-control\" placeholder=\"Disabled input\" disabled=\"disabled\" value=\"" + data[0] + "\"></div><div class=\"form-group\"<label>  Cedula: </label><p class=\"form-control-static\">" + data[1] + "</p></div>");
-                                                                        $("#datosPaciente").load("/Laboratorio/mostrarpaciente", {id:data[2], lastname:"Doe"}).animate({left: '250px'});
-                                                                            
+                                                                        $("#datosPaciente").load("/Laboratorio/mostrarpaciente", {id: data[2], lastname: "Doe"}).animate({left: '250px'});
                                                                     }
 //                                                                   
                                                                     var fecha = new Date();
@@ -303,21 +302,34 @@
                                                                     //             " <h1><c:out value="${mapPacientes['22'].nombres}"/></h1>"
                                                                     //                alert('Paciente: ' + data[1]);
                                                                 });
-
                                                                 $('#tablaResultados').DataTable({
                                                                     "dom": 'rt',
                                                                     "ordering": false,
+                                                                    "columnDefs": [
+                                                                        {"visible": false, "targets": 0}
+                                                                    ],
                                                                     "language": {
                                                                         "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
                                                                     }, "scrollX": true,
+                                                                    "drawCallback": function (settings) {
+                                                                        var api = this.api();
+                                                                        var rows = api.rows({page: 'current'}).nodes();
+                                                                        var last = null;
+                                                                        api.column(0, {page: 'current'}).data().each(function (group, i) {
+                                                                            if (last !== group) {
+                                                                                $(rows).eq(i).before(
+                                                                                        '<tr class="group" style="font-size: 16px;background-color: #7DB1DF"><td colspan="5">Area De ' + group + '</td></tr>'
+                                                                                        );
+                                                                                last = group;
+                                                                            }
+                                                                        });
+                                                                    }
                                                                 });
                                                                 var t = $('#tablaResultados').DataTable();
-
                                                                 $('.addRow').on('click', function () {
                                                                     var valor = $(this);
-
                                                                     var rowNode = t.row.add([
-                                                                        valor.attr("data-nombre"),
+                                                                        valor.attr("data-grupo"), valor.attr("data-nombre"),
                                                                         "<input type=\"text\" class=\"form-control\" name=\"name\" pattern=\"[0-9]\" title=\"Introduzca el Valor del Resultado\" id=\"inputSuccess\" required>", valor.attr("data-unidad")
                                                                     ]).draw(false).draw().node();
                                                                     //            $(rowNode).attr('data-id', valor.attr("id"));
@@ -343,26 +355,16 @@
                                                                     }
                                                                     //             prueba = $('td', this).eq(0).text();
                                                                     prueba = $(this).attr('data-id');
-                                                                    //                alert(prueba);
                                                                 });
                                                                 $('#buttonBorrarPrueba').click(function () {
-                                                                    //                alert(prueba);
-                                                                    //                alert(t.row('.selected').data());
-                                                                    //            alert("antes " + prueba);
-
                                                                     $('#' + prueba).removeAttr('disabled');
-                                                                    //            alert("despues " + prueba);
                                                                     t.row('.selected').remove().draw(false);
                                                                     $('#buttonBorrarPrueba').attr('disabled', 'disabled');
-
-
                                                                 });
-
-
                                                             });
-                                                        </script>
+            </script>
 
-                                                        </body>
+        </body>
 
-                                                        </html>
+    </html>
 
