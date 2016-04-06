@@ -65,10 +65,10 @@
             padding-top: 7px;
         }
         .selected{
-            background-color: #337ab7;
+            background-color: #337ab7 !important;
             color: white;
         }
-      
+
     </style>
 </head>
 
@@ -102,29 +102,29 @@
                                     <div class="panel-body center">
                                         <div class="dataTable_wrapper">
                                             <table  style="font-size: 11px;" class="table table-striped table-bordered table-hover" width="100%" id="tablaPaciente">
-                                                <thead   id="tablaPacientesHead">
+                                                <thead  style=" text-align: center" id="tablaPacientesHead">
                                                 <strong> 
-                                                    <tr style=" text-align: center;">
+                                                    <tr >
                                                         <th>Nombre</th>
                                                         <th>Cedula</th>
                                                         <th>ID</th>
-                                                        <th ></th>
+                                                        <!--<th ></th>-->
                                                     </tr>
                                                     <strong>
                                                         </thead>
         <!--                                                <h1><c:out value="${mapPacientes['22'].nombres}"/></h1>-->
-                                                        <tbody style=" text-align: center;" >  <c:forEach var="ob" varStatus="status" items="${mapPacientes}">
+                                                        <tbody style="cursor:pointer; text-align:center" >  <c:forEach var="ob" varStatus="status" items="${mapPacientes}">
                                                             <strong> <tr class="odd gradeX">
 
                                                                     <td><c:out value="${ob.value.nombres}"/></td>
                                                                     <td><c:out value="${ob.value.cedula}"/></td>
 
                                                                     <td><c:out value="${ob.value.id}"/></td>
-                                                                    <td "><div class="btn-group" role="group" aria-label="...">
-                                                                            <button type="button" class="btn btn-info btn-circle"><i class="fa fa-check"></i>
-                                                                            </button>
-
-                                                                        </div></td>
+                                                                    <!--                                                                    <td><div class="btn-group" role="group" aria-label="...">
+                                                                                                                                                <button type="button" class="btn btn-info btn-circle"><i class="fa fa-check"></i>
+                                                                                                                                                </button>
+                                                                    
+                                                                                                                                            </div></td>-->
                                                                 </tr>                                                         
                                                             </strong>
 
@@ -183,7 +183,7 @@
 
                                                                         </div>
                                                                         <div class="panel-body center" id ="datosPaciente">
-
+                                                                            <p>No Hay Datos</p>
                                                                         </div>
                                                                     </div>
                                                                     <div class="panel panel-primary panelBorderColor "> 
@@ -216,12 +216,109 @@
                                                                             </div>
 
                                                                         </div>
-                                                                        <div class="panel-body center-block">
-                                                                            <!--<div class="bs-example">--> 
-                                                                            <button type="submit" class="btn btn-default">Guardar</button>
-                                                                            <button type="reset" class="btn btn-default">Imprimir</button>
-                                                                            <button type="button" class="btn btn-danger " id="buttonBorrarPrueba" disabled="disabled">Borrar Prueba</button>
-                                                                            <!--</div>-->
+
+                                                                    </div>
+                                                                    <div class="panel-body center-block">
+                                                                        <!--<div class="bs-example">--> 
+                                                                        <button type="submit" class="btn btn-default">Guardar</button>
+                                                                        <button type="reset" class="btn btn-default">Imprimir</button>
+                                                                        <button type="button" class="btn btn-danger " id="buttonBorrarPrueba" disabled="disabled">Borrar Prueba</button>
+                                                                        <!--</div>-->
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12">
+                                                                            <div class="panel panel-primary">
+                                                                                <div class="panel-heading">
+                                                                                    Basic Form Elements
+                                                                                </div>
+                                                                                <div class="panel-body">
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-12">
+                                                                                            <div class="col-lg-8">
+                                                                                                <div class="form-group">
+                                                                                                    <label for="disabledSelect">Nombre</label>
+                                                                                                    <input class="form-control input-sm" id="" type="text"  disabled="">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-lg-3">
+
+                                                                                                <div class="form-group">
+                                                                                                    <label for="disabledSelect">Fecha</label>
+                                                                                                    <input class="form-control input-sm" id="" type="text"  disabled="">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <!-- /.col-lg-6 (nested) -->
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-12">
+                                                                                            <div class="col-lg-4 ">
+                                                                                                <div class="col-lg-5 col-lg-pull-1">
+
+                                                                                                    <div class="form-group">
+                                                                                                        <label for="disabledSelect">Edad</label>
+                                                                                                        <input class="form-control input-sm" id="" type="text" disabled="">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="col-lg-5 .col-lg-offset-3  ">
+
+                                                                                                    <div class="form-group">
+                                                                                                        <label for="disabledSelect">Sexo:</label>
+                                                                                                        <input class="form-control input-sm" id="" type="text"  disabled="">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-lg-4 ">
+
+                                                                                                <div class="form-group">
+                                                                                                    <label for="disabledSelect">Cedula:</label>
+                                                                                                    <input class="form-control input-sm" id="" type="text"  disabled="">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-lg-3 ">
+
+                                                                                                <div class="form-group">
+                                                                                                    <label for="disabledSelect">ID:</label>
+                                                                                                    <input class="form-control input-sm" id="" type="text"  disabled="">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-12">
+                                                                                            <div class="col-lg-8 ">
+
+                                                                                                <div class="form-group">
+                                                                                                    <label for="disabledSelect">Direccion:</label>
+                                                                                                    <input class="form-control input-sm" id="" type="text"  disabled="">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-lg-3 ">
+
+                                                                                                <div class="form-group">
+                                                                                                    <label for="disabledSelect">Telefono:</label>
+                                                                                                    <input class="form-control input-sm" id="" type="text"  disabled="">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-12">
+                                                                                            <div class="col-lg-8">
+                                                                                                <div class="form-group">
+                                                                                                    <label for="disabledSelect">Observaciones</label>
+                                                                                                    <input class="form-control input-sm"  type="text" placeholder="Observaciones" >
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                        <!-- /.col-lg-6 (nested) -->
+                                                                                    </div>
+                                                                                    <!-- /.row (nested) -->
+                                                                                </div>
+                                                                                <!-- /.panel-body -->
+                                                                            </div>
                                                                         </div>
                                                                     </div>
 
@@ -238,6 +335,7 @@
                                                         <!-- /.panel -->
                                                         </div> 
                                                         <!-- /.col-lg-12 -->
+
                                                         </div>
                                                         <!-- /.row -->
                                                         </div>
@@ -265,23 +363,9 @@
                                                         <script>
                                                             $(document).ready(function () {
                                                                 var prueba;
-                                                                //        $("#tablaPaciente_length, #tablaPaciente_info, #tablaPaciente_paginate, #tablaResultados_info, #tablaResultados_paginate, #tablaResultados_filter, #tablaResultados_length").remove();
-                                                                //        var table = $('#tablaPaciente').dataTable();
-                                                                //    var tableTools = new $.fn.dataTable.TableTools( table, {
-                                                                //        "buttons": [
-                                                                //            "copy",
-                                                                //            "csv",
-                                                                //            "xls",
-                                                                //            "pdf",
-                                                                //            { "type": "print", "buttonText": "Print me!" }
-                                                                //        ]
-                                                                //    } );
-                                                                //      
-                                                                //    $( tableTools.fnContainer() ).insertAfter('div.info');
 
                                                                 var tt = $('#tablaPaciente').DataTable({
                                                                     //            "dom": '<"top"f><"clear">',
-                                                                    //           "dom": 'rt',
                                                                     "dom": '<"pull-left"f>t',
                                                                     "order": [[0, "asc"]],
                                                                     "pageLength": 1,
@@ -289,16 +373,27 @@
                                                                     "language": {
                                                                         "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
                                                                     }, "scrollX": true,
-                                                                    //            "lengthMenu": [1]
                                                                 });
+                                                                var tableP = $('#tablaPaciente').DataTable();
                                                                 $('#tablaPaciente tbody ').on('click', 'tr', function () {
 
                                                                     var data = tt.row(this).data();
+                                                                    if ($(this).hasClass('selected')) {
+                                                                        $(this).removeClass('selected');
+                                                                        $("#datosPaciente").empty();
+                                                                        $("#datosPaciente").append("<p>No Hay Datos</p>");
+                                                                    } else {
+                                                                        tableP.$('tr.selected').removeClass('selected');
+                                                                        $(this).addClass('selected');
+                                                                        $("#datosPaciente").empty();
+                                                                        $("#datosPaciente").append("<div class=\"form-group\"><label class=\"control-label\">Nombre: </label><input type=\"text\" class=\"form-control\" placeholder=\"Disabled input\" disabled=\"disabled\" value=\"" + data[0] + "\"></div><div class=\"form-group\"<label>  Cedula: </label><p class=\"form-control-static\">" + data[1] + "</p></div>");
+
+                                                                    }
+
                                                                     var fecha = new Date();
                                                                     //                fecha   .toLocaleFormat('%d-%b-%Y');
                                                                     //                $( "#datosPaciente" ).append( "<label>Nombre: </label><p>"+data[0]+"</p>" );
                                                                     //"<div class=\"form-group\"><label>Nombre:</label><p class=\"form-control-static\">"+data[0]+"</p></div>"
-                                                                    $("#datosPaciente").append("<div class=\"form-group\"><label class=\"control-label\">Nombre: </label><input type=\"text\" class=\"form-control\" placeholder=\"Disabled input\" disabled=\"disabled\" value=\"" + data[0] + "\"></div><div class=\"form-group\"<label>  Cedula: </label><p class=\"form-control-static\">" + data[1] + "</p></div>");
                                                                     //                                     $( "#datosPaciente" ).append("<div class=\"form-group\"><label class=\"control-label col-xs-2\">Email</label> <div class=\"col-xs-10\"> <p class=\"form-control-static\">harrypotter@mail.com</p> </div></div>" );
 
                                                                     //             " <h1><c:out value="${mapPacientes['22'].nombres}"/></h1>"
