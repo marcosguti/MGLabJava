@@ -64,6 +64,14 @@ public class DefaultController {
         model.addAttribute("resultados", resultados);
         return "buscarresultado";
     }
+    @RequestMapping(value = "/mostrarpaciente", method = RequestMethod.POST)
+    public String mostrarPaciente(Model model,@RequestParam("id") String id) throws BussinessException {
+        Map<String, Paciente> mapPacientes = pacienteDAO.getMapAll();
+        Paciente paciente= mapPacientes.get(id);
+        System.out.println(id+paciente.getNombres());
+        model.addAttribute("paciente", paciente);
+        return "mostrarpaciente";
+    }
 
     @RequestMapping(value = "/crearresultado", method = RequestMethod.GET)
     public String crearResultado(Model model) throws BussinessException {
