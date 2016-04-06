@@ -183,7 +183,7 @@
 
                                                                         </div>
                                                                         <div class="panel-body center" id ="datosPaciente">
-                                                                            <p>No Hay Datos</p>
+                                                                            <p>No Hay Datos</p>  
                                                                         </div>
                                                                     </div>
                                                                     <div class="panel panel-primary panelBorderColor "> 
@@ -225,104 +225,6 @@
                                                                         <button type="button" class="btn btn-danger " id="buttonBorrarPrueba" disabled="disabled">Borrar Prueba</button>
                                                                         <!--</div>-->
                                                                     </div>
-                                                                    <div class="row">
-                                                                        <div class="col-lg-12">
-                                                                            <div class="panel panel-primary">
-                                                                                <div class="panel-heading">
-                                                                                    Basic Form Elements
-                                                                                </div>
-                                                                                <div class="panel-body">
-                                                                                    <div class="row">
-                                                                                        <div class="col-lg-12">
-                                                                                            <div class="col-lg-8">
-                                                                                                <div class="form-group">
-                                                                                                    <label for="disabledSelect">Nombre</label>
-                                                                                                    <input class="form-control input-sm" id="" type="text"  disabled="">
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="col-lg-3">
-
-                                                                                                <div class="form-group">
-                                                                                                    <label for="disabledSelect">Fecha</label>
-                                                                                                    <input class="form-control input-sm" id="" type="text"  disabled="">
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <!-- /.col-lg-6 (nested) -->
-                                                                                    </div>
-                                                                                    <div class="row">
-                                                                                        <div class="col-lg-12">
-                                                                                            <div class="col-lg-4 ">
-                                                                                                <div class="col-lg-5 col-lg-pull-1">
-
-                                                                                                    <div class="form-group">
-                                                                                                        <label for="disabledSelect">Edad</label>
-                                                                                                        <input class="form-control input-sm" id="" type="text" disabled="">
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="col-lg-5 .col-lg-offset-3  ">
-
-                                                                                                    <div class="form-group">
-                                                                                                        <label for="disabledSelect">Sexo:</label>
-                                                                                                        <input class="form-control input-sm" id="" type="text"  disabled="">
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="col-lg-4 ">
-
-                                                                                                <div class="form-group">
-                                                                                                    <label for="disabledSelect">Cedula:</label>
-                                                                                                    <input class="form-control input-sm" id="" type="text"  disabled="">
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="col-lg-3 ">
-
-                                                                                                <div class="form-group">
-                                                                                                    <label for="disabledSelect">ID:</label>
-                                                                                                    <input class="form-control input-sm" id="" type="text"  disabled="">
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="row">
-                                                                                        <div class="col-lg-12">
-                                                                                            <div class="col-lg-8 ">
-
-                                                                                                <div class="form-group">
-                                                                                                    <label for="disabledSelect">Direccion:</label>
-                                                                                                    <input class="form-control input-sm" id="" type="text"  disabled="">
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="col-lg-3 ">
-
-                                                                                                <div class="form-group">
-                                                                                                    <label for="disabledSelect">Telefono:</label>
-                                                                                                    <input class="form-control input-sm" id="" type="text"  disabled="">
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <div class="row">
-                                                                                        <div class="col-lg-12">
-                                                                                            <div class="col-lg-8">
-                                                                                                <div class="form-group">
-                                                                                                    <label for="disabledSelect">Observaciones</label>
-                                                                                                    <input class="form-control input-sm"  type="text" placeholder="Observaciones" >
-                                                                                                </div>
-                                                                                            </div>
-
-                                                                                        </div>
-                                                                                        <!-- /.col-lg-6 (nested) -->
-                                                                                    </div>
-                                                                                    <!-- /.row (nested) -->
-                                                                                </div>
-                                                                                <!-- /.panel-body -->
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-
                                                                 </div>
 
                                                             </div>
@@ -386,10 +288,12 @@
                                                                         tableP.$('tr.selected').removeClass('selected');
                                                                         $(this).addClass('selected');
                                                                         $("#datosPaciente").empty();
-                                                                        $("#datosPaciente").append("<div class=\"form-group\"><label class=\"control-label\">Nombre: </label><input type=\"text\" class=\"form-control\" placeholder=\"Disabled input\" disabled=\"disabled\" value=\"" + data[0] + "\"></div><div class=\"form-group\"<label>  Cedula: </label><p class=\"form-control-static\">" + data[1] + "</p></div>");
-
+                                                                        var id = data[2];
+//                                                                        $("#datosPaciente").append("<div class=\"form-group\"><label class=\"control-label\">Nombre: </label><input type=\"text\" class=\"form-control\" placeholder=\"Disabled input\" disabled=\"disabled\" value=\"" + data[0] + "\"></div><div class=\"form-group\"<label>  Cedula: </label><p class=\"form-control-static\">" + data[1] + "</p></div>");
+                                                                        $("#datosPaciente").load("/Laboratorio/mostrarpaciente", {id:data[2], lastname:"Doe"}).animate({left: '250px'});
+                                                                            
                                                                     }
-
+//                                                                   
                                                                     var fecha = new Date();
                                                                     //                fecha   .toLocaleFormat('%d-%b-%Y');
                                                                     //                $( "#datosPaciente" ).append( "<label>Nombre: </label><p>"+data[0]+"</p>" );
