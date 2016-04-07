@@ -71,7 +71,7 @@
                     <div class="panel-heading">
                         Pacientes
                     </div>
-                    <div class="panel-body center">
+                    <div class="panel-body center-block">
                         <div class="dataTable_wrapper">
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
@@ -83,7 +83,6 @@
                                         <th>Telefono</th>
                                         <th>Direccion</th>
                                         <th>ID</th>
-                                        <th style="text-align: center;"></th>
                                     </tr>
                                 </thead>
                                 <tbody>  <c:forEach var="ob" varStatus="status" items="${pacientes}">
@@ -95,15 +94,6 @@
                                             <td><c:out value="${ob.telefono}"/></td>
                                             <td><c:out value="${ob.direccion}"/></td>
                                             <td><c:out value="${ob.id}"/></td>
-                                            <td><div class="btn-group" role="group" aria-label="...">
-                                                    <div class="btn-group" role="group">
-                                                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Editar"><i class="fa fa-pencil-square-o"></i></button>
-                                                    </div>
-                                                    <div class="btn-group" role="group">
-                                                        <button type="button" class="btn btn-default" data-toggle="tooltip" title="Eliminar"><i class="fa fa-times"></i></button>
-                                                    </div>
-
-                                                </div></td>
                                         </tr>
 
                                     </c:forEach>
@@ -111,6 +101,13 @@
                             </table>
                         </div>
 
+                    </div>
+                    <div class="panel-body center-block">
+                        <!--<div class="bs-example">--> 
+                        <!--<button type="submit" class="btn btn-default">Guardar</button>-->
+                        <button type="reset" class="btn btn-default">Imprimir</button>
+                        <button type="button" class="btn btn-danger " id="buttonBorrarPrueba" disabled="disabled">Borrar</button>
+                        <!--</div>-->
                     </div>
                     <!-- /.panel-body -->
                 </div>
@@ -144,7 +141,10 @@
     <script>
         $(document).ready(function () {
             $('#dataTables-example').DataTable({
-                responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100]
+                responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+                }
             });
         });
     </script>
