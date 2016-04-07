@@ -101,7 +101,7 @@ public class DefaultController {
         paciente.setEdad(Integer.parseInt(edad));
         paciente.setTelefono(telefono);
         pacienteDAO.saveOrUpdate(paciente);
-        return "home";
+        return "home_1";
     }
 //     @RequestMapping(value = "/Laboratorio/tables", method = RequestMethod.GET)
 //    public String index2(Model model) {

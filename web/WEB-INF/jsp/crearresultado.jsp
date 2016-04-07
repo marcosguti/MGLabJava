@@ -290,7 +290,7 @@
                                                                         $("#datosPaciente").empty();
                                                                         var id = data[2];
 //                                                                        $("#datosPaciente").append("<div class=\"form-group\"><label class=\"control-label\">Nombre: </label><input type=\"text\" class=\"form-control\" placeholder=\"Disabled input\" disabled=\"disabled\" value=\"" + data[0] + "\"></div><div class=\"form-group\"<label>  Cedula: </label><p class=\"form-control-static\">" + data[1] + "</p></div>");
-                                                                        $("#datosPaciente").load("/Laboratorio/mostrarpaciente", {id: data[2], lastname: "Doe"}).animate({left: '250px'});
+                                                                        $("#datosPaciente").load("/Laboratorio/mostrarpaciente", {id: data[2]}).animate({left: '250px'});
                                                                     }
 //                                                                   
                                                                     var fecha = new Date();
@@ -318,7 +318,7 @@
                                                                         api.column(0, {page: 'current'}).data().each(function (group, i) {
                                                                             if (last !== group) {
                                                                                 $(rows).eq(i).before(
-                                                                                        '<tr class="group" style="font-size: 16px;background-color: #7DB1DF"><td colspan="5">Area De ' + group + '</td></tr>'
+                                                                                        '<tr class="group"  style="font-size: 16px;background-color: #337ab7"><td colspan="5">Area De ' + group + '</td></tr>'
                                                                                         );
                                                                                 last = group;
                                                                             }
@@ -330,10 +330,11 @@
                                                                     var valor = $(this);
                                                                     var rowNode = t.row.add([
                                                                         valor.attr("data-grupo"), valor.attr("data-nombre"),
-                                                                        "<input type=\"text\" class=\"form-control\" name=\"name\" pattern=\"[0-9]\" title=\"Introduzca el Valor del Resultado\" id=\"inputSuccess\" required>", valor.attr("data-unidad")
+                                                                        "<input type=\"text\"  class=\"form-control\" name=\"name\" pattern=\"[0-9]\" title=\"Introduzca el Valor del Resultado\" id=\"inputSuccess\" required>", valor.attr("data-unidad")
                                                                     ]).draw(false).draw().node();
                                                                     //            $(rowNode).attr('data-id', valor.attr("id"));
                                                                     $(rowNode).attr('data-id', valor.attr("id"));
+                                                                     $(rowNode).css('cursor','pointer');
                                                                     //            t.row.addClass(  'asaass' );
                                                                     //                $(rt).attr('id', valor.attr("data-nombre"));
                                                                     //            $(this).addClass('btn-disabled btn-block disabled');
@@ -345,13 +346,16 @@
                                                                     //        alert( 'You clicked on '+name+'\'s row' );
                                                                     //            alert("hola");td:nth-child(3)
                                                                     //            $(this).toggleClass('selected');
-                                                                    if ($(this).hasClass('selected')) {
-                                                                        $(this).removeClass('selected');
-                                                                        $('#buttonBorrarPrueba').attr('disabled', 'disabled');
-                                                                    } else {
-                                                                        t.$('tr.selected').removeClass('selected');
-                                                                        $(this).addClass('selected');
-                                                                        $('#buttonBorrarPrueba').removeAttr('disabled');
+//                                                                    alert($(this).children().length);
+                                                                    if ($(this).children().length>1) {
+                                                                        if ($(this).hasClass('selected')) {
+                                                                            $(this).removeClass('selected');
+                                                                            $('#buttonBorrarPrueba').attr('disabled', 'disabled');
+                                                                        } else {
+                                                                            t.$('tr.selected').removeClass('selected');
+                                                                            $(this).addClass('selected');
+                                                                            $('#buttonBorrarPrueba').removeAttr('disabled');
+                                                                        }
                                                                     }
                                                                     //             prueba = $('td', this).eq(0).text();
                                                                     prueba = $(this).attr('data-id');
@@ -362,9 +366,9 @@
                                                                     $('#buttonBorrarPrueba').attr('disabled', 'disabled');
                                                                 });
                                                             });
-            </script>
+                                                        </script>
 
-        </body>
+                                                        </body>
 
-    </html>
+                                                        </html>
 

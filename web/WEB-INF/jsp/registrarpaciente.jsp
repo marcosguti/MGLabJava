@@ -46,7 +46,7 @@
         <div id="wrapper">
 
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-4 col-lg-offset-4">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             Registro de Paciente
@@ -54,81 +54,125 @@
                         <div class="panel-body">
                             <div class="row">
                                 <form role="form" action="/Laboratorio/registro" method="POST" id="register-form" >
-                                    <div class="col-lg-6">
-
-
-                                        <div class="form-group">
-                                            <label>Nombre</label>
-                                            <input  id="nombre" name="nombre" class="form-control" maxlength="40" placeholder="Nombre"   required autofocus>
-                                        </div>
-
-                                        <div class="form-group ">
-                                            <label>Edad</label>
-                                            <div class="form-inline">
-                                                <input id="age" name="edad" class="form-control " placeholder="Edad" maxlength="3" pattern="[0-1]{1}[0-9]{0,2}" title="Introduzca Una Edad Valida" size="4" required>
+                                    <div class="col-lg-12">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label>Nombre</label>
+                                                    <input type="text" id="nombre" name="nombre" class="form-control" maxlength="40" placeholder="Nombre" required autofocus>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Sexo</label>
-                                            <select name="sexo" class="form-control" >
-                                                <option>M</option>
-                                                <option>F</option>
-
-                                            </select>
-                                        </div>
-
-                                        <div id="myModal" class="modal fade" role="dialog">
-                                            <div class="modal-dialog">
-
-                                                <!-- Modal content-->
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p>Desea Registrar El Paciente?</p>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-primary">Si <span class="glyphicon glyphicon-ok"></span></button>
-                                                        <button type="button" class="btn btn-primary" data-dismiss="modal">No <span class="glyphicon glyphicon-remove"></button>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Documento</label>
+                                                    <div class="form-inline"> 
+                                                        <!--                                                        <div class="col-lg-4">-->
+                                                        <select name="selectDoc" class="form-control">
+                                                            <option>V</option>
+                                                            <option>E</option>
+                                                            <option>J</option>
+                                                        </select>
+                                                        <!--</div>-->
+                                                        <!--<div class="col-lg-8">-->
+                                                        <input name="cedula" class="form-control" minlength="8" maxlength="8" pattern="[0-9]{1,9}(\.[0-9]{0,2})?$" title="Introduzca Solo Numeros" placeholder="N° de Documento" required>
+                                                        <!--</div>-->
                                                     </div>
                                                 </div>
-
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6" >
 
-                                        <div class="form-group">
-                                            <label>Cedula</label>
-                                            <div class="form-inline"> 
-                                                <div class="col-xs-4">
-                                                    <select name="selectDoc" class="form-control">
-                                                        <option>V</option>
-                                                        <option>E</option>
-                                                        <option>J</option>
+                                        </div>
+                                        <div class="row">
+                                            <!--<div class="col-lg-12">-->
+                                            <div class="col-lg-3">
+                                                <div class="form-group ">
+                                                    <label>Edad</label>
+                                                    <div class="form-inline">
+                                                        <input id="age" name="edad" class="form-control " placeholder="Edad" maxlength="3" pattern="[0-1]{1}[0-9]{0,2}" title="Introduzca Una Edad Valida" size="3" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 ">
+                                                <div class="form-group ">
+                                                    <label>Sexo</label>
+                                                    <select name="sexo" class="form-control" >
+                                                        <option>M</option>
+                                                        <option>F</option>
+
                                                     </select>
                                                 </div>
-                                                <div class="col-xs-8">
-                                                    <input name="cedula" class="form-control" minlength="8" maxlength="8" pattern="[0-9]{1,9}(\.[0-9]{0,2})?$" title="Introduzca Solo Numeros" placeholder="N° de Documento" required>
+                                            </div>
+                                            <div class="col-lg-6 ">
+                                                <div class="form-group">
+                                                    <label>Telefono</label>
+                                                    <input name="telefono"  class="form-control" maxlength="13" placeholder="Telefono" pattern="^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$" required>
                                                 </div>
                                             </div>
+                                            <!--</div>-->
                                         </div>
                                         <div class="form-group">
                                             <label>Direccion</label>
                                             <input name="direccion" class="form-control" maxlength="40" placeholder="Direccion" required>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Telefono</label>
-                                            <input name="telefono"  class="form-control" maxlength="13" placeholder="Telefono" pattern="^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$" required>
+                                        <!--                                        <div class="row">
+                                                                                    <div class="col-lg-6 ">
+                                                                                        <div class="panel-body">
+                                                                                             Button trigger modal 
+                                                                                            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                                                                                Launch Demo Modal
+                                                                                            </button>
+                                                                                             Modal 
+                                                                                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                                                                                <div class="modal-dialog">
+                                                                                                    <div class="modal-content">
+                                                                                                        <div class="modal-header">
+                                                                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                                                            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                                                                                        </div>
+                                                                                                        <div class="modal-body">
+                                                                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                                                                                        </div>
+                                                                                                        <div class="modal-footer">
+                                                                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                     /.modal-content 
+                                                                                                </div>
+                                                                                                 /.modal-dialog 
+                                                                                            </div>
+                                                                                             /.modal 
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>-->
+                                        <div class="row">
+                                            <div class="col-lg-6 ">
+                                                <!--<button  class="btn btn-primary " data-toggle="modal" data-target ="#myModal">Guardar</button>-->
+                                                <button type="button"class="btn btn-primary" data-toggle="modal" data-target ="#myModal">Guardar</button>
+                                                <button type="reset" class="btn btn-primary">Borrar</button>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <button  class="btn btn-primary " data-toggle="modal" data-tar ="#myModal">Guardar</button>
-                                            <!--<button type="submit" class="btn btn-primary">Guardar</button>-->
-                                            <button type="reset" class="btn btn-primary">Borrar</button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        <h4 class="modal-title" id="myModalLabel">Registro de Paciente</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                       Desea Regisrtrar El Paciente?    
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                                        <button type="submit" class="btn btn-primary">Si</button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </form>
 
                                 <!-- /.col-lg-6 (nested) -->
@@ -146,7 +190,7 @@
 
             <!-- /.row -->
         </div>
-        
+
         <!-- /#page-wrapper -->
 
     </div>
