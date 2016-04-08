@@ -108,6 +108,9 @@
                 $('#registrarPruebas').click(function () {
                     $("#includedContent").load("/Laboratorio/registrarprueba");
                 });
+                 $('#tablaPruebas').click(function () {
+                    $("#includedContent").load("/Laboratorio/buscarpruebas");
+                });
             });</script>
     </head>
     <body>
