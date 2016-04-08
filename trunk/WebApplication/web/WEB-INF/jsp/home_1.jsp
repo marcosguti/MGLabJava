@@ -59,8 +59,8 @@
                 /*background-color: #2F79BA !important;*/
             }
             body {
-                background-image: url(fondo.jpg); 
-               /*background: radial-gradient(circle, #337ab7, white);*/
+                /*background-image: url("/resources/images/fondo1.jpg");*/ 
+               background: radial-gradient(circle, #337ab7, white);
                /*background: linear-gradient(#337ab7, white);*/
                 /*background-color: #cccccc;*/
             }
@@ -113,7 +113,7 @@
                 });
             });</script>
     </head>
-    <body>
+    <body background="/resources/images/fondo1.jpg">
         <div class="container">
             <nav class="navbar navbar-inverse navbar-fixed-top" id="barraPrincipal">
                 <div class="container">
