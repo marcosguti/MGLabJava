@@ -72,7 +72,7 @@
 
                     <!--/.panel-heading--> 
                     <div class="panel-heading">
-                        Pacientes
+                        Resultados
                     </div>
                     <div class="panel-body center-block">
                         <div class="dataTable_wrapper" >
