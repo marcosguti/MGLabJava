@@ -175,7 +175,7 @@
                         "columnDefs": [
                             {"visible": false, "targets": 0}
                         ],
-                "order": [[2, 'asc']],
+                "order": [[0, 'asc']],
                 "displayLength": 25,
                 "drawCallback": function (settings) {
                     var api = this.api();
