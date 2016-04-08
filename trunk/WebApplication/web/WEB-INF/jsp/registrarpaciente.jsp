@@ -53,7 +53,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <form role="form" action="/Laboratorio/registro" method="POST" id="register-form" >
+                                <form role="form" action="/Laboratorio/#" method="POST" id="register-form" >
                                     <div class="col-lg-12">
                                         <div class="row">
                                             <div class="col-lg-12">

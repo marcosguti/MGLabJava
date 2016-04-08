@@ -54,7 +54,6 @@ public class DefaultController {
     public String buscarPaciente(Model model) throws BussinessException {
         List<Paciente> pacientes = pacienteDAO.getAllOrdered();
         model.addAttribute("pacientes", pacientes);
-        model.addAttribute("saludo", "Probando El Controller");
         return "buscarpaciente";
     }
 
@@ -64,11 +63,12 @@ public class DefaultController {
         model.addAttribute("resultados", resultados);
         return "buscarresultado";
     }
+
     @RequestMapping(value = "/mostrarpaciente", method = RequestMethod.POST)
-    public String mostrarPaciente(Model model,@RequestParam("id") String id) throws BussinessException {
+    public String mostrarPaciente(Model model, @RequestParam("id") String id) throws BussinessException {
         Map<String, Paciente> mapPacientes = pacienteDAO.getMapAll();
-        Paciente paciente= mapPacientes.get(id);
-        System.out.println(id+paciente.getNombres());
+        Paciente paciente = mapPacientes.get(id);
+        System.out.println(id + paciente.getNombres());
         model.addAttribute("paciente", paciente);
         return "mostrarpaciente";
     }
@@ -91,7 +91,14 @@ public class DefaultController {
         return "registrarpaciente";
     }
 
-    @RequestMapping(value = "/registro", method = RequestMethod.POST)
+    @RequestMapping(value = "/registrarprueba", method = RequestMethod.GET)
+    public String pruebaView(Model model) throws BussinessException {
+        List<GrupoPruebas> grupoPruebas = grupoPruebasDAO.findAll();
+        model.addAttribute("grupoPruebas", grupoPruebas);
+        return "registrarprueba";
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public String registrarPaciente(Model model, @RequestParam("nombre") String nombre, @RequestParam("cedula") String cedula, @RequestParam("selectDoc") String selectDoc, @RequestParam("edad") String edad, @RequestParam("sexo") String sexo, @RequestParam("direccion") String direccion, @RequestParam("telefono") String telefono) throws BussinessException {
         Paciente paciente = new Paciente();
         paciente.setNombres(nombre);
@@ -101,6 +108,13 @@ public class DefaultController {
         paciente.setEdad(Integer.parseInt(edad));
         paciente.setTelefono(telefono);
         pacienteDAO.saveOrUpdate(paciente);
+        return "home_1";
+    }
+    
+     @RequestMapping(value = "/registroPrueba", method = RequestMethod.POST)
+    public String registrarPaciente(Model model, @RequestParam("selectGrupo") String grupo, @RequestParam("nombre") String nombre, @RequestParam("unidad") String unidad,  @RequestParam("limSuperior") String limSuperior,@RequestParam("limInferior") String limInferior,@RequestParam("precio") String precio) throws BussinessException {
+        Prueba prueba = new Prueba();
+         System.out.println(nombre);
         return "home_1";
     }
 //     @RequestMapping(value = "/Laboratorio/tables", method = RequestMethod.GET)

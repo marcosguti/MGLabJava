@@ -56,9 +56,14 @@
                 border-color: #1E1A1A;
             }
             .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
-                 /*background-color: #2F79BA !important;*/
+                /*background-color: #2F79BA !important;*/
             }
-            
+            body {
+                background-image: url(fondo.jpg); 
+               /*background: radial-gradient(circle, #337ab7, white);*/
+               /*background: linear-gradient(#337ab7, white);*/
+                /*background-color: #cccccc;*/
+            }
         </style>
         <script>
             $(document).ready(function () {
@@ -81,6 +86,12 @@
                 $('.menuPruebas').mouseleave(function () {
                     $('#listSubMenuPruebas').slideUp();
                 });
+                $('.botonMenuGrupoPruebas').click(function () {
+                    $('#listSubMenuGrupoPruebas').slideDown();
+                });
+                $('.menuGrupoPruebas').mouseleave(function () {
+                    $('#listSubMenuGrupoPruebas').slideUp();
+                });
 
                 $('#registrarPacientes').click(function () {
                     $("#includedContent").load("/Laboratorio/registrarpaciente");
@@ -93,6 +104,9 @@
                 });
                 $('#crearResultado').click(function () {
                     $("#includedContent").load("/Laboratorio/crearresultado");
+                });
+                $('#registrarPruebas').click(function () {
+                    $("#includedContent").load("/Laboratorio/registrarprueba");
                 });
             });</script>
     </head>
@@ -115,10 +129,10 @@
                                 <a href="" class="dropdown-toggle botonMenuResultados" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-file-text fa-fw "></i> Resultado</a>
                                 <ul class="dropdown-menu" id="listSubMenuResultados" style="display: none;">
                                     <li>
-                                        <a href="#" id="crearResultado"><i class="fa fa-plus fa-fw "></i>  Nuevo</a>
+                                        <a href="#" id="crearResultado"><i class="fa fa-plus fa-fw "></i>Nuevo</a>
                                     </li>
                                     <li>
-                                        <a href="#" id="buscarResultado"><i class="fa fa-search fa-fw "></i>  Buscar</a>
+                                        <a href="#" id="buscarResultado"><i class="fa fa-search fa-fw "></i>Buscar</a>
                                     </li>
                                 </ul>
                             </li>
@@ -126,10 +140,10 @@
                                 <a href="" class="dropdown-toggle botonMenuPacientes" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw "></i> Paciente</a>
                                 <ul class="dropdown-menu" id="listSubMenuPacientes" style="display: none;">
                                     <li>
-                                        <a href="#" id="registrarPacientes"><i class="fa fa-plus fa-fw "></i>  Registrar</a>
+                                        <a href="#" id="registrarPacientes"><i class="fa fa-plus fa-fw "></i>Registrar</a>
                                     </li>
                                     <li>
-                                        <a href="#" id="tablaPacientes"><i class="fa fa-search fa-fw "></i>  Buscar</a>
+                                        <a href="#" id="tablaPacientes"><i class="fa fa-search fa-fw "></i>Buscar</a>
                                     </li>
                                 </ul>
                             </li>
@@ -137,20 +151,31 @@
                                 <a href="" class="dropdown-toggle botonMenuPruebas" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-medkit fa-fw "></i> Prueba</a>
                                 <ul class="dropdown-menu" id="listSubMenuPruebas" style="display: none;">
                                     <li>
-                                        <a href="#" id="registrarPruebas"><i class="fa fa-plus fa-fw "></i>  Nueva</a>
+                                        <a href="#" id="registrarPruebas"><i class="fa fa-plus fa-fw "></i>Nueva</a>
                                     </li>
                                     <li>
-                                        <a href="#" id="tablaPruebas"><i class="fa fa-search fa-fw "></i>  Buscar</a>
+                                        <a href="#" id="tablaPruebas"><i class="fa fa-search fa-fw "></i>Buscar</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown menuGrupoPruebas">
+                                <a href="" class="dropdown-toggle botonMenuGrupoPruebas" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-archive fa-fw "></i> Area</a>
+                                <ul class="dropdown-menu" id="listSubMenuGrupoPruebas" style="display: none;">
+                                    <li>
+                                        <a href="#" id="registrarGrupoPruebas"><i class="fa fa-plus fa-fw "></i>Nuevo</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="tablaGrupoPruebas"><i class="fa fa-search fa-fw "></i>Buscar</a>
                                     </li>
                                 </ul>
                             </li>
                         </ul>
 
                     </div>
-<!--                    <div class="navbar-right">
-                        <iframe src="http://free.timeanddate.com/clock/i554y0y9/n4067/tlve4/fn7/fs20/fcfff/tct/pct/ftb/th2" frameborder="0" width="82" height="25" allowTransparency="true"></iframe>
-
-                    </div>-->
+                    <!--                    <div class="navbar-right">
+                                            <iframe src="http://free.timeanddate.com/clock/i554y0y9/n4067/tlve4/fn7/fs20/fcfff/tct/pct/ftb/th2" frameborder="0" width="82" height="25" allowTransparency="true"></iframe>
+                    
+                                        </div>-->
 
                     <!--/.nav-collapse -->
                 </div>
