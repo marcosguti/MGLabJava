@@ -63,6 +63,12 @@ public class DefaultController {
         model.addAttribute("resultados", resultados);
         return "buscarresultado";
     }
+    @RequestMapping(value = "/buscarpruebas", method = RequestMethod.GET)
+    public String buscarPruebas(Model model) throws BussinessException {
+        List<Prueba> pruebas = pruebaDAO.findAll();
+        model.addAttribute("pruebas", pruebas);
+        return "buscarpruebas";
+    }
 
     @RequestMapping(value = "/mostrarpaciente", method = RequestMethod.POST)
     public String mostrarPaciente(Model model, @RequestParam("id") String id) throws BussinessException {
