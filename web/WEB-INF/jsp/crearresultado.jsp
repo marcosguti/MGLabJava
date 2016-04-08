@@ -155,7 +155,7 @@
                                                                             <div id="${grupo.key}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                                                                                 <div class="panel-body">
                                                                                     <c:forEach var="ob" varStatus="status" items="${grupo.value}">
-                                                                                        <button id="${ob.id}" data-nombre="${ob.nombre}" data-grupo="${ob.grupoPruebas.nombre}"  data-unidad="${ob.unidad}"  type="button" class="btn btn-outline btn-primary btn-md btn-block addRow"><c:out value="${ob.nombre}"/></button>
+                                                                                        <button id="${ob.id}" data-nombre="${ob.nombre}" data-grupo="${ob.grupoPruebas.nombre}"  data-unidad="${ob.unidad}"  data-precio="${ob.precio}" type="button" class="btn btn-outline btn-primary btn-md btn-block addRow"><c:out value="${ob.nombre}"/></button>
                                                                                     </c:forEach>
                                                                                 </div>
                                                                             </div>
@@ -215,7 +215,12 @@
                                                                                 </div><br>
 
                                                                             </div>
-
+                                                                            <div class="row">
+                                                                                <div class="col-lg-2 col-lg-offset-10">
+                                                                                    <label for="disabledSelect">Precio</label>
+                                                                                    <input class="form-control input-sm"  id="precio" type="text" disabled="">
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
 
                                                                     </div>
@@ -265,6 +270,9 @@
                                                         <!-- Page-Level Demo Scripts - Tables - Use for reference -->
                                                         <script>
                                                             $(document).ready(function () {
+                                                                
+                                                                var precio = 0;
+                                                                
                                                                 var prueba;
                                                                 var tt = $('#tablaPaciente').DataTable({
                                                                     //            "dom": '<"top"f><"clear">',
@@ -334,11 +342,19 @@
                                                                     ]).draw(false).draw().node();
                                                                     //            $(rowNode).attr('data-id', valor.attr("id"));
                                                                     $(rowNode).attr('data-id', valor.attr("id"));
-                                                                     $(rowNode).css('cursor','pointer');
+//                                                                    alert("precio antes:" + precio);
+
+
+                                                                    $(rowNode).attr('data-precio', valor.attr("data-precio"));
+                                                                    precio += +$(rowNode).attr('data-precio');
+                                                                    $('#precio').attr('value',precio+ " Bs.");
+//                                                                    alert("data-precio antes:" + $(rowNode).attr('data-precio'));
+                                                                    $(rowNode).css('cursor', 'pointer');
                                                                     //            t.row.addClass(  'asaass' );
                                                                     //                $(rt).attr('id', valor.attr("data-nombre"));
                                                                     //            $(this).addClass('btn-disabled btn-block disabled');
                                                                     $(this).attr('disabled', 'disabled');
+//                                                                    alert(precio);
                                                                 });
                                                                 //        var t = $('#tablaResultados').DataTable();
                                                                 $('#tablaResultados tbody').on('click', 'tr', function () {
@@ -347,7 +363,7 @@
                                                                     //            alert("hola");td:nth-child(3)
                                                                     //            $(this).toggleClass('selected');
 //                                                                    alert($(this).children().length);
-                                                                    if ($(this).children().length>1) {
+                                                                    if ($(this).children().length > 1) {
                                                                         if ($(this).hasClass('selected')) {
                                                                             $(this).removeClass('selected');
                                                                             $('#buttonBorrarPrueba').attr('disabled', 'disabled');
@@ -362,9 +378,14 @@
                                                                 });
                                                                 $('#buttonBorrarPrueba').click(function () {
                                                                     $('#' + prueba).removeAttr('disabled');
+//                                                                    alert("precio elete antes:" + precio);
+                                                                    precio = precio - $('#' + prueba).attr('data-precio');
+                                                                    $('#precio').attr('value',precio+ " Bs.");
                                                                     t.row('.selected').remove().draw(false);
                                                                     $('#buttonBorrarPrueba').attr('disabled', 'disabled');
+//                                                                    alert(precio)
                                                                 });
+                                                                
                                                             });
                                                         </script>
 
