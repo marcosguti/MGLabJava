@@ -175,26 +175,26 @@
                     "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
                 },
                 "lengthMenu": [1, 100],
-//                        "columnDefs": [
-//                            {"visible": false, "targets": 0}
-//                        ],
-                "order": [[2, 'asc']],
+                        "columnDefs": [
+                            {"visible": false, "targets": 0}
+                        ],
+                "order": [[0, 'asc']],
                 "displayLength": 25,
-//                "drawCallback": function (settings) {
-//                    var api = this.api();
-//                    var rows = api.rows({page: 'current'}).nodes();
-//                    var last = null;
-//
-//                    api.column(0, {page: 'current'}).data().each(function (group, i) {
-//                        if (last !== group) {
-//                            $(rows).eq(i).before(
-//                                    '<tr class="group"><td colspan="5">' + group + '</td></tr>'
-//                                    );
-//
-//                            last = group;
-//                        }
-//                    });
-//                }
+                "drawCallback": function (settings) {
+                    var api = this.api();
+                    var rows = api.rows({page: 'current'}).nodes();
+                    var last = null;
+
+                    api.column(0, {page: 'current'}).data().each(function (group, i) {
+                        if (last !== group) {
+                            $(rows).eq(i).before(
+                                    '<tr class="group"><td colspan="5">' + group + '</td></tr>'
+                                    );
+
+                            last = group;
+                        }
+                    });
+                }
             });
         });
     </script>
