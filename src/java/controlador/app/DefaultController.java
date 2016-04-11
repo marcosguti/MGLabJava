@@ -63,6 +63,26 @@ public class DefaultController {
         model.addAttribute("resultados", resultados);
         return "buscarresultado";
     }
+
+    @RequestMapping(value = "/eliminarresultado", method = RequestMethod.POST)
+    public String eliminarResultado(Model model, @RequestParam("id") String id) throws BussinessException {
+//        System.out.println("aaa"+id+"aaaa");
+       Resultado  resultado= resultadoDAO.get(Integer.parseInt(id));
+        resultadoDAO.delete(resultado);
+        List<Resultado> resultados = resultadoDAO.getAllOrdered();
+        model.addAttribute("resultados", resultados);
+        return "buscarresultado";
+    }
+    @RequestMapping(value = "/eliminarpaciente", method = RequestMethod.POST)
+    public String eliminarPaciente(Model model, @RequestParam("id") String id) throws BussinessException {
+        System.out.println("aaa"+id+"aaaa");
+        Paciente  paciente= pacienteDAO.get(Integer.parseInt(id));
+        pacienteDAO.delete(paciente);
+        List<Paciente> pacientes = pacienteDAO.getAllOrdered();
+        model.addAttribute("pacientes", pacientes);
+        return "buscarpaciente";
+    }
+
     @RequestMapping(value = "/buscarpruebas", method = RequestMethod.GET)
     public String buscarPruebas(Model model) throws BussinessException {
         List<Prueba> pruebas = pruebaDAO.findAll();
@@ -116,11 +136,11 @@ public class DefaultController {
         pacienteDAO.saveOrUpdate(paciente);
         return "home_1";
     }
-    
-     @RequestMapping(value = "/registroPrueba", method = RequestMethod.POST)
-    public String registrarPaciente(Model model, @RequestParam("selectGrupo") String grupo, @RequestParam("nombre") String nombre, @RequestParam("unidad") String unidad,  @RequestParam("limSuperior") String limSuperior,@RequestParam("limInferior") String limInferior,@RequestParam("precio") String precio) throws BussinessException {
+
+    @RequestMapping(value = "/registroPrueba", method = RequestMethod.POST)
+    public String registrarPaciente(Model model, @RequestParam("selectGrupo") String grupo, @RequestParam("nombre") String nombre, @RequestParam("unidad") String unidad, @RequestParam("limSuperior") String limSuperior, @RequestParam("limInferior") String limInferior, @RequestParam("precio") String precio) throws BussinessException {
         Prueba prueba = new Prueba();
-         System.out.println(nombre);
+        System.out.println(nombre);
         return "home_1";
     }
 //     @RequestMapping(value = "/Laboratorio/tables", method = RequestMethod.GET)

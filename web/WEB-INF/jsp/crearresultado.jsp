@@ -270,126 +270,126 @@
                                                         <!-- Page-Level Demo Scripts - Tables - Use for reference -->
                                                         <script>
                                                             $(document).ready(function () {
-                                                            $('th').removeClass();
-                                                            var precio = 0;
-                                                            var prueba;
-                                                            var tt = $('#tablaPaciente').DataTable({
-                                                            //            "dom": '<"top"f><"clear">',
-                                                            "dom": '<"pull-left"f>t',
+                                                                $('th').removeClass();
+                                                                var precio = 0;
+                                                                var prueba;
+                                                                var tt = $('#tablaPaciente').DataTable({
+                                                                    //            "dom": '<"top"f><"clear">',
+                                                                    "dom": '<"pull-left"f>t',
                                                                     "order": [[0, "asc"]],
                                                                     "pageLength": 1,
                                                                     "ordering": false,
                                                                     "language": {
-                                                                    "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+                                                                        "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
                                                                     }, "scrollX": true,
-                                                            });
-                                                            var tableP = $('#tablaPaciente').DataTable();
-                                                            $('#tablaPaciente tbody ').on('click', 'tr', function () {
+                                                                });
+                                                                var tableP = $('#tablaPaciente').DataTable();
+                                                                $('#tablaPaciente tbody ').on('click', 'tr', function () {
 
-                                                            var data = tt.row(this).data();
-                                                            if ($(this).hasClass('selected')) {
-                                                            $(this).removeClass('selected');
-                                                            $("#datosPaciente").empty();
-                                                            $("#datosPaciente").append("<p>No Hay Datos</p>");
-                                                            } else {
-                                                            tableP.$('tr.selected').removeClass('selected');
-                                                            $(this).addClass('selected');
-                                                            $("#datosPaciente").empty();
-                                                            var id = data[2];
+                                                                    var data = tt.row(this).data();
+                                                                    if ($(this).hasClass('selected')) {
+                                                                        $(this).removeClass('selected');
+                                                                        $("#datosPaciente").empty();
+                                                                        $("#datosPaciente").append("<p>No Hay Datos</p>");
+                                                                    } else {
+                                                                        tableP.$('tr.selected').removeClass('selected');
+                                                                        $(this).addClass('selected');
+                                                                        $("#datosPaciente").empty();
+                                                                        var id = data[2];
 //                                                                        $("#datosPaciente").append("<div class=\"form-group\"><label class=\"control-label\">Nombre: </label><input type=\"text\" class=\"form-control\" placeholder=\"Disabled input\" disabled=\"disabled\" value=\"" + data[0] + "\"></div><div class=\"form-group\"<label>  Cedula: </label><p class=\"form-control-static\">" + data[1] + "</p></div>");
-                                                            $("#datosPaciente").load("/Laboratorio/mostrarpaciente", {id: data[2]}).animate({left: '250px'});
-                                                            }
+                                                                        $("#datosPaciente").load("/Laboratorio/mostrarpaciente", {id: data[2]}).animate({left: '250px'});
+                                                                    }
 //                                                                   
-                                                            var fecha = new Date();
-                                                            //                fecha   .toLocaleFormat('%d-%b-%Y');
-                                                            //                $( "#datosPaciente" ).append( "<label>Nombre: </label><p>"+data[0]+"</p>" );
-                                                            //"<div class=\"form-group\"><label>Nombre:</label><p class=\"form-control-static\">"+data[0]+"</p></div>"
-                                                            //                                     $( "#datosPaciente" ).append("<div class=\"form-group\"><label class=\"control-label col-xs-2\">Email</label> <div class=\"col-xs-10\"> <p class=\"form-control-static\">harrypotter@mail.com</p> </div></div>" );
+                                                                    var fecha = new Date();
+                                                                    //                fecha   .toLocaleFormat('%d-%b-%Y');
+                                                                    //                $( "#datosPaciente" ).append( "<label>Nombre: </label><p>"+data[0]+"</p>" );
+                                                                    //"<div class=\"form-group\"><label>Nombre:</label><p class=\"form-control-static\">"+data[0]+"</p></div>"
+                                                                    //                                     $( "#datosPaciente" ).append("<div class=\"form-group\"><label class=\"control-label col-xs-2\">Email</label> <div class=\"col-xs-10\"> <p class=\"form-control-static\">harrypotter@mail.com</p> </div></div>" );
 
-                                                            //             " <h1><c:out value="${mapPacientes['22'].nombres}"/></h1>"
-                                                            //                alert('Paciente: ' + data[1]);
-                                                            });
-                                                            $('#tablaResultados').DataTable({
-                                                            "dom": 'rt',
+                                                                    //             " <h1><c:out value="${mapPacientes['22'].nombres}"/></h1>"
+                                                                    //                alert('Paciente: ' + data[1]);
+                                                                });
+                                                                $('#tablaResultados').DataTable({
+                                                                    "dom": 'rt',
 //                                                                    "ordering": false,
                                                                     "order": [[0, 'asc']],
 //                                                                    "orderFixed": {
 //                                                                    "pre": [ 0, 'asc' ]
 //                                                                    }
-                                                            "columnDefs": [
-                                                            {"visible": false, "targets": 0}
-                                                            ],
+                                                                    "columnDefs": [
+                                                                        {"visible": false, "targets": 0}
+                                                                    ],
                                                                     "language": {
-                                                                    "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+                                                                        "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
                                                                     }, "scrollX": true,
                                                                     "drawCallback": function (settings) {
-                                                                    var api = this.api();
-                                                                    var rows = api.rows({page: 'current'}).nodes();
-                                                                    var last = null;
-                                                                    api.column(0, {page: 'current'}).data().each(function (group, i) {
-                                                                    if (last !== group) {
-                                                                    $(rows).eq(i).before(
-                                                                            '<tr class="group"  style="font-size: 16px;background-color: #337ab7"><td colspan="5">Area De ' + group + '</td></tr>'
-                                                                            );
-                                                                    last = group;
+                                                                        var api = this.api();
+                                                                        var rows = api.rows({page: 'current'}).nodes();
+                                                                        var last = null;
+                                                                        api.column(0, {page: 'current'}).data().each(function (group, i) {
+                                                                            if (last !== group) {
+                                                                                $(rows).eq(i).before(
+                                                                                        '<tr class="group"  style="font-size: 16px;background-color: #337ab7"><td colspan="5">Area De ' + group + '</td></tr>'
+                                                                                        );
+                                                                                last = group;
+                                                                            }
+                                                                        });
                                                                     }
-                                                                    });
-                                                                    }
-                                                            });
-                                                            var t = $('#tablaResultados').DataTable();
+                                                                });
+                                                                var t = $('#tablaResultados').DataTable();
 //                                                             t.order( [ 0, 'asc' ] ).draw();
 //                                                            table.column( '0:visible' ).order( 'asc' ).draw();
-                                                            $('.addRow').on('click', function () {
-                                                            var valor = $(this);
-                                                            var rowNode = t.row.add([
-                                                                    valor.attr("data-grupo"), valor.attr("data-nombre"),
-                                                                    "<input type=\"text\"  class=\"form-control\" name=\"name\" pattern=\"[0-9]\" title=\"Introduzca el Valor del Resultado\" id=\"inputSuccess\" required>", valor.attr("data-unidad")
-                                                            ]).draw(false).draw().node();
-                                                            //            $(rowNode).attr('data-id', valor.attr("id"));
-                                                            $(rowNode).attr('data-id', valor.attr("id"));
+                                                                $('.addRow').on('click', function () {
+                                                                    var valor = $(this);
+                                                                    var rowNode = t.row.add([
+                                                                        valor.attr("data-grupo"), valor.attr("data-nombre"),
+                                                                        "<input type=\"text\"  class=\"form-control\" name=\"name\" pattern=\"[0-9]\" title=\"Introduzca el Valor del Resultado\" id=\"inputSuccess\" required>", valor.attr("data-unidad")
+                                                                    ]).draw(false).draw().node();
+                                                                    //            $(rowNode).attr('data-id', valor.attr("id"));
+                                                                    $(rowNode).attr('data-id', valor.attr("id"));
 //                                                                    alert("precio antes:" + precio);
 
 
-                                                            $(rowNode).attr('data-precio', valor.attr("data-precio"));
-                                                            precio += + $(rowNode).attr('data-precio');
-                                                            $('#precio').attr('value', precio + " Bs.");
+                                                                    $(rowNode).attr('data-precio', valor.attr("data-precio"));
+                                                                    precio += +$(rowNode).attr('data-precio');
+                                                                    $('#precio').attr('value', precio + " Bs.");
 //                                                                    alert("data-precio antes:" + $(rowNode).attr('data-precio'));
-                                                            $(rowNode).css('cursor', 'pointer');
-                                                            //            t.row.addClass(  'asaass' );
-                                                            //                $(rt).attr('id', valor.attr("data-nombre"));
-                                                            //            $(this).addClass('btn-disabled btn-block disabled');
-                                                            $(this).attr('disabled', 'disabled');
+                                                                    $(rowNode).css('cursor', 'pointer');
+                                                                    //            t.row.addClass(  'asaass' );
+                                                                    //                $(rt).attr('id', valor.attr("data-nombre"));
+                                                                    //            $(this).addClass('btn-disabled btn-block disabled');
+                                                                    $(this).attr('disabled', 'disabled');
 //                                                                    alert(precio);
-                                                            });
-                                                            //        var t = $('#tablaResultados').DataTable();
-                                                            $('#tablaResultados tbody').on('click', 'tr', function () {
+                                                                });
+                                                                //        var t = $('#tablaResultados').DataTable();
+                                                                $('#tablaResultados tbody').on('click', 'tr', function () {
 
-                                                            //        alert( 'You clicked on '+name+'\'s row' );
-                                                            //            alert("hola");td:nth-child(3)
-                                                            //            $(this).toggleClass('selected');
+                                                                    //        alert( 'You clicked on '+name+'\'s row' );
+                                                                    //            alert("hola");td:nth-child(3)
+                                                                    //            $(this).toggleClass('selected');
 //                                                                    alert($(this).children().length);
-                                                            if ($(this).children().length > 1) {
-                                                            if ($(this).hasClass('selected')) {
-                                                            $(this).removeClass('selected');
-                                                            $('#buttonBorrarPrueba').attr('disabled', 'disabled');
-                                                            } else {
-                                                            t.$('tr.selected').removeClass('selected');
-                                                            $(this).addClass('selected');
-                                                            $('#buttonBorrarPrueba').removeAttr('disabled');
-                                                            }
-                                                            }
-                                                            //             prueba = $('td', this).eq(0).text();
-                                                            prueba = $(this).attr('data-id');
-                                                            });
-                                                            $('#buttonBorrarPrueba').click(function () {
-                                                            $('#' + prueba).removeAttr('disabled');
+                                                                    if ($(this).children().length > 1) {
+                                                                        if ($(this).hasClass('selected')) {
+                                                                            $(this).removeClass('selected');
+                                                                            $('#buttonBorrarPrueba').attr('disabled', 'disabled');
+                                                                        } else {
+                                                                            t.$('tr.selected').removeClass('selected');
+                                                                            $(this).addClass('selected');
+                                                                            $('#buttonBorrarPrueba').removeAttr('disabled');
+                                                                        }
+                                                                    }
+                                                                    //             prueba = $('td', this).eq(0).text();
+                                                                    prueba = $(this).attr('data-id');
+                                                                });
+                                                                $('#buttonBorrarPrueba').click(function () {
+                                                                    $('#' + prueba).removeAttr('disabled');
 //                                                                    alert("precio elete antes:" + precio);
-                                                            precio = precio - $('#' + prueba).attr('data-precio');
-                                                            $('#precio').attr('value', precio + " Bs.");
-                                                            t.row('.selected').remove().draw(false);
-                                                            $('#buttonBorrarPrueba').attr('disabled', 'disabled');
+                                                                    precio = precio - $('#' + prueba).attr('data-precio');
+                                                                    $('#precio').attr('value', precio + " Bs.");
+                                                                    t.row('.selected').remove().draw(false);
+                                                                    $('#buttonBorrarPrueba').attr('disabled', 'disabled');
 //                                                                    alert(precio)
-                                                            });
+                                                                });
                                                             });
                                                         </script>
 

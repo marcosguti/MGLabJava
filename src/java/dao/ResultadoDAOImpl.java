@@ -31,7 +31,7 @@ public class ResultadoDAOImpl extends GenericDAOImplHibernate<Resultado, Integer
         try {
             Query query
                     = session.createQuery(
-                            "SELECT e FROM Resultado e WHERE e.resultado = ?");
+                            "SELECT e FROM Resultado e WHERE e.id = ?");
             query.setParameter(0, idResultado);
             Resultado resultado = (Resultado) query.uniqueResult();
             session.getTransaction().commit();
