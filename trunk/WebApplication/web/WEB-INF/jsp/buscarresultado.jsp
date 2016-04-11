@@ -257,6 +257,16 @@
                 $("#includedContent").load("/Laboratorio/eliminarresultado", {id: idDelete});
 //               alert( $(".selected").html());
             });
+       
+//            $( 'thead').unbind( "click" );
+//            $('thead').off('click');
+            $('thead').on('click', function () {
+//                $(this).off('click');
+//                var idDelete=$(".selected>td:last-child").text();
+                alert("THEAD");
+//                $("#includedContent").load("/Laboratorio/eliminarresultado", {id: idDelete});
+//               alert( $(".selected").html());
+            });
         });
     </script>
 
