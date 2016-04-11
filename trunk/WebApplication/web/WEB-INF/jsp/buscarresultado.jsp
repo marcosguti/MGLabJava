@@ -55,6 +55,23 @@
 
 
     </script>
+    <style>
+        .selected{
+            background-color: #337ab7 !important;
+            color: white;
+        }
+        tr:hover.gradeX {
+            background-color: #337ab7  !important ;
+            color: white;
+            cursor:pointer;
+        }
+/*        .gradeX{
+            cursor:pointer;
+        }*/
+        th.sorting::after{
+            display:none;
+        }
+    </style>
 </head>
 
 <body>
@@ -76,7 +93,7 @@
                     </div>
                     <div class="panel-body center-block">
                         <div class="dataTable_wrapper" >
-                            <table class="table table-striped table-bordered table-hover " id="dataTables-example">
+                            <table class="table table-striped table-bordered table-hover " id="tablaResultados">
                                 <thead>
                                     <tr>
                                         <th>Fecha</th>
@@ -93,7 +110,7 @@
                                             <td><c:out value="${ob.paciente.cedula}"/></td>
                                             <td><c:out value="${ob.precio}"/></td>
                                             <td><c:out value="${ob.id}"/></td>
-                                         
+
                                         </tr>
 
                                     </c:forEach>
@@ -106,8 +123,26 @@
                         <!--<div class="bs-example">--> 
                         <!--<button type="submit" class="btn btn-default">Guardar</button>-->
                         <button type="reset" class="btn btn-default">Imprimir</button>
-                        <button type="button" class="btn btn-danger " id="buttonBorrarPrueba" disabled="disabled">Borrar</button>
+                        <button type="button" class="btn btn-danger " id="buttonBorrarResultado" disabled="disabled" data-toggle="modal" data-target ="#myModal">Borrar</button>
+                        <!--<button type="button"class="btn btn-primary" data-toggle="modal" data-target ="#myModal">Guardar</button>-->
                         <!--</div>-->
+                    </div>
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Resultado</h4>
+                                </div>
+                                <div class="modal-body">
+                                    Desea Borrar El Resultado?    
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                    <button type="submit" class="btn btn-primary" id="confirmarBorrar" data-dismiss="modal">Si</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.panel-body -->
                 </div>
@@ -140,6 +175,8 @@
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
         $(document).ready(function () {
+//            $( "th").unbind( "click" );
+            $("th.sorting::after").remove();
 //            $('#dataTables-example').DataTable({
 //                responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100],
 //                "language": {
@@ -162,11 +199,11 @@
 //            });
 //            var table = $('#dataTables-example').DataTable();
 //
-            $('#dataTables-example tbody ').on('click', 'tr', function () {
-                var data = table.row(this).data();
-                alert('Paciente: ' + data[1]);
-            });
-            var table = $('#dataTables-example').DataTable({
+//            $('#tablaResultados tbody ').on('click', 'tr', function () {
+//                var data = table.row(this).data();
+//                alert('Paciente: ' + data[1]);
+//            });
+            var table = $('#tablaResultados').DataTable({
                 responsive: true, responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100],
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
@@ -192,6 +229,33 @@
                         }
                     });
                 }
+            });
+            var t = $('#tablaResultados').DataTable();
+            $('#tablaResultados tbody').on('click', 'tr', function () {
+
+                //        alert( 'You clicked on '+name+'\'s row' );
+                //            alert("hola");td:nth-child(3)
+                //            $(this).toggleClass('selected');
+//                                                                    alert($(this).children().length);
+                if ($(this).children().length > 1) {
+                    if ($(this).hasClass('selected')) {
+                        $(this).removeClass('selected');
+                        $('#buttonBorrarResultado').attr('disabled', 'disabled');
+                    } else {
+                        t.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                        $('#buttonBorrarResultado').removeAttr('disabled');
+                    }
+                }
+                //             prueba = $('td', this).eq(0).text();
+           
+            });
+//            buttonBorrarResultado
+            $('#confirmarBorrar').on('click', function () {
+                var idDelete=$(".selected>td:last-child").text();
+                alert(idDelete);
+                $("#includedContent").load("/Laboratorio/eliminarresultado", {id: idDelete});
+//               alert( $(".selected").html());
             });
         });
     </script>
