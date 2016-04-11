@@ -54,6 +54,12 @@
             color: white;
             cursor:pointer;
         }
+        /*        table{
+                   border-collapse: collapse;
+            border-radius: 30px;
+            border-style: hidden;  hide standard table (collapsed) border 
+            box-shadow: 0 0 0 1px #666;  this draws the table border   
+                }*/
     </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -122,10 +128,11 @@
                     </div>
                     <div class="modal fade" id="modalModificar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
-                            <div class="modal-content">
+                            <div class="modal-content modal-md">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     <h4 class="modal-title" id="myModalLabel">Modificar Paciente</h4>
+
                                 </div>
                                 <form role="form" action="/Laboratorio/#" method="POST" id="register-form" >
                                     <div class="modal-body">
@@ -139,72 +146,109 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!--<div class="row"><div class="col-lg-12" > <label>Documento</label></div></div>-->
                                         <div class="row">
-                                            <div class="col-lg-8 col-xs-8 col-md-8 col-sm-8">
-                                                <div class="form-group">
+                                            <div class="col-lg-6">
+                                                <div class="form-group ">
                                                     <label>Documento</label>
-                                                    <div class="form-inline"> 
-                                                        <div class="col-lg-4">
-                                                            <select name="selectDoc" class="form-control">
-                                                                <option>V</option>
-                                                                <option>E</option>
-                                                                <option>J</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-lg-8">
-                                                            <input name="cedula" class="form-control" minlength="8" maxlength="8" pattern="[0-9]{1,9}(\.[0-9]{0,2})?$" title="Introduzca Solo Numeros" placeholder="N° de Documento" required>
-                                                        </div>
+                                                    <div class="form-inline">
+                                                        <select id="selectDoc" name="selectDoc" class="form-control">
+                                                            <option>V</option>
+                                                            <option>E</option>
+                                                            <option>J</option>
+                                                        </select>
+                                                        <input id="documento" name="cedula" class="form-control" minlength="8" maxlength="8" pattern="[0-9]{1,9}(\.[0-9]{0,2})?$" title="Introduzca Solo Numeros" placeholder="N° de Documento" required>
                                                     </div>
                                                 </div>
                                             </div>
+<!--                                            <div class="col-lg-4">
+                                                <div class="form-group ">
+                                                    <label></label>
+                                                    <div class="form-inline">
+                                                       
+                                                        <input id="documento" name="cedula" class="form-control" minlength="8" maxlength="8" pattern="[0-9]{1,9}(\.[0-9]{0,2})?$" title="Introduzca Solo Numeros" placeholder="N° de Documento" required>
+                                                    </div>
+                                                </div>
+                                            </div>-->
+                                            <div class="col-lg-2">
+                                                <div class="form-group ">
+                                                    <label>ID</label>
+                                                    <!--<div class="form-inline">-->
+                                                        <input class="form-control"  id="id" type="text" disabled="">
+                                                    <!--</div>-->
+                                                </div>
+                                            </div>
+                                            <!--<div class="col-lg-8 col-xs-8 col-md-8 col-sm-8 ">-->
+<!--                                            <div class="form-group">
+
+                                                <div class="form-inline"> 
+                                                    <div class="col-lg-6">
+                                                        <label>Documento</label>
+                                                        <select id="selectDoc" name="selectDoc" class="form-control">
+                                                            <option>V</option>
+                                                            <option>E</option>
+                                                            <option>J</option>
+                                                        </select>
+                                                        <input id="documento" name="cedula" class="form-control" minlength="8" maxlength="8" pattern="[0-9]{1,9}(\.[0-9]{0,2})?$" title="Introduzca Solo Numeros" placeholder="N° de Documento" required>
+
+                                                    </div>
+                                                                                                        <div class="col-lg-4">
+                                                                                                        </div>
+                                                    <div class="col-lg-2 col-xs-2 col-md-2 col-sm-2">
+                                                        <label for="disabledSelect">ID</label>
+                                                        <input class="form-control input-sm"  id="id" type="text" disabled="">
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>-->
 
                                         </div>
+                                        <br>
                                         <div class="row">
-                                            <div class="col-lg-8">
-                                                <div class="col-lg-3">
-                                                    <div class="form-group ">
-                                                        <label>Edad</label>
-                                                        <div class="form-inline">
-                                                            <input id="age" name="edad" class="form-control " placeholder="Edad" maxlength="3" pattern="[0-1]{1}[0-9]{0,2}" title="Introduzca Una Edad Valida" size="3" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3 ">
-                                                    <div class="form-group ">
-                                                        <label>Sexo</label>
-                                                        <select name="sexo" class="form-control" >
-                                                            <option>M</option>
-                                                            <option>F</option>
-
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 ">
-                                                    <div class="form-group">
-                                                        <label>Telefono</label>
-                                                        <input name="telefono"  class="form-control" maxlength="13" placeholder="Telefono" pattern="^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$" required>
+                                            <!--<div class="col-lg-8">-->
+                                            <div class="col-lg-2">
+                                                <div class="form-group ">
+                                                    <label>Edad</label>
+                                                    <div class="form-inline">
+                                                        <input id="edad" name="edad" class="form-control " placeholder="Edad" maxlength="3" pattern="[0-1]{1}[0-9]{0,2}" title="Introduzca Una Edad Valida" size="3" required>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-lg-2">
+                                                <div class="form-group ">
+                                                    <label>Sexo</label>
+                                                    <select id="sexo" name="sexo" class="form-control" >
+                                                        <option>M</option>
+                                                        <option>F</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 ">
+                                                <div class="form-group">
+                                                    <label>Telefono</label>
+                                                    <input id="telefono" name="telefono"  class="form-control" maxlength="13" placeholder="Telefono" pattern="^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$" required>
+                                                </div>
+                                            </div>
+                                            <!--</div>-->
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-8 col-xs-8 col-md-8 col-sm-8">
                                                 <div class="form-group">
                                                     <label>Direccion</label>
-                                                    <input name="direccion" class="form-control" maxlength="40" placeholder="Direccion" required>
+                                                    <input id="direccion" name="direccion" class="form-control" maxlength="40" placeholder="Direccion" required>
                                                 </div>
                                             </div>
 
                                         </div>
-
                                     </div>
 
 
                                     <div class="modal-footer">
                                         <!--<div class="row">-->
                                         <!--<div class="col-lg-6 ">-->
-                                        <button type="button"class="btn btn-primary">Guardar</button>
-                                        <button type="reset" class="btn btn-primary">Borrar</button>
+                                        <button id="guardar" type="button"class="btn btn-primary">Guardar</button>
+                                        <button type="reset" class="btn btn-primary">Reestablecer</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Atras</button>
                                         <!--<button type="submit" class="btn btn-primary" id="confirmarBorrar" data-dismiss="modal">Si</button>-->
                                         <!--</div>-->
@@ -229,10 +273,10 @@
                             <div class="modal-body">
                                 Desea Borrar El Paciente?    
                             </div>
-                            <!--                                <div class="modal-footer">
-                                                                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                                                                <button type="submit" class="btn btn-primary" id="confirmarBorrar" data-dismiss="modal">Si</button>
-                                                            </div>-->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                <button type="submit" class="btn btn-primary" id="confirmarBorrar" data-dismiss="modal">Si</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -299,6 +343,47 @@
             $("#includedContent").load("/Laboratorio/eliminarpaciente", {id: idDelete});
 //               alert( $(".selected").html());
         });
+        $('#buttonModificar').on('click', function () {
+            var datos = [];
+//        var i=0;
+//         var a= $('.selected td:nth-child(1)').text();
+//         alert(a);
+            $(".selected td").each(function () {
+//                alert($(this).text());
+                datos.push($(this).text());
+
+            });
+            $('#nombre').attr('value', datos[0])
+//            $('#selectDoc').attr('value',datos[1].str.substring(0, 1));
+            $('#documento').attr('value', datos[1])
+            $('#edad').attr('value', datos[2])
+            $('#sexo').attr('text', datos[3])
+            $('#telefono').attr('value', datos[4])
+            $('#direccion').attr('value', datos[5])
+            $('#id').attr('value', datos[6])
+//                $("#includedContent").load("/Laboratorio/eliminarresultado", {id: idDelete});
+//               alert( $(".selected").html());
+        });
+          $('#guardar').on('click', function () {
+//                var idDelete=$(".selected>td:last-child").text();
+//                alert(idDelete);
+//                var nombre= $("#includedContent")
+var ID=$("#id").val();
+                $("#includedContent").load("/Laboratorio/modificarpaciente", {
+//                    nombre: $("#nombre").val(),
+//                    tipoDoc: $("#tipoDoc").val(),
+//                    documento: $("#documento").val(),
+//                    edad: $("#edad").val(),
+//                    sexo: $("#sexo").val(),
+//                    telefono: $("#telefono").val(),
+                        
+                    id:ID
+                });
+//               alert( $(".selected").html());
+            });
+//        $('td:nth-child(1)').on('click', function () { 
+//            alert($(this).text());
+//        });
     });
 </script>
 

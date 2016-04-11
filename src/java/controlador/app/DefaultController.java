@@ -67,16 +67,17 @@ public class DefaultController {
     @RequestMapping(value = "/eliminarresultado", method = RequestMethod.POST)
     public String eliminarResultado(Model model, @RequestParam("id") String id) throws BussinessException {
 //        System.out.println("aaa"+id+"aaaa");
-       Resultado  resultado= resultadoDAO.get(Integer.parseInt(id));
+        Resultado resultado = resultadoDAO.get(Integer.parseInt(id));
         resultadoDAO.delete(resultado);
         List<Resultado> resultados = resultadoDAO.getAllOrdered();
         model.addAttribute("resultados", resultados);
         return "buscarresultado";
     }
+
     @RequestMapping(value = "/eliminarpaciente", method = RequestMethod.POST)
     public String eliminarPaciente(Model model, @RequestParam("id") String id) throws BussinessException {
-        System.out.println("aaa"+id+"aaaa");
-        Paciente  paciente= pacienteDAO.get(Integer.parseInt(id));
+//        System.out.println("aaa"+id+"aaaa");
+        Paciente paciente = pacienteDAO.get(Integer.parseInt(id));
         pacienteDAO.delete(paciente);
         List<Paciente> pacientes = pacienteDAO.getAllOrdered();
         model.addAttribute("pacientes", pacientes);
@@ -135,6 +136,21 @@ public class DefaultController {
         paciente.setTelefono(telefono);
         pacienteDAO.saveOrUpdate(paciente);
         return "home_1";
+    }
+
+    @RequestMapping(value = "/modificarpaciente", method = RequestMethod.POST)
+    public String modificarPaciente(Model model, @RequestParam("id") String id,@RequestParam("nombre") String nombre, @RequestParam("cedula") String cedula, @RequestParam("selectDoc") String selectDoc, @RequestParam("edad") String edad, @RequestParam("sexo") String sexo, @RequestParam("direccion") String direccion, @RequestParam("telefono") String telefono) throws BussinessException {
+        Paciente paciente = new Paciente();
+        paciente.setNombres(nombre);
+        paciente.setCedula(selectDoc + "-" + cedula);
+        paciente.setSexo(sexo);
+        paciente.setDireccion(direccion);
+        paciente.setEdad(Integer.parseInt(edad));
+        paciente.setTelefono(telefono);
+        paciente.setId(Integer.parseInt(id));
+        pacienteDAO.saveOrUpdate(paciente);
+        System.out.println(paciente.getNombres()+"   "+paciente.getId());
+        return "buscarpaciente";
     }
 
     @RequestMapping(value = "/registroPrueba", method = RequestMethod.POST)
