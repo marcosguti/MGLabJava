@@ -115,7 +115,7 @@ public class DefaultController {
     @RequestMapping(value = "/registrarpaciente", method = RequestMethod.GET)
     public String pacienteView() {
 
-        return "registrarpaciente";
+        return "reporte";
     }
 
     @RequestMapping(value = "/registrarprueba", method = RequestMethod.GET)
