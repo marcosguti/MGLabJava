@@ -122,17 +122,17 @@
 
                     </div>
                     <div class="panel-body center-block">
-                        <!--<form action="${pageContext.request.contextPath}/viewReporte">-->
-                        <button id="imprimir" value="${pageContext.request.contextPath}/viewReporte" type="submit" class="btn btn-default">Imprimir</button>
-                        <button type="button" class="btn btn-danger " id="buttonBorrarResultado" disabled="disabled" data-toggle="modal" data-target ="#myModal">Borrar</button>
+                        <form action="${pageContext.request.contextPath}/viewReporte">
+                            <button id="imprimir" value="${pageContext.request.contextPath}/viewReporte" type="submit" class="btn btn-default">Imprimir</button>
+                            <button type="button" class="btn btn-danger " id="buttonBorrarResultado" disabled="disabled" data-toggle="modal" data-target ="#myModal">Borrar</button>
 
-                        <!--</form>-->
+                            <!--</form>-->
 
-                        <!--<div class="bs-example">--> 
-                        <!--<button type="submit" class="btn btn-default">Guardar</button>-->
+                            <!--<div class="bs-example">--> 
+                            <!--<button type="submit" class="btn btn-default">Guardar</button>-->
 
-                        <!--<button type="button"class="btn btn-primary" data-toggle="modal" data-target ="#myModal">Guardar</button>-->
-                        <!--</div>-->
+                            <!--<button type="button"class="btn btn-primary" data-toggle="modal" data-target ="#myModal">Guardar</button>-->
+                            <!--</div>-->
                     </div>
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
@@ -183,7 +183,7 @@
     <script>
         $(document).ready(function () {
 //            $( "th").unbind( "click" );
-        $("th.sorting::after").remove();
+//        $("th.sorting::after").remove();
 //            $('#dataTables-example').DataTable({
 //                responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100],
 //                "language": {
@@ -272,31 +272,31 @@
 //                $("#includedContent").load("/Laboratorio/eliminarresultado", {id: idDelete});
 //               alert( $(".selected").html());
         });
-                $('#imprimir').on('click', function () {
-//                $(this).removeAttr('class');
-////                $(this).off('click');
-////                var idDelete=$(".selected>td:last-child").text();
-//                alert("THEAD");
-        var datos = [];
-//        var i=0;
-//         var a= $('.selected td:nth-child(1)').text();
-//         alert(a);
-                $(".selected td").each(function () {
-//                alert($(this).text());
-                if ($(this).index == 1)
-                    datos.push($(this).val());
-                if ($(this).index == 4)
-                    datos.push($(this).text());
-                if ($(this).index == 5)
-                    datos.push($(this).text());
-            });
-                $("#includedContent").load($('#imprimir').val(), {
-                idPaciente: datos [0],
-                idResultado: datos [5],
-                observaciones: datos [4]
-               
-        });
-        });
+//                $('#imprimir').on('click', function () {
+////                $(this).removeAttr('class');
+//////                $(this).off('click');
+//////                var idDelete=$(".selected>td:last-child").text();
+////                alert("THEAD");
+//        var datos = [];
+////        var i=0;
+////         var a= $('.selected td:nth-child(1)').text();
+////         alert(a);
+//                $(".selected td").each(function () {
+////                alert($(this).text());
+//                if ($(this).index == 1)
+//                    datos.push($(this).val());
+//                if ($(this).index == 4)
+//                    datos.push($(this).text());
+//                if ($(this).index == 5)
+//                    datos.push($(this).text());
+//            });
+//                $("#includedContent").load($('#imprimir').val(), {
+//                idPaciente: datos [0],
+//                idResultado: datos [5],
+//                observaciones: datos [4]
+//               
+//        });
+//        });
     </script>
 
 </body>
