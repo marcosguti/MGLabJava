@@ -270,7 +270,7 @@
                                                         <!-- Page-Level Demo Scripts - Tables - Use for reference -->
                                                         <script>
                                                             $(document).ready(function () {
-                                                                $('th').removeClass();
+                                                            
                                                                 var precio = 0;
                                                                 var prueba;
                                                                 var tt = $('#tablaPaciente').DataTable({

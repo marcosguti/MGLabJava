@@ -65,9 +65,9 @@
             color: white;
             cursor:pointer;
         }
-/*        .gradeX{
-            cursor:pointer;
-        }*/
+        /*        .gradeX{
+                    cursor:pointer;
+                }*/
         th.sorting::after{
             display:none;
         }
@@ -212,7 +212,8 @@
                         "columnDefs": [
                             {"visible": false, "targets": 0}
                         ],
-                "order": [[0, 'asc']],
+                        
+                        "order": [[0, 'asc']],
                 "displayLength": 25,
                 "drawCallback": function (settings) {
                     var api = this.api();
@@ -248,19 +249,20 @@
                     }
                 }
                 //             prueba = $('td', this).eq(0).text();
-           
+
             });
 //            buttonBorrarResultado
             $('#confirmarBorrar').on('click', function () {
-                var idDelete=$(".selected>td:last-child").text();
+                var idDelete = $(".selected>td:last-child").text();
                 alert(idDelete);
                 $("#includedContent").load("/Laboratorio/eliminarresultado", {id: idDelete});
 //               alert( $(".selected").html());
             });
-       
+
 //            $( 'thead').unbind( "click" );
 //            $('thead').off('click');
             $('thead').on('click', function () {
+                $(this).removeAttr('class');
 //                $(this).off('click');
 //                var idDelete=$(".selected>td:last-child").text();
                 alert("THEAD");
