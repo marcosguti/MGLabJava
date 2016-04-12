@@ -329,8 +329,9 @@
 //        var i=0;
 //         var a= $('.selected td:nth-child(1)').text();
 //         alert(a);
+//$('#lblName').parent().index();
             $(".selected td").each(function () {
-//                alert($(this).text());
+//                alert($(this).index());
                 datos.push($(this).text());
 
             });
