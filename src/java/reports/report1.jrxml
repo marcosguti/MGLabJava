@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3005d6a3-8fb3-4523-8186-73b74b343377">
+	<property name="ireport.zoom" value="2.1435888100000016"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="resultado_id" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+  grupopruebas.nombre as dddd,
+  prueba.nombre,
+  prueba.limites,
+  prueba.unidad,
+  pruebaresultado.valor
+FROM
+  public.grupopruebas,
+  public.prueba,
+  public.pruebaresultado,
+  public.resultado
+WHERE
+  grupopruebas.id = prueba.grupopruebas_id AND
+  prueba.id = pruebaresultado.prueba_id AND
+  resultado.id = pruebaresultado.resultado_id AND
+  resultado.id =$P!{resultado_id};]]>
+	</queryString>
+	<field name="dddd" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="limites" class="java.lang.String"/>
+	<field name="unidad" class="java.lang.String"/>
+	<field name="valor" class="java.lang.String"/>
+	<group name="gruop">
+		<groupExpression><![CDATA[$F{dddd}]]></groupExpression>
+		<groupHeader>
+			<band height="39">
+				<textField>
+					<reportElement uuid="bd7d102e-664c-4be0-9b4f-3600d09312db" x="-21" y="1" width="507" height="18"/>
+					<box topPadding="4" leftPadding="4" bottomPadding="1" rightPadding="1">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement>
+						<font isBold="true" isItalic="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Area de "+$F{dddd}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="b0047e57-481b-4741-aa89-f481d7318a97" x="182" y="19" width="150" height="20"/>
+					<box topPadding="4" leftPadding="4" bottomPadding="1" rightPadding="1">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement>
+						<font isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Valor]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="e0fc11d4-f3bb-4cf0-9df4-c5d72d5d52c3" x="332" y="19" width="154" height="20"/>
+					<box topPadding="4" leftPadding="4" bottomPadding="1" rightPadding="1">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement>
+						<font isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Limites]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="f26345a6-82a1-4f9b-bc99-d98d136641ad" x="-21" y="19" width="203" height="20"/>
+					<box topPadding="4" leftPadding="4" bottomPadding="1" rightPadding="1">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement>
+						<font isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Nombre]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="f7a08504-c8d2-44ae-a994-21aacc3fd0eb" x="-21" y="0" width="203" height="20"/>
+				<box topPadding="4" leftPadding="4" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0c8361a6-e00f-45b5-9238-9eee433ecfbd" x="182" y="0" width="150" height="20"/>
+				<box topPadding="4" leftPadding="4" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor}+" "+$F{unidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d79a6feb-86cf-4185-8454-5d93bbd1cd76" x="332" y="0" width="154" height="20"/>
+				<box topPadding="4" leftPadding="4" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA["("+$F{limites}+") "+$F{unidad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
