@@ -16,6 +16,14 @@
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>viewReporte</servlet-name>
+        <servlet-class>controlador.app.ReportController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>viewReporte</servlet-name>
+        <url-pattern>/viewReporte</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
