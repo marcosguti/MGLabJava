@@ -100,15 +100,17 @@
                                         <th>Nombre</th>
                                         <th>Cedula</th>
                                         <th>Precio</th>
+                                        <th>Observaciones</th>
                                         <th>N°</th>
                                     </tr>
                                 </thead>
                                 <tbody>  <c:forEach var="ob" varStatus="status" items="${resultados}">
                                         <tr class="odd gradeX">
                                             <td><c:out value="${ob.fecha}"/></td>
-                                            <td><c:out value="${ob.paciente.nombres}"/></td>
+                                            <td value="${ob.paciente.id}"><c:out value="${ob.paciente.nombres}"/></td>
                                             <td><c:out value="${ob.paciente.cedula}"/></td>
                                             <td><c:out value="${ob.precio}"/></td>
+                                            <td><c:out value="${ob.observaciones}"/></td>
                                             <td><c:out value="${ob.id}"/></td>
 
                                         </tr>
@@ -120,10 +122,15 @@
 
                     </div>
                     <div class="panel-body center-block">
+                        <!--<form action="${pageContext.request.contextPath}/viewReporte">-->
+                        <button id="imprimir" value="${pageContext.request.contextPath}/viewReporte" type="submit" class="btn btn-default">Imprimir</button>
+                        <button type="button" class="btn btn-danger " id="buttonBorrarResultado" disabled="disabled" data-toggle="modal" data-target ="#myModal">Borrar</button>
+
+                        <!--</form>-->
+
                         <!--<div class="bs-example">--> 
                         <!--<button type="submit" class="btn btn-default">Guardar</button>-->
-                        <button id="imprimir" type="button" class="btn btn-default">Imprimir</button>
-                        <button type="button" class="btn btn-danger " id="buttonBorrarResultado" disabled="disabled" data-toggle="modal" data-target ="#myModal">Borrar</button>
+
                         <!--<button type="button"class="btn btn-primary" data-toggle="modal" data-target ="#myModal">Guardar</button>-->
                         <!--</div>-->
                     </div>
@@ -176,7 +183,7 @@
     <script>
         $(document).ready(function () {
 //            $( "th").unbind( "click" );
-            $("th.sorting::after").remove();
+        $("th.sorting::after").remove();
 //            $('#dataTables-example').DataTable({
 //                responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100],
 //                "language": {
@@ -203,81 +210,92 @@
 //                var data = table.row(this).data();
 //                alert('Paciente: ' + data[1]);
 //            });
-            var table = $('#tablaResultados').DataTable({
-                responsive: true, responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100],
+                var table = $('#tablaResultados').DataTable({
+        responsive: true, responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100],
                 "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+                "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
                 },
                 "lengthMenu": [1, 100],
-                        "columnDefs": [
-                            {"visible": false, "targets": 0}
-                        ],
-                        
-                        "order": [[0, 'asc']],
+                "columnDefs": [
+                {"visible": false, "targets": 0}
+                ],
+                "order": [[0, 'asc']],
                 "displayLength": 25,
                 "drawCallback": function (settings) {
-                    var api = this.api();
-                    var rows = api.rows({page: 'current'}).nodes();
-                    var last = null;
-
-                    api.column(0, {page: 'current'}).data().each(function (group, i) {
-                        if (last !== group) {
-                            $(rows).eq(i).before(
-                                    '<tr class="group"><td colspan="5">' + group + '</td></tr>'
-                                    );
-
-                            last = group;
-                        }
-                    });
+                var api = this.api();
+                        var rows = api.rows({page: 'current'}).nodes();
+                        var last = null;
+                        api.column(0, {page: 'current'}).data().each(function (group, i) {
+                if (last !== group) {
+                $(rows).eq(i).before(
+                        '<tr class="group"><td colspan="5">' + group + '</td></tr>'
+                        );
+                        last = group;
                 }
-            });
-            var t = $('#tablaResultados').DataTable();
-            $('#tablaResultados tbody').on('click', 'tr', function () {
+                });
+                }
+        });
+                var t = $('#tablaResultados').DataTable();
+                $('#tablaResultados tbody').on('click', 'tr', function () {
 
-                //        alert( 'You clicked on '+name+'\'s row' );
-                //            alert("hola");td:nth-child(3)
-                //            $(this).toggleClass('selected');
+        //        alert( 'You clicked on '+name+'\'s row' );
+        //            alert("hola");td:nth-child(3)
+        //            $(this).toggleClass('selected');
 //                                                                    alert($(this).children().length);
-                if ($(this).children().length > 1) {
-                    if ($(this).hasClass('selected')) {
-                        $(this).removeClass('selected');
-                        $('#buttonBorrarResultado').attr('disabled', 'disabled');
-                    } else {
-                        t.$('tr.selected').removeClass('selected');
-                        $(this).addClass('selected');
-                        $('#buttonBorrarResultado').removeAttr('disabled');
-                    }
-                }
-                //             prueba = $('td', this).eq(0).text();
+        if ($(this).children().length > 1) {
+        if ($(this).hasClass('selected')) {
+        $(this).removeClass('selected');
+                $('#buttonBorrarResultado').attr('disabled', 'disabled');
+        } else {
+        t.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                $('#buttonBorrarResultado').removeAttr('disabled');
+        }
+        }
+        //             prueba = $('td', this).eq(0).text();
 
-            });
+        });
 //            buttonBorrarResultado
-            $('#confirmarBorrar').on('click', function () {
-                var idDelete = $(".selected>td:last-child").text();
+                $('#confirmarBorrar').on('click', function () {
+        var idDelete = $(".selected>td:last-child").text();
                 alert(idDelete);
                 $("#includedContent").load("/Laboratorio/eliminarresultado", {id: idDelete});
 //               alert( $(".selected").html());
-            });
-
+        });
 //            $( 'thead').unbind( "click" );
 //            $('thead').off('click');
-            $('thead').on('click', function () {
-                $(this).removeAttr('class');
+                $('thead').on('click', function () {
+        $(this).removeAttr('class');
 //                $(this).off('click');
 //                var idDelete=$(".selected>td:last-child").text();
                 alert("THEAD");
 //                $("#includedContent").load("/Laboratorio/eliminarresultado", {id: idDelete});
 //               alert( $(".selected").html());
-            });
-            $('#imprimir').on('click', function () {
+        });
+                $('#imprimir').on('click', function () {
 //                $(this).removeAttr('class');
 ////                $(this).off('click');
 ////                var idDelete=$(".selected>td:last-child").text();
 //                alert("THEAD");
-                $("#includedContent").load("/Laboratorio/reporte");
-
+        var datos = [];
+//        var i=0;
+//         var a= $('.selected td:nth-child(1)').text();
+//         alert(a);
+                $(".selected td").each(function () {
+//                alert($(this).text());
+                if ($(this).index == 1)
+                    datos.push($(this).val());
+                if ($(this).index == 4)
+                    datos.push($(this).text());
+                if ($(this).index == 5)
+                    datos.push($(this).text());
             });
-            
+                $("#includedContent").load($('#imprimir').val(), {
+                idPaciente: datos [0],
+                idResultado: datos [5],
+                observaciones: datos [4]
+               
+        });
         });
     </script>
 
