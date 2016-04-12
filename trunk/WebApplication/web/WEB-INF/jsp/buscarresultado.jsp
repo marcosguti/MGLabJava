@@ -122,7 +122,7 @@
                     <div class="panel-body center-block">
                         <!--<div class="bs-example">--> 
                         <!--<button type="submit" class="btn btn-default">Guardar</button>-->
-                        <button type="reset" class="btn btn-default">Imprimir</button>
+                        <button id="imprimir" type="button" class="btn btn-default">Imprimir</button>
                         <button type="button" class="btn btn-danger " id="buttonBorrarResultado" disabled="disabled" data-toggle="modal" data-target ="#myModal">Borrar</button>
                         <!--<button type="button"class="btn btn-primary" data-toggle="modal" data-target ="#myModal">Guardar</button>-->
                         <!--</div>-->
@@ -269,6 +269,15 @@
 //                $("#includedContent").load("/Laboratorio/eliminarresultado", {id: idDelete});
 //               alert( $(".selected").html());
             });
+            $('#imprimir').on('click', function () {
+//                $(this).removeAttr('class');
+////                $(this).off('click');
+////                var idDelete=$(".selected>td:last-child").text();
+//                alert("THEAD");
+                $("#includedContent").load("/Laboratorio/reporte");
+
+            });
+            
         });
     </script>
 
