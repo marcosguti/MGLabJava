@@ -150,7 +150,9 @@ public class DefaultController {
         paciente.setId(Integer.parseInt(id));
         pacienteDAO.saveOrUpdate(paciente);
         System.out.println(paciente.getNombres()+"   "+paciente.getId());
-        return "buscarpaciente";
+        List<Paciente> pacientes = pacienteDAO.getAllOrdered();
+        model.addAttribute("pacientes", pacientes);
+        return "home_1";
     }
 
     @RequestMapping(value = "/registroPrueba", method = RequestMethod.POST)

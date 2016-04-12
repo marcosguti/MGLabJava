@@ -134,7 +134,7 @@
                                     <h4 class="modal-title" id="myModalLabel">Modificar Paciente</h4>
 
                                 </div>
-                                <form role="form" action="/Laboratorio/#" method="POST" id="register-form" >
+                                <form action="/Laboratorio/modificarpaciente" role="form" id="form " method="POST" >
                                     <div class="modal-body">
 
                                         <!--<div class="col-lg-12">-->
@@ -161,47 +161,15 @@
                                                     </div>
                                                 </div>
                                             </div>
-<!--                                            <div class="col-lg-4">
-                                                <div class="form-group ">
-                                                    <label></label>
-                                                    <div class="form-inline">
-                                                       
-                                                        <input id="documento" name="cedula" class="form-control" minlength="8" maxlength="8" pattern="[0-9]{1,9}(\.[0-9]{0,2})?$" title="Introduzca Solo Numeros" placeholder="N° de Documento" required>
-                                                    </div>
-                                                </div>
-                                            </div>-->
+
                                             <div class="col-lg-2">
                                                 <div class="form-group ">
                                                     <label>ID</label>
-                                                    <!--<div class="form-inline">-->
-                                                        <input class="form-control"  id="id" type="text" disabled="">
-                                                    <!--</div>-->
+                                                    <div class="form-inline">
+                                                        <input name="id" value="4" class="form-control"   id="id" type="text">
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <!--<div class="col-lg-8 col-xs-8 col-md-8 col-sm-8 ">-->
-<!--                                            <div class="form-group">
-
-                                                <div class="form-inline"> 
-                                                    <div class="col-lg-6">
-                                                        <label>Documento</label>
-                                                        <select id="selectDoc" name="selectDoc" class="form-control">
-                                                            <option>V</option>
-                                                            <option>E</option>
-                                                            <option>J</option>
-                                                        </select>
-                                                        <input id="documento" name="cedula" class="form-control" minlength="8" maxlength="8" pattern="[0-9]{1,9}(\.[0-9]{0,2})?$" title="Introduzca Solo Numeros" placeholder="N° de Documento" required>
-
-                                                    </div>
-                                                                                                        <div class="col-lg-4">
-                                                                                                        </div>
-                                                    <div class="col-lg-2 col-xs-2 col-md-2 col-sm-2">
-                                                        <label for="disabledSelect">ID</label>
-                                                        <input class="form-control input-sm"  id="id" type="text" disabled="">
-                                                    </div>
-                                                </div>
-                                                </div>
-                                            </div>-->
-
                                         </div>
                                         <br>
                                         <div class="row">
@@ -247,7 +215,7 @@
                                     <div class="modal-footer">
                                         <!--<div class="row">-->
                                         <!--<div class="col-lg-6 ">-->
-                                        <button id="guardar" type="button"class="btn btn-primary">Guardar</button>
+                                        <button id="guardar" type="submit" class="btn btn-primary">Guardar</button>
                                         <button type="reset" class="btn btn-primary">Reestablecer</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Atras</button>
                                         <!--<button type="submit" class="btn btn-primary" id="confirmarBorrar" data-dismiss="modal">Si</button>-->
@@ -311,6 +279,13 @@
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
     $(document).ready(function () {
+//        var ff='avecesssssssss';
+//        function sub(cad,i,f) {
+//            
+//             cad=cad.substring(1, 4);
+////            alert(cad);
+//        }
+//        split(ff);
         $('#dataTables-example').DataTable({
             responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100],
             "language": {
@@ -337,10 +312,16 @@
                 }
             }
         });
+//        function customAlert(msg) {
+//            var alertDiv = "<div style='position: fixed; top: 20px; left: 20px;'>" + msg + "</div>";
+//            document.getElementsByTagName('body').appendChild(alertDiv);
+//        }
         $('#confirmarBorrar').on('click', function () {
             var idDelete = $(".selected>td:last-child").text();
 //                alert(idDelete);
-            $("#includedContent").load("/Laboratorio/eliminarpaciente", {id: idDelete});
+            $("#includedContent").load("/Laboratorio/eliminarpaciente", {id: idDelete}, function () {
+//                customAlert("Se borro");
+            });
 //               alert( $(".selected").html());
         });
         $('#buttonModificar').on('click', function () {
@@ -355,7 +336,7 @@
             });
             $('#nombre').attr('value', datos[0])
 //            $('#selectDoc').attr('value',datos[1].str.substring(0, 1));
-            $('#documento').attr('value', datos[1])
+            $('#documento').attr('value', datos[1].substring(2, 12))
             $('#edad').attr('value', datos[2])
             $('#sexo').attr('text', datos[3])
             $('#telefono').attr('value', datos[4])
@@ -364,25 +345,40 @@
 //                $("#includedContent").load("/Laboratorio/eliminarresultado", {id: idDelete});
 //               alert( $(".selected").html());
         });
-          $('#guardar').on('click', function () {
-//                var idDelete=$(".selected>td:last-child").text();
-//                alert(idDelete);
-//                var nombre= $("#includedContent")
-var ID=$("#id").val();
-                $("#includedContent").load("/Laboratorio/modificarpaciente", {
+//        $('#guardar').on('click', function () {
+////                var idDelete=$(".selected>td:last-child").text();
+////                alert(idDelete);
+////                var nombre= $("#includedContent")
+////            var ID = $("#id").val();
+//            $("#includedContent").load("/Laboratorio/modificarpaciente",{
 //                    nombre: $("#nombre").val(),
 //                    tipoDoc: $("#tipoDoc").val(),
 //                    documento: $("#documento").val(),
 //                    edad: $("#edad").val(),
 //                    sexo: $("#sexo").val(),
 //                    telefono: $("#telefono").val(),
-                        
-                    id:ID
-                });
-//               alert( $(".selected").html());
-            });
+//
+//                id: $("#sexo").val()
+//            });
+//////               alert( $(".selected").html());
+//        });
 //        $('td:nth-child(1)').on('click', function () { 
 //            alert($(this).text());
+//        });
+//        
+//        $('#guardar').on('click', function () {
+//            $.ajax({
+//                url: '/Laboratorio/modificarpaciente',
+//                type: 'post',
+//                dataType: 'json',
+//                data: $('#form').serialize()
+//               
+//            });
+//        });
+//        
+//        $('#form').submit(function (  ) {
+//            alert("submit");
+//            $("#includedContent").load("/Laboratorio/modificarpaciente");
 //        });
     });
 </script>
