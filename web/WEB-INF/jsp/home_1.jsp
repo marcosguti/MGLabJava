@@ -184,7 +184,13 @@
                 </div>
             </nav>
             <br><br><br><br>
-            <div class="row-border" id="includedContent"></div>
+            <div class="row-border" id="includedContent">
+                <form action="${pageContext.request.contextPath}/viewReporte">
+            <input type="text" name="id" />
+            <input type="submit" value="Imprimir" />
+        </form>
+                
+            </div>
             <!--            <footer class="footer">
                             <div class="container">
                                 <p class="text-muted">Marco Gutierrez</p>
