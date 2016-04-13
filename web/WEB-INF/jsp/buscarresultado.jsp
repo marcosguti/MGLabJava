@@ -122,17 +122,17 @@
 
                     </div>
                     <div class="panel-body center-block">
-                        <form action="${pageContext.request.contextPath}/viewReporte">
-                            <button id="imprimir" value="${pageContext.request.contextPath}/viewReporte" type="submit" class="btn btn-default">Imprimir</button>
-                            <button type="button" class="btn btn-danger " id="buttonBorrarResultado" disabled="disabled" data-toggle="modal" data-target ="#myModal">Borrar</button>
+                        <form action="${pageContext.request.contextPath}/viewReporte" target="_blank">
+                        <button id="ver" value="${pageContext.request.contextPath}/viewReporte"  disabled="disabled" type="submit" class="btn btn-default">Ver</button>
+                        <button type="button" class="btn btn-danger " id="borrar" disabled="disabled" data-toggle="modal" data-target ="#myModal">Borrar</button>
 
-                            <!--</form>-->
+                        </form> 
 
-                            <!--<div class="bs-example">--> 
-                            <!--<button type="submit" class="btn btn-default">Guardar</button>-->
+                        <!--<div class="bs-example">--> 
+                        <!--<button type="submit" class="btn btn-default">Guardar</button>-->
 
-                            <!--<button type="button"class="btn btn-primary" data-toggle="modal" data-target ="#myModal">Guardar</button>-->
-                            <!--</div>-->
+                        <!--<button type="button"class="btn btn-primary" data-toggle="modal" data-target ="#myModal">Guardar</button>-->
+                        <!--</div>-->
                     </div>
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
@@ -180,10 +180,10 @@
     <script src="<c:url value='/resources/dist/js/sb-admin-2.js' />"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-       <script>
-        $(document).ready(function () {
+    <script>
+     $(document).ready(function () {
 //            $( "th").unbind( "click" );
-            $("th.sorting::after").remove();
+         $("th.sorting::after").remove();
 //            $('#dataTables-example').DataTable({
 //                responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100],
 //                "language": {
@@ -210,73 +210,95 @@
 //                var data = table.row(this).data();
 //                alert('Paciente: ' + data[1]);
 //            });
-            var table = $('#tablaResultados').DataTable({
-                responsive: true, responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100],
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
-                },
-                "lengthMenu": [1, 100],
-                        "columnDefs": [
-                            {"visible": false, "targets": 0}
-                        ],
-                        
-                        "order": [[0, 'asc']],
-                "displayLength": 25,
-                "drawCallback": function (settings) {
-                    var api = this.api();
-                    var rows = api.rows({page: 'current'}).nodes();
-                    var last = null;
+         var table = $('#tablaResultados').DataTable({
+             responsive: true, responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100],
+             "language": {
+                 "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+             },
+             "lengthMenu": [1, 100],
+                     "columnDefs": [
+                         {"visible": false, "targets": 0}
+                     ],
+             "order": [[0, 'asc']],
+             "displayLength": 25,
+             "drawCallback": function (settings) {
+                 var api = this.api();
+                 var rows = api.rows({page: 'current'}).nodes();
+                 var last = null;
 
-                    api.column(0, {page: 'current'}).data().each(function (group, i) {
-                        if (last !== group) {
-                            $(rows).eq(i).before(
-                                    '<tr class="group"><td colspan="5">' + group + '</td></tr>'
-                                    );
+                 api.column(0, {page: 'current'}).data().each(function (group, i) {
+                     if (last !== group) {
+                         $(rows).eq(i).before(
+                                 '<tr class="group"><td colspan="5">' + group + '</td></tr>'
+                                 );
 
-                            last = group;
-                        }
-                    });
-                }
-            });
-            var t = $('#tablaResultados').DataTable();
-            $('#tablaResultados tbody').on('click', 'tr', function () {
+                         last = group;
+                     }
+                 });
+             }
+         });
+         var t = $('#tablaResultados').DataTable();
+         $('#tablaResultados tbody').on('click', 'tr', function () {
 
-                //        alert( 'You clicked on '+name+'\'s row' );
-                //            alert("hola");td:nth-child(3)
-                //            $(this).toggleClass('selected');
+             //        alert( 'You clicked on '+name+'\'s row' );
+             //            alert("hola");td:nth-child(3)
+             //            $(this).toggleClass('selected');
 //                                                                    alert($(this).children().length);
-                if ($(this).children().length > 1) {
-                    if ($(this).hasClass('selected')) {
-                        $(this).removeClass('selected');
-                        $('#buttonBorrarResultado').attr('disabled', 'disabled');
-                    } else {
-                        t.$('tr.selected').removeClass('selected');
-                        $(this).addClass('selected');
-                        $('#buttonBorrarResultado').removeAttr('disabled');
-                    }
-                }
-                //             prueba = $('td', this).eq(0).text();
+             if ($(this).children().length > 1) {
+                 if ($(this).hasClass('selected')) {
+                     $(this).removeClass('selected');
+                     $('#borrar').attr('disabled', 'disabled');
+                     $('#ver').attr('disabled', 'disabled');
+                 } else {
+                     t.$('tr.selected').removeClass('selected');
+                     $(this).addClass('selected');
+                     $('#borrar').removeAttr('disabled');
+                     $('#ver').removeAttr('disabled');
+                 }
+             }
+             //             prueba = $('td', this).eq(0).text();
 
-            });
-//            buttonBorrarResultado
-            $('#confirmarBorrar').on('click', function () {
-                var idDelete = $(".selected>td:last-child").text();
-                alert(idDelete);
-                $("#includedContent").load("/Laboratorio/eliminarresultado", {id: idDelete});
+         });
+//            borrar
+         $('#confirmarBorrar').on('click', function () {
+             var idDelete = $(".selected>td:last-child").text();
+             alert(idDelete);
+             $("#includedContent").load("/Laboratorio/eliminarresultado", {id: idDelete});
 //               alert( $(".selected").html());
-            });
-
-//            $( 'thead').unbind( "click" );
-//            $('thead').off('click');
-            $('thead').on('click', function () {
-                $(this).removeAttr('class');
+         });
+//         $('#ver').on('click', function () {
+//             var datos = [];
+//             $(".selected td").each(function () {
+////                alert($(this).text());
+//                 if ($(this).index == 1) {
+//                     datos.push($(this).val());
+//                     alert($(this).val());
+//                 }
+//                 if ($(this).index == 4) {
+//                     datos.push($(this).text());
+//                     alert($(this).text());
+//                 }
+//                 if ($(this).index == 5) {
+//                     datos.push($(this).text());
+//                     alert($(this).text());
+//                 }
+//             });
+////            alert(datos[1]);
+////                $("#includedContent").load($('#ver').val(), {
+////                idPaciente: datos [0],
+////                idResultado: datos [5],
+////                observaciones: datos [4]})
+//         });
+         $('thead').on('click', function () {
+//                alert($('#ver').val());
+//                $(this).removeAttr('class');
 //                $(this).off('click');
 //                var idDelete=$(".selected>td:last-child").text();
-                alert("THEAD");
+//                alert("THEAD");
 //                $("#includedContent").load("/Laboratorio/eliminarresultado", {id: idDelete});
 //               alert( $(".selected").html());
-            });
-        });
+         });
+     });
     </script>
 
 </body>
