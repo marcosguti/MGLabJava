@@ -180,10 +180,10 @@
     <script src="<c:url value='/resources/dist/js/sb-admin-2.js' />"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
+       <script>
         $(document).ready(function () {
 //            $( "th").unbind( "click" );
-//        $("th.sorting::after").remove();
+            $("th.sorting::after").remove();
 //            $('#dataTables-example').DataTable({
 //                responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100],
 //                "language": {
@@ -210,93 +210,73 @@
 //                var data = table.row(this).data();
 //                alert('Paciente: ' + data[1]);
 //            });
-                var table = $('#tablaResultados').DataTable({
-        responsive: true, responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100],
+            var table = $('#tablaResultados').DataTable({
+                responsive: true, responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100],
                 "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+                    "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
                 },
                 "lengthMenu": [1, 100],
-                "columnDefs": [
-                {"visible": false, "targets": 0}
-                ],
-                "order": [[0, 'asc']],
+                        "columnDefs": [
+                            {"visible": false, "targets": 0}
+                        ],
+                        
+                        "order": [[0, 'asc']],
                 "displayLength": 25,
                 "drawCallback": function (settings) {
-                var api = this.api();
-                        var rows = api.rows({page: 'current'}).nodes();
-                        var last = null;
-                        api.column(0, {page: 'current'}).data().each(function (group, i) {
-                if (last !== group) {
-                $(rows).eq(i).before(
-                        '<tr class="group"><td colspan="5">' + group + '</td></tr>'
-                        );
-                        last = group;
-                }
-                });
-                }
-        });
-                var t = $('#tablaResultados').DataTable();
-                $('#tablaResultados tbody').on('click', 'tr', function () {
+                    var api = this.api();
+                    var rows = api.rows({page: 'current'}).nodes();
+                    var last = null;
 
-        //        alert( 'You clicked on '+name+'\'s row' );
-        //            alert("hola");td:nth-child(3)
-        //            $(this).toggleClass('selected');
+                    api.column(0, {page: 'current'}).data().each(function (group, i) {
+                        if (last !== group) {
+                            $(rows).eq(i).before(
+                                    '<tr class="group"><td colspan="5">' + group + '</td></tr>'
+                                    );
+
+                            last = group;
+                        }
+                    });
+                }
+            });
+            var t = $('#tablaResultados').DataTable();
+            $('#tablaResultados tbody').on('click', 'tr', function () {
+
+                //        alert( 'You clicked on '+name+'\'s row' );
+                //            alert("hola");td:nth-child(3)
+                //            $(this).toggleClass('selected');
 //                                                                    alert($(this).children().length);
-        if ($(this).children().length > 1) {
-        if ($(this).hasClass('selected')) {
-        $(this).removeClass('selected');
-                $('#buttonBorrarResultado').attr('disabled', 'disabled');
-        } else {
-        t.$('tr.selected').removeClass('selected');
-                $(this).addClass('selected');
-                $('#buttonBorrarResultado').removeAttr('disabled');
-        }
-        }
-        //             prueba = $('td', this).eq(0).text();
+                if ($(this).children().length > 1) {
+                    if ($(this).hasClass('selected')) {
+                        $(this).removeClass('selected');
+                        $('#buttonBorrarResultado').attr('disabled', 'disabled');
+                    } else {
+                        t.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                        $('#buttonBorrarResultado').removeAttr('disabled');
+                    }
+                }
+                //             prueba = $('td', this).eq(0).text();
 
-        });
+            });
 //            buttonBorrarResultado
-                $('#confirmarBorrar').on('click', function () {
-        var idDelete = $(".selected>td:last-child").text();
+            $('#confirmarBorrar').on('click', function () {
+                var idDelete = $(".selected>td:last-child").text();
                 alert(idDelete);
                 $("#includedContent").load("/Laboratorio/eliminarresultado", {id: idDelete});
 //               alert( $(".selected").html());
-        });
+            });
+
 //            $( 'thead').unbind( "click" );
 //            $('thead').off('click');
-                $('thead').on('click', function () {
-        $(this).removeAttr('class');
+            $('thead').on('click', function () {
+                $(this).removeAttr('class');
 //                $(this).off('click');
 //                var idDelete=$(".selected>td:last-child").text();
                 alert("THEAD");
 //                $("#includedContent").load("/Laboratorio/eliminarresultado", {id: idDelete});
 //               alert( $(".selected").html());
+            });
         });
-//                $('#imprimir').on('click', function () {
-////                $(this).removeAttr('class');
-//////                $(this).off('click');
-//////                var idDelete=$(".selected>td:last-child").text();
-////                alert("THEAD");
-//        var datos = [];
-////        var i=0;
-////         var a= $('.selected td:nth-child(1)').text();
-////         alert(a);
-//                $(".selected td").each(function () {
-////                alert($(this).text());
-//                if ($(this).index == 1)
-//                    datos.push($(this).val());
-//                if ($(this).index == 4)
-//                    datos.push($(this).text());
-//                if ($(this).index == 5)
-//                    datos.push($(this).text());
-//            });
-//                $("#includedContent").load($('#imprimir').val(), {
-//                idPaciente: datos [0],
-//                idResultado: datos [5],
-//                observaciones: datos [4]
-//               
-//        });
-//        });
     </script>
 
 </body>
