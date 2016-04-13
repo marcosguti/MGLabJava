@@ -54,11 +54,14 @@ public class ReportController extends HttpServlet {
         ServletOutputStream out = response.getOutputStream();
         try {
 //            HashMap param = new HashMap();
-             HashMap<String, Object> reportMap = new HashMap<String, Object>();
-       
-             
-            reportMap.put("resultado_id", 451);
-            reportMap.put("paciente_id", 130);
+             HashMap reportMap = new HashMap();
+            System.out.println(request.getParameter("idPaciente"));
+            System.out.println(request.getParameter("idResultado"));
+            
+             Integer resultadoId= Integer.parseInt(request.getParameter("idResultado"));
+             Integer pacienteId= Integer.valueOf(request.getParameter("idPaciente"));
+            reportMap.put("resultado_id",new Integer(resultadoId));
+            reportMap.put("paciente_id", new Integer(pacienteId));
             reportMap.put("observaciones", "TODO FINO");
             reportMap.put("fecha", "29/03/2016");
             //param.put("idWell", idWell);
