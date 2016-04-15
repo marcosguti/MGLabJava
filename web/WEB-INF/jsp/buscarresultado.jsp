@@ -189,36 +189,11 @@
         $(document).ready(function () {
 //            $( "th").unbind( "click" );
             $("th.sorting::after").remove();
-//            $('#dataTables-example').DataTable({
-//                responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100],
-//                "language": {
-//                    "lengthMenu": "Mostrando _MENU_ Elementos por pagina",
-//                    "zeroRecords": "Nothing found - sorry",
-//                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
-//                    "search": "Buscar:",
-//                    "infoEmpty": "No records available", "paginate": {
-//                        "first": "First",
-//                        "last": "Last",
-//                        "next": "Sig",
-//                        "previous": "Ant"
-//                    },
-//                    "infoFiltered": "(filtered from _MAX_ total records)",
-//
-//                       "language": {
-//                    "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
-//                
-//                }
-//            });
-//            var table = $('#dataTables-example').DataTable();
-//
-//            $('#tablaResultados tbody ').on('click', 'tr', function () {
-//                var data = table.row(this).data();
-//                alert('Paciente: ' + data[1]);
-//            });
+
             var table = $('#tablaResultados').DataTable({
                 responsive: true, responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100],
                 "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+                    "url": "// .datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
                 },
                 "lengthMenu": [1, 100],
                         "columnDefs": [
