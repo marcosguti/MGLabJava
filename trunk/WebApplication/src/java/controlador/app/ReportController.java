@@ -60,8 +60,8 @@ public class ReportController extends HttpServlet {
             
              Integer resultadoId= Integer.parseInt(request.getParameter("idResultado"));
              Integer pacienteId= Integer.valueOf(request.getParameter("idPaciente"));
-            reportMap.put("resultado_id",new Integer(resultadoId));
-            reportMap.put("paciente_id", new Integer(pacienteId));
+            reportMap.put("resultado_id",resultadoId);
+            reportMap.put("paciente_id", pacienteId);
             reportMap.put("observaciones", "TODO FINO");
             reportMap.put("fecha", "29/03/2016");
             //param.put("idWell", idWell);
@@ -76,7 +76,7 @@ public class ReportController extends HttpServlet {
             exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
             exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, out);
             exporter.exportReport();
-            //JasperViewer.viewReport(jasperPrint, false);
+//            JasperViewer.viewReport(jasperPrint, false);
 
             
         } catch (Exception e) {

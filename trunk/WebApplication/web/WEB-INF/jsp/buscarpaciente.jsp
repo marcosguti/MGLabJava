@@ -24,7 +24,6 @@
     <!-- Bootstrap Core CSS -->
     <link href="<c:url value='/resources/bower_components/bootstrap/dist/css/bootstrap.min.css' />" rel="stylesheet">
     <!-- JQuery  -->
-    <script src="<c:url value='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js' />"></script>
     <!-- MetisMenu CSS -->
     <link href="<c:url value='/resources/bower_components/metisMenu/dist/metisMenu.min.css' />" rel="stylesheet">
 
