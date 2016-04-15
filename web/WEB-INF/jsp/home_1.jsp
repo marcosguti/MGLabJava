@@ -24,8 +24,10 @@
 
         <!-- Bootstrap Core CSS -->
         <link href="<c:url value='/resources/bower_components/bootstrap/dist/css/bootstrap.min.css' />" rel="stylesheet">
-        <script src="<c:url value='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js' />"></script>
+        <!--<script src="<c:url value='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js' />"></script>-->
    <!--<script src="<c:url value='/resources/marco/marco.js' />"></script>-->
+        <!-- JQuery -->
+        <script src="<c:url value='/resources/bower_components/jquery/dist/1.12/jquery.min.js' />"></script>
         <!-- MetisMenu CSS -->
         <link href="<c:url value='/resources/bower_components/metisMenu/dist/metisMenu.min.css' />" rel="stylesheet">
 
@@ -60,8 +62,8 @@
             }
             body {
                 /*background-image: url("/resources/images/fondo1.jpg");*/ 
-               background: radial-gradient(circle, #337ab7, white);
-               /*background: linear-gradient(#337ab7, white);*/
+                background: radial-gradient(circle, #337ab7, white);
+                /*background: linear-gradient(#337ab7, white);*/
                 /*background-color: #cccccc;*/
             }
         </style>
@@ -108,12 +110,12 @@
                 $('#registrarPruebas').click(function () {
                     $("#includedContent").load("/Laboratorio/registrarprueba");
                 });
-                 $('#tablaPruebas').click(function () {
+                $('#tablaPruebas').click(function () {
                     $("#includedContent").load("/Laboratorio/buscarpruebas");
                 });
             });</script>
     </head>
-    <body background="/resources/images/fondo1.jpg">
+    <body>
         <div class="container">
             <nav class="navbar navbar-inverse navbar-fixed-top" id="barraPrincipal">
                 <div class="container">
@@ -185,7 +187,7 @@
             </nav>
             <br><br><br><br>
             <div class="row-border" id="includedContent">
-                
+               
             </div>
             <!--            <footer class="footer">
                             <div class="container">

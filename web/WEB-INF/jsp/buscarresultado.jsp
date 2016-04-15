@@ -124,11 +124,12 @@
 
                     </div>
                     <div class="panel-body center-block">
-                        <form action="${pageContext.request.contextPath}/viewReporte" target="_blank" method="POST">
+                        <!--<p>${pageContext.request.contextPath}/viewReporte</p>-->
+                        <!--<form value="${pageContext.request.contextPath}/viewReporte" method="POST">-->
                             <button id="ver" value="${pageContext.request.contextPath}/viewReporte"  disabled="disabled" type="submit" class="btn btn-default">Ver</button>
                             <button type="button" class="btn btn-danger " id="borrar" disabled="disabled" data-toggle="modal" data-target ="#myModal">Borrar</button>
 
-                        </form> 
+                        <!--</form>--> 
 
                         <!--<div class="bs-example">--> 
                         <!--<button type="submit" class="btn btn-default">Guardar</button>-->
@@ -183,6 +184,8 @@
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
+     
+
         $(document).ready(function () {
 //            $( "th").unbind( "click" );
             $("th.sorting::after").remove();
@@ -256,17 +259,24 @@
                         $('#ver').removeAttr('disabled');
                     }
                 }
-                //             prueba = $('td', this).eq(0).text();
+
 
             });
 //            borrar
+
+
+
             $('#confirmarBorrar').on('click', function () {
                 var idDelete = $(".selected>td:last-child").text();
                 alert(idDelete);
                 $("#includedContent").load("/Laboratorio/eliminarresultado", {id: idDelete});
 //               alert( $(".selected").html());
             });
+            
+            
+            
             $('#ver').on('click', function () {
+
                 var datos = [];
                 $(".selected td").each(function () {
 //                alert($(this).text());
@@ -284,42 +294,50 @@
 //                            alert($(this).text());
                             break;
                     }
-});
-//alert(datos);
-                    var pet = $('form').attr('action');
+                });
+                var idp=datos[0].toString();
+                var idr=datos[2].toString();
+//                document.location.href = "${pageContext.request.contextPath}/viewReporte?idResultado="+idr+"&idPaciente="+idp+"?type=individual";
+window.open("${pageContext.request.contextPath}/viewReporte?idResultado="+idr+"&idPaciente="+idp, '_blank');
+////alert(datos);
+//                    var pet = $("p").text();
 //                    alert(pet);
+//                    
+//                    var meth = "POST";
+////                    alert(meth);
+//                    var idp=datos[0].toString();
+//                    var idr=datos[2].toString();
+//                    alert(idp+"----"+idr+"----"+pet+"---");
+//                    $.ajax({
+//                        beforeSend: function () {
+////                            $('#status').spin({radius: 3, width: 2, height: 2, length: 4})
+////                            id = document.form.id.value;
+//                        },
+//                        url: 'viewReporte',
+//                        type: meth,
+//                        //data: $('#main form').serialze()
+//                        data: {
+//                            idPaciente: idp,
+//                            idResultado: idr
+//                        },
+//                        success: function (resp) {
+////                            $('#status').html('<img src="ok.jpg"/>')
+//                            console.log(resp)
+//                        },
+//                        error: function (jqXHR, estado, error) {
+//                            $('#status').html('<img src="x.jpg"/>')
+//                            console.log(estado)
+//                            console.log(error)
+//                        },
+//                        complete: function (jqXHR, estado) {
+//                            console.log()
+//                        },
+//                        timeout: 10000
+                    });
                     
-                    var meth = $('form').attr('method');
-//                    alert(meth);
-                    var idp=datos[0].toString();
-                    var idr=datos[2].toString();
-                    alert(idp+"sssss"+idr);
-                    $.ajax({
-                        beforeSend: function () {
-//                            $('#status').spin({radius: 3, width: 2, height: 2, length: 4})
-//                            id = document.form.id.value;
-                        },
-                        url: pet,
-                        type: meth,
-                        //data: $('#main form').serialze()
-                        data: {
-                            idPaciente: idp,
-                            idResultado: idr
-                        },
-                        success: function (resp) {
-//                            $('#status').html('<img src="ok.jpg"/>')
-                            console.log(resp)
-                        },
-                        error: function (jqXHR, estado, error) {
-                            $('#status').html('<img src="x.jpg"/>')
-                            console.log(estado)
-                            console.log(error)
-                        },
-                        complete: function (jqXHR, estado) {
-                            console.log()
-                        },
-                        timeout: 10000
-                    })
+                    
+                    
+                    
 //        if ($(this).index() === 1) {
 //        datos.push($(this).val());
 ////                     alert($(this).val());
@@ -334,7 +352,7 @@
 //        datos.push($(this).text());
 ////                     alert($(this).text());
 //        }
-                });
+//                });
 //            alert(datos[1]);
 //                $("#includedContent").load($('#ver').val(), {
 //                idPaciente: datos [1],

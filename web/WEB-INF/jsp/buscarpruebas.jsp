@@ -55,6 +55,23 @@
 
 
     </script>
+    <style>
+        .selected{
+            background-color: #337ab7 !important;
+            color: white;
+        }
+        tr:hover.gradeX {
+            background-color: #337ab7  !important ;
+            color: white;
+            cursor:pointer;
+        }
+        /*        .gradeX{
+                    cursor:pointer;
+                }*/
+        th.sorting::after{
+            display:none;
+        }
+    </style>
 </head>
 
 <body>
@@ -165,10 +182,10 @@
 //            });
 //            var table = $('#dataTables-example').DataTable();
 //
-            $('#dataTables-example tbody ').on('click', 'tr', function () {
-                var data = table.row(this).data();
-                alert('Paciente: ' + data[1]);
-            });
+//            $('#dataTables-example tbody ').on('click', 'tr', function () {
+//                var data = table.row(this).data();
+//                alert('Paciente: ' + data[1]);
+//            });
             var table = $('#dataTables-example').DataTable({
                 responsive: true, responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100],
                 "language": {
@@ -196,6 +213,31 @@
                     });
                 }
             });
+            
+             var t = $('#dataTables-example').DataTable();
+            $('#dataTables-example tbody').on('click', 'tr', function () {
+
+                //        alert( 'You clicked on '+name+'\'s row' );
+                //            alert("hola");td:nth-child(3)
+                //            $(this).toggleClass('selected');
+//                                                                    alert($(this).children().length);
+                if ($(this).children().length > 1) {
+                    if ($(this).hasClass('selected')) {
+                        $(this).removeClass('selected');
+//                        $('#borrar').attr('disabled', 'disabled');
+//                        $('#ver').attr('disabled', 'disabled');
+                    } else {
+                        t.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+//                        $('#borrar').removeAttr('disabled');
+//                        $('#ver').removeAttr('disabled');
+                    }
+                }
+                //             prueba = $('td', this).eq(0).text();
+
+            });
+            
+            
         });
     </script>
 
