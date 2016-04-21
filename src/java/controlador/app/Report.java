@@ -50,18 +50,17 @@ public class Report implements Controller {
             String pid = (String) (parameters.get("paciente_id"));
             parameters.put("paciente_id", Integer.parseInt(pid));
             //parameters.put("paciente_id", 128);
-            map.put("paciente_id", Integer.valueOf(pid));
+            //map.put("paciente_id", Integer.valueOf(pid));
         }
         if (parameters.containsKey("resultado_id")) {
             String rid = (String) (parameters.get("resultado_id"));
             parameters.put("resultado_id", Integer.parseInt(rid));
-            map.put("resultado_id", Integer.valueOf(rid));
             //parameters.put("resultado_id", 435);
+            //map.put("resultado_id", Integer.valueOf(rid));
+            
         }
         parameters.put("SUBREPORT_DIR", getClass().getResource("/reports").getPath());
-        
-        
-        
+
         map.put("SUBREPORT_DIR", getClass().getResource("/reports").getPath());
         try {
             JRExporter exporter = new JRPdfExporter();
@@ -76,18 +75,19 @@ public class Report implements Controller {
 //            
 //            JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, coneccionSQL());
             JasperPrint jasperPrint = JasperFillManager.fillReport(getClass().getResource("/reports/LabReport.jasper").getPath(),
-                    map, coneccionSQL());
+                    parameters, coneccionSQL());
 
             exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
             exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, out);
             exporter.exportReport();
             out.close();
             //JasperViewer.viewReport(jasperPrint, false);
-            return new ModelAndView("home");
+            //return new ModelAndView("home");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new ModelAndView("home");
+//        return new ModelAndView("redirect");
+        return null;
     }
 
     private Connection coneccionSQL() {
