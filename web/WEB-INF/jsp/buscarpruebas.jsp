@@ -187,13 +187,12 @@
 //                alert('Paciente: ' + data[1]);
 //            });
             var table = $('#dataTables-example').DataTable({
-                responsive: true, responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100],
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
                 },
-                "lengthMenu": [1, 100],
+                "lengthMenu": [,10,15,20,30,50,100],
                         "columnDefs": [
-                            {"visible": false, "targets": 0}
+                            {"visible": false, "targets": 0},{targets: "_all",orderable: false}
                         ],
                 "order": [[0, 'asc']],
                 "displayLength": 25,
@@ -205,7 +204,7 @@
                     api.column(0, {page: 'current'}).data().each(function (group, i) {
                         if (last !== group) {
                             $(rows).eq(i).before(
-                                    '<tr class="group"><td colspan="5">' + group + '</td></tr>'
+                                    '<tr class="group"><td colspan="5" role="row">' + group + '</td></tr>'
                                     );
 
                             last = group;
@@ -216,23 +215,25 @@
             
              var t = $('#dataTables-example').DataTable();
             $('#dataTables-example tbody').on('click', 'tr', function () {
-
                 //        alert( 'You clicked on '+name+'\'s row' );
                 //            alert("hola");td:nth-child(3)
                 //            $(this).toggleClass('selected');
 //                                                                    alert($(this).children().length);
-                if ($(this).children().length > 1) {
+//                if ($(this).children().length > 1) {
+
                     if ($(this).hasClass('selected')) {
+                        
                         $(this).removeClass('selected');
 //                        $('#borrar').attr('disabled', 'disabled');
 //                        $('#ver').attr('disabled', 'disabled');
                     } else {
+//                        alert(t.$('tr.selecte').text());
                         t.$('tr.selected').removeClass('selected');
                         $(this).addClass('selected');
 //                        $('#borrar').removeAttr('disabled');
 //                        $('#ver').removeAttr('disabled');
                     }
-                }
+//                }
                 //             prueba = $('td', this).eq(0).text();
 
             });

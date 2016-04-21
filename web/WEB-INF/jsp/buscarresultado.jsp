@@ -126,8 +126,8 @@
                     <div class="panel-body center-block">
                         <!--<p>${pageContext.request.contextPath}/viewReporte</p>-->
                         <!--<form value="${pageContext.request.contextPath}/viewReporte" method="POST">-->
-                            <button id="ver" value="${pageContext.request.contextPath}/viewReporte"  disabled="disabled" type="submit" class="btn btn-default">Ver</button>
-                            <button type="button" class="btn btn-danger " id="borrar" disabled="disabled" data-toggle="modal" data-target ="#myModal">Borrar</button>
+                        <button id="ver" value="${pageContext.request.contextPath}/viewReporte"  disabled="disabled" type="submit" class="btn btn-default">Ver</button>
+                        <button type="button" class="btn btn-danger " id="borrar" disabled="disabled" data-toggle="modal" data-target ="#myModal">Borrar</button>
 
                         <!--</form>--> 
 
@@ -184,11 +184,13 @@
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
-     
+
 
         $(document).ready(function () {
-//            $( "th").unbind( "click" );
-            $("th.sorting::after").remove();
+//            $('th').on('click', function (e) {
+//                e.stopPropagation();
+//            });
+
 
             var table = $('#tablaResultados').DataTable({
                 responsive: true, responsive: true, "lengthMenu": [5, 10, 15, 20, 50, 100],
@@ -196,11 +198,15 @@
                     "url": "// .datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
                 },
                 "lengthMenu": [1, 100],
-                        "columnDefs": [
-                            {"visible": false, "targets": 0}
-                        ],
+//                        "columnDefs": [
+//                            {"visible": false, "targets": 0}
+//                        ],
                 "order": [[0, 'asc']],
-                "displayLength": 25,
+                columnDefs: [{
+                        targets: "_all",
+                        orderable: false
+                    },{"visible": false, "targets": 0}],
+                        "displayLength": 25,
                 "drawCallback": function (settings) {
                     var api = this.api();
                     var rows = api.rows({page: 'current'}).nodes();
@@ -208,7 +214,7 @@
                     api.column(0, {page: 'current'}).data().each(function (group, i) {
                         if (last !== group) {
                             $(rows).eq(i).before(
-                                    '<tr class="group"><td colspan="5">' + group + '</td></tr>'
+                                    '<tr class="group"><td colspan="6">' + group.substring(0,10) + '</td></tr>'
                                     );
                             last = group;
                         }
@@ -247,9 +253,9 @@
                 $("#includedContent").load("/Laboratorio/eliminarresultado", {id: idDelete});
 //               alert( $(".selected").html());
             });
-            
-            
-            
+
+
+
             $('#ver').on('click', function () {
 
                 var datos = [];
@@ -270,10 +276,10 @@
                             break;
                     }
                 });
-                var idp=datos[0].toString();
-                var idr=datos[2].toString();
+                var idp = datos[0].toString();
+                var idr = datos[2].toString();
 //                document.location.href = "${pageContext.request.contextPath}/viewReporte?idResultado="+idr+"&idPaciente="+idp+"?type=individual";
-window.open("${pageContext.request.contextPath}/viewReporte?idResultado="+idr+"&idPaciente="+idp, '_blank');
+                window.open("${pageContext.request.contextPath}/viewReporte?idResultado=" + idr + "&idPaciente=" + idp, '_blank');
 ////alert(datos);
 //                    var pet = $("p").text();
 //                    alert(pet);
@@ -308,11 +314,11 @@ window.open("${pageContext.request.contextPath}/viewReporte?idResultado="+idr+"&
 //                            console.log()
 //                        },
 //                        timeout: 10000
-                    });
-                    
-                    
-                    
-                    
+            });
+
+
+
+
 //        if ($(this).index() === 1) {
 //        datos.push($(this).val());
 ////                     alert($(this).val());
