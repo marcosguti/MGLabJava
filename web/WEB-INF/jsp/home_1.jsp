@@ -49,7 +49,7 @@
         <link href="<c:url value='/resources/bower_components/font-awesome/css/font-awesome.min.css' />" rel="stylesheet" type="text/css">
         <title>JSP Page</title>
         <style>
-
+            @import url("<c:url value='/resources/bower_components/bootstrap/dist/css/bootstrap.min.css' />");
             #barraPrincipal{
                 /*background-color: #337ab7 !important;*/
             }
@@ -61,10 +61,15 @@
                 /*background-color: #2F79BA !important;*/
             }
             body {
-                /*background-image: url("/resources/images/fondo1.jpg");*/ 
-                background: radial-gradient(circle, #337ab7, white);
-                /*background: linear-gradient(#337ab7, white);*/
-                /*background-color: #cccccc;*/
+                background-image: url("<c:url value='/resources/images/Lab.jpg' />"); 
+                no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+                margin-top: 12%;    
+            }
+          
             }
         </style>
         <script>
@@ -187,7 +192,7 @@
             </nav>
             <br><br><br><br>
             <div class="row-border" id="includedContent">
-               
+
             </div>
             <!--            <footer class="footer">
                             <div class="container">
