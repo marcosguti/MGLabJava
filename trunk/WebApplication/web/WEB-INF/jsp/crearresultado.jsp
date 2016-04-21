@@ -68,7 +68,9 @@
             background-color: #337ab7 !important;
             color: white;
         }
-
+ th.sorting::after{
+            display:none;
+        }
     </style>
 </head>
 
@@ -316,7 +318,7 @@
 //                                                                    "orderFixed": {
 //                                                                    "pre": [ 0, 'asc' ]
 //                                                                    }
-                                                                    "columnDefs": [
+                                                                    "columnDefs": [{targets: "_all",orderable: false},
                                                                         {"visible": false, "targets": 0}
                                                                     ],
                                                                     "language": {
