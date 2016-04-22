@@ -295,7 +295,7 @@
                                                                         $("#datosPaciente").empty();
                                                                         $("#datosPaciente").append("<p>No Hay Datos</p>");
                                                                         pacienteSelected=false;
-                                                                        alert("aaaa")
+                                                                        
                                                                         ("#buttonGuardar").attr('disabled', 'disabled');
                                                                     } else {
                                                                         tableP.$('tr.selected').removeClass('selected');
