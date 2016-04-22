@@ -228,8 +228,8 @@
                                                                     </div>
                                                                     <div class="panel-body center-block">
                                                                         <!--<div class="bs-example">--> 
-                                                                        <button type="submit" class="btn btn-default">Guardar</button>
-                                                                        <button type="reset" class="btn btn-default">Imprimir</button>
+                                                                        <button type="submit" class="btn btn-default" id="buttonGuardar" disabled="disabled">Guardar</button>
+                                                                        <button type="reset" class="btn btn-default" disabled="disabled">Imprimir</button>
                                                                         <button type="button" class="btn btn-danger " id="buttonBorrarPrueba" disabled="disabled">Borrar Prueba</button>
                                                                         <!--</div>-->
                                                                     </div>
@@ -272,7 +272,8 @@
                                                         <!-- Page-Level Demo Scripts - Tables - Use for reference -->
                                                         <script>
                                                             $(document).ready(function () {
-                                                            
+                                                                var pacienteSelected= false;
+                                                                
                                                                 var precio = 0;
                                                                 var prueba;
                                                                 var tt = $('#tablaPaciente').DataTable({
@@ -293,6 +294,9 @@
                                                                         $(this).removeClass('selected');
                                                                         $("#datosPaciente").empty();
                                                                         $("#datosPaciente").append("<p>No Hay Datos</p>");
+                                                                        pacienteSelected=false;
+                                                                        alert("aaaa")
+                                                                        ("#buttonGuardar").attr('disabled', 'disabled');
                                                                     } else {
                                                                         tableP.$('tr.selected').removeClass('selected');
                                                                         $(this).addClass('selected');
@@ -300,6 +304,9 @@
                                                                         var id = data[2];
 //                                                                        $("#datosPaciente").append("<div class=\"form-group\"><label class=\"control-label\">Nombre: </label><input type=\"text\" class=\"form-control\" placeholder=\"Disabled input\" disabled=\"disabled\" value=\"" + data[0] + "\"></div><div class=\"form-group\"<label>  Cedula: </label><p class=\"form-control-static\">" + data[1] + "</p></div>");
                                                                         $("#datosPaciente").load("/Laboratorio/mostrarpaciente", {id: data[2]}).animate({left: '250px'});
+                                                                        pacienteSelected=true;
+                                                                        if(t.data().length>0)
+                                                                            $('#buttonGuardar').removeAttr('disabled');
                                                                     }
 //                                                                   
                                                                     var fecha = new Date();
@@ -345,12 +352,14 @@
                                                                     var valor = $(this);
                                                                     var rowNode = t.row.add([
                                                                         valor.attr("data-grupo"), valor.attr("data-nombre"),
-                                                                        "<input type=\"text\"  class=\"form-control\" name=\"name\" pattern=\"[0-9]\" title=\"Introduzca el Valor del Resultado\" id=\"inputSuccess\" required>", valor.attr("data-unidad")
+                                                                        "<input type=\"text\"  class=\"form-control\" name=\"name\" onkeypress=\'return ((event.charCode >= 48 && event.charCode <= 57)||event.charCode==44||event.charCode==46||event.charCode==0)\' maxlength=\"10\" title=\"Introduzca el Valor del Resultado\" id=\"inputSuccess\" required>", valor.attr("data-unidad")
                                                                     ]).draw(false).draw().node();
                                                                     //            $(rowNode).attr('data-id', valor.attr("id"));
                                                                     $(rowNode).attr('data-id', valor.attr("id"));
-//                                                                    alert("precio antes:" + precio);
-
+//                                                                    alert(valor.attr("id"));
+//                                                                    var t.data().length =t.data().length;
+                                                                    if(t.data().length>0&&pacienteSelected==true)
+                                                                        $('#buttonGuardar').removeAttr('disabled');
 
                                                                     $(rowNode).attr('data-precio', valor.attr("data-precio"));
                                                                     precio += +$(rowNode).attr('data-precio');
@@ -390,7 +399,18 @@
                                                                     $('#precio').attr('value', precio + " Bs.");
                                                                     t.row('.selected').remove().draw(false);
                                                                     $('#buttonBorrarPrueba').attr('disabled', 'disabled');
-//                                                                    alert(precio)
+                                                                    if(t.data().length>0&&pacienteSelected==true)
+                                                                        $('#buttonGuardar').removeAttr('disabled');
+                                                                    else
+                                                                        $('#buttonGuardar').attr('disabled', 'disabled');
+                                                                });
+                                                                $('#buttonGuardar').click(function () {
+                                                                    if(pacienteSelected==true&&t.data().length>0){
+                                                                        
+                                                                    }else{
+                                                                        
+                                                                    }
+                                                                    
                                                                 });
                                                             });
                                                         </script>
