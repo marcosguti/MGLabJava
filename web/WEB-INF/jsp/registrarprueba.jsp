@@ -106,14 +106,14 @@
                                                     <div class="col-lg-4">
                                                         <div class="form-group">
                                                             <label>Inferior</label>
-                                                            <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57'  id="limInferior" name="limInferior" class="form-control" maxlength="40" placeholder="Nombre" required autofocus>
+                                                            <input type="text" onkeypress='return ((event.charCode >= 48 && event.charCode <= 57)||event.charCode==44||event.charCode==46||event.charCode==0)'  id="limInferior" name="limInferior" class="form-control" maxlength="40" placeholder="Nombre" required autofocus>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-4">
                                                         <div class="form-group">
                                                             <label>Superior</label>
-                                                            <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' id="limSuperior" name="limSuperior" class="form-control" maxlength="10" placeholder="Unidad" required >
+                                                            <input type="text" onkeypress='return ((event.charCode >= 48 && event.charCode <= 57)||event.charCode==44||event.charCode==46||event.charCode==0)' id="limSuperior" name="limSuperior" class="form-control" maxlength="10" placeholder="Unidad" required >
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4">

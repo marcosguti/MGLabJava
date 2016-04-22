@@ -61,13 +61,14 @@
                 /*background-color: #2F79BA !important;*/
             }
             body {
+                    background-size: cover;
                 background-image: url("<c:url value='/resources/images/Lab.jpg' />"); 
-                no-repeat center center fixed;
+/*                no-repeat center center fixed;
                 -webkit-background-size: cover;
                 -moz-background-size: cover;
                 -o-background-size: cover;
                 background-size: cover;
-                margin-top: 12%;    
+                margin-top: 12%;    */
             }
           
             }
