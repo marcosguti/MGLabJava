@@ -214,7 +214,7 @@
                     api.column(0, {page: 'current'}).data().each(function (group, i) {
                         if (last !== group) {
                             $(rows).eq(i).before(
-                                    '<tr class="group"><td colspan="6">' + group.substring(0,10) + '</td></tr>'
+                                    '<tr class="group"><td colspan="6"><a href="#" class="btn btn-primary btn-xs disabled" role="button">' + group.substring(0,10) + '</a></td></tr>'
                                     );
                             last = group;
                         }
@@ -249,9 +249,7 @@
 
             $('#confirmarBorrar').on('click', function () {
                 var idDelete = $(".selected>td:last-child").text();
-                alert(idDelete);
                 $("#includedContent").load("/Laboratorio/eliminarresultado", {id: idDelete});
-//               alert( $(".selected").html());
             });
 
 

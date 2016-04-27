@@ -61,14 +61,14 @@
                 <div class="col-lg-8">
                     <div class="form-group">
                         <label for="disabledSelect">Nombre</label>
-                        <input class="form-control input-sm" value="${paciente.nombres}" id="mostrarNombre" type="text" disabled="">
+                        <input class="form-control input-sm" value="${paciente.nombres}"  type="text" disabled="">
                     </div>
                 </div>
                 <div class="col-lg-3">
 
                     <div class="form-group">
                         <label for="disabledSelect">Fecha</label>
-                        <input class="form-control input-sm" id="mostrarFecha" type="text" disabled="">
+                        <input class="form-control input-sm"  type="text" disabled="">
                     </div>
                 </div>
             </div>
@@ -81,14 +81,14 @@
 
                         <div class="form-group">
                             <label for="disabledSelect">Edad</label>
-                            <input class="form-control input-sm" value="${paciente.edad}" id="mostrarEdad" type="text" disabled="">
+                            <input class="form-control input-sm" value="${paciente.edad}"  type="text" disabled="">
                         </div>
                     </div>
                     <div class="col-lg-5 .col-lg-offset-3  ">
 
                         <div class="form-group">
                             <label for="disabledSelect">Sexo:</label>
-                            <input class="form-control input-sm" value="${paciente.sexo}" id="mostrarSexo" type="text" disabled="">
+                            <input class="form-control input-sm" value="${paciente.sexo}"  type="text" disabled="">
                         </div>
                     </div>
                 </div>
@@ -96,14 +96,14 @@
 
                     <div class="form-group">
                         <label for="disabledSelect">Cedula:</label>
-                        <input class="form-control input-sm" value="${paciente.cedula}" id="mostrarCedula" type="text" disabled="">
+                        <input class="form-control input-sm" value="${paciente.cedula}"  type="text" disabled="">
                     </div>
                 </div>
                 <div class="col-lg-3 ">
 
                     <div class="form-group">
                         <label for="disabledSelect">ID:</label>
-                        <input class="form-control input-sm" value="${paciente.id}" id="mostrarId" type="text" disabled="">
+                        <input class="form-control input-sm" value="${paciente.id}" id="pacienteId" type="text" disabled="">
                     </div>
                 </div>
             </div>
@@ -114,14 +114,14 @@
 
                     <div class="form-group">
                         <label for="disabledSelect">Direccion:</label>
-                        <input class="form-control input-sm" value="${paciente.direccion}"  id="mostrarDireccion" type="text" disabled="">
+                        <input class="form-control input-sm" value="${paciente.direccion}"  type="text" disabled="">
                     </div>
                 </div>
                 <div class="col-lg-3 ">
 
                     <div class="form-group">
                         <label for="disabledSelect">Telefono:</label>
-                        <input class="form-control input-sm" id="mostrarTelefono" value="${paciente.telefono}" type="text" disabled="">
+                        <input class="form-control input-sm"  value="${paciente.telefono}" type="text" disabled="">
                     </div>
                 </div>
             </div>
@@ -131,7 +131,7 @@
             <div class="col-lg-12">
                 <div class="col-lg-8">
                     <div class="form-group">
-                        <input class="form-control input-sm" type="text" placeholder="Observaciones">
+                        <input class="form-control input-sm" type="text" placeholder="Observaciones" id="observaciones" >
                     </div>
                 </div>
 

@@ -68,7 +68,7 @@
             background-color: #337ab7 !important;
             color: white;
         }
- th.sorting::after{
+        th.sorting::after{
             display:none;
         }
     </style>
@@ -116,17 +116,12 @@
                                                         </thead>
         <!--                                                <h1><c:out value="${mapPacientes['22'].nombres}"/></h1>-->
                                                         <tbody style="cursor:pointer; text-align:center" >  <c:forEach var="ob" varStatus="status" items="${mapPacientes}">
-                                                            <strong> <tr class="odd gradeX">
+                                                            <strong> <tr class="odd gradeX" title="Click Para Seleccionar El Paciente"> 
 
                                                                     <td><c:out value="${ob.value.nombres}"/></td>
                                                                     <td><c:out value="${ob.value.cedula}"/></td>
 
                                                                     <td><c:out value="${ob.value.id}"/></td>
-                                                                    <!--                                                                    <td><div class="btn-group" role="group" aria-label="...">
-                                                                                                                                                <button type="button" class="btn btn-info btn-circle"><i class="fa fa-check"></i>
-                                                                                                                                                </button>
-                                                                    
-                                                                                                                                            </div></td>-->
                                                                 </tr>                                                         
                                                             </strong>
 
@@ -272,8 +267,8 @@
                                                         <!-- Page-Level Demo Scripts - Tables - Use for reference -->
                                                         <script>
                                                             $(document).ready(function () {
-                                                                var pacienteSelected= false;
-                                                                
+                                                                var pacienteSelected = false;
+
                                                                 var precio = 0;
                                                                 var prueba;
                                                                 var tt = $('#tablaPaciente').DataTable({
@@ -283,29 +278,31 @@
                                                                     "pageLength": 1,
                                                                     "ordering": false,
                                                                     "language": {
-                                                                        "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
-                                                                    }, "scrollX": true,
+                                                                        "url": "<c:url value='/resources/DataTablesSpanish.json' />"
+                                                                    },
+                                                                    "scrollX": true,
                                                                 });
-                                                                var tableP = $('#tablaPaciente').DataTable();
+//                                                                var tt = $('#tablaPaciente').DataTable();
                                                                 $('#tablaPaciente tbody ').on('click', 'tr', function () {
 
                                                                     var data = tt.row(this).data();
                                                                     if ($(this).hasClass('selected')) {
                                                                         $(this).removeClass('selected');
+                                                                        $(this).attr('title', 'Click Para Seleccionar El Paciente');
+                                                                        $("#buttonGuardar").attr('disabled', 'disabled');
                                                                         $("#datosPaciente").empty();
                                                                         $("#datosPaciente").append("<p>No Hay Datos</p>");
-                                                                        pacienteSelected=false;
-                                                                        
-                                                                        ("#buttonGuardar").attr('disabled', 'disabled');
+                                                                        pacienteSelected = false;
                                                                     } else {
-                                                                        tableP.$('tr.selected').removeClass('selected');
+                                                                        tt.$('tr.selected').removeClass('selected');
                                                                         $(this).addClass('selected');
+                                                                        $(this).attr('title', 'Click Para Quitar El Paciente');
                                                                         $("#datosPaciente").empty();
                                                                         var id = data[2];
 //                                                                        $("#datosPaciente").append("<div class=\"form-group\"><label class=\"control-label\">Nombre: </label><input type=\"text\" class=\"form-control\" placeholder=\"Disabled input\" disabled=\"disabled\" value=\"" + data[0] + "\"></div><div class=\"form-group\"<label>  Cedula: </label><p class=\"form-control-static\">" + data[1] + "</p></div>");
                                                                         $("#datosPaciente").load("/Laboratorio/mostrarpaciente", {id: data[2]}).animate({left: '250px'});
-                                                                        pacienteSelected=true;
-                                                                        if(t.data().length>0)
+                                                                        pacienteSelected = true;
+                                                                        if (t.data().length > 0)
                                                                             $('#buttonGuardar').removeAttr('disabled');
                                                                     }
 //                                                                   
@@ -318,18 +315,18 @@
                                                                     //             " <h1><c:out value="${mapPacientes['22'].nombres}"/></h1>"
                                                                     //                alert('Paciente: ' + data[1]);
                                                                 });
-                                                                $('#tablaResultados').DataTable({
+                                                                var t = $('#tablaResultados').DataTable({
                                                                     "dom": 'rt',
 //                                                                    "ordering": false,
                                                                     "order": [[0, 'asc']],
 //                                                                    "orderFixed": {
 //                                                                    "pre": [ 0, 'asc' ]
 //                                                                    }
-                                                                    "columnDefs": [{targets: "_all",orderable: false},
+                                                                    "columnDefs": [{targets: "_all", orderable: false},
                                                                         {"visible": false, "targets": 0}
                                                                     ],
                                                                     "language": {
-                                                                        "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+                                                                        "url": "<c:url value='/resources/DataTablesSpanish.json' />"
                                                                     }, "scrollX": true,
                                                                     "drawCallback": function (settings) {
                                                                         var api = this.api();
@@ -345,40 +342,26 @@
                                                                         });
                                                                     }
                                                                 });
-                                                                var t = $('#tablaResultados').DataTable();
-//                                                             t.order( [ 0, 'asc' ] ).draw();
-//                                                            table.column( '0:visible' ).order( 'asc' ).draw();
+//                                                        
                                                                 $('.addRow').on('click', function () {
                                                                     var valor = $(this);
                                                                     var rowNode = t.row.add([
                                                                         valor.attr("data-grupo"), valor.attr("data-nombre"),
                                                                         "<input type=\"text\"  class=\"form-control\" name=\"name\" onkeypress=\'return ((event.charCode >= 48 && event.charCode <= 57)||event.charCode==44||event.charCode==46||event.charCode==0)\' maxlength=\"10\" title=\"Introduzca el Valor del Resultado\" id=\"inputSuccess\" required>", valor.attr("data-unidad")
                                                                     ]).draw(false).draw().node();
-                                                                    //            $(rowNode).attr('data-id', valor.attr("id"));
                                                                     $(rowNode).attr('data-id', valor.attr("id"));
-//                                                                    alert(valor.attr("id"));
-//                                                                    var t.data().length =t.data().length;
-                                                                    if(t.data().length>0&&pacienteSelected==true)
+
+                                                                    if (t.data().length > 0 && pacienteSelected == true)
                                                                         $('#buttonGuardar').removeAttr('disabled');
 
                                                                     $(rowNode).attr('data-precio', valor.attr("data-precio"));
                                                                     precio += +$(rowNode).attr('data-precio');
                                                                     $('#precio').attr('value', precio + " Bs.");
-//                                                                    alert("data-precio antes:" + $(rowNode).attr('data-precio'));
                                                                     $(rowNode).css('cursor', 'pointer');
-                                                                    //            t.row.addClass(  'asaass' );
-                                                                    //                $(rt).attr('id', valor.attr("data-nombre"));
-                                                                    //            $(this).addClass('btn-disabled btn-block disabled');
                                                                     $(this).attr('disabled', 'disabled');
-//                                                                    alert(precio);
                                                                 });
-                                                                //        var t = $('#tablaResultados').DataTable();
                                                                 $('#tablaResultados tbody').on('click', 'tr', function () {
 
-                                                                    //        alert( 'You clicked on '+name+'\'s row' );
-                                                                    //            alert("hola");td:nth-child(3)
-                                                                    //            $(this).toggleClass('selected');
-//                                                                    alert($(this).children().length);
                                                                     if ($(this).children().length > 1) {
                                                                         if ($(this).hasClass('selected')) {
                                                                             $(this).removeClass('selected');
@@ -389,28 +372,49 @@
                                                                             $('#buttonBorrarPrueba').removeAttr('disabled');
                                                                         }
                                                                     }
-                                                                    //             prueba = $('td', this).eq(0).text();
                                                                     prueba = $(this).attr('data-id');
                                                                 });
                                                                 $('#buttonBorrarPrueba').click(function () {
                                                                     $('#' + prueba).removeAttr('disabled');
-//                                                                    alert("precio elete antes:" + precio);
                                                                     precio = precio - $('#' + prueba).attr('data-precio');
                                                                     $('#precio').attr('value', precio + " Bs.");
                                                                     t.row('.selected').remove().draw(false);
                                                                     $('#buttonBorrarPrueba').attr('disabled', 'disabled');
-                                                                    if(t.data().length>0&&pacienteSelected==true)
+                                                                    if (t.data().length > 0 && pacienteSelected == true)
                                                                         $('#buttonGuardar').removeAttr('disabled');
                                                                     else
                                                                         $('#buttonGuardar').attr('disabled', 'disabled');
                                                                 });
+//                                                                 $("#observaciones").on('keyup',function () {
+//                                                                        alert($(this).val());
+//                                                                    });
+//                                                                var rows = $('#tablaResultados').dataTable().fnGetNodes();
                                                                 $('#buttonGuardar').click(function () {
-                                                                    if(pacienteSelected==true&&t.data().length>0){
-                                                                        
-                                                                    }else{
-                                                                        
-                                                                    }
-                                                                    
+//                                                                    alert($("#pacienteId").attr('value'));
+//
+//                                                                    alert($("#observaciones").val());
+//                                                                    var data = t.rows().data();
+//                                                                    data.each(function (value, index) {
+//                                                                        alert('Data in index: ' + index + ' is: ' + value);
+//                                                                    });
+                                                                    var rows = t.rows(0).cells[0].value;
+//                                                                    var rows = t.rows(0).data();
+//                                                                    alert((rows[0][2]));
+                                                                    alert(rows);
+                                                                                                                                        var cells = [];
+//                                                                    for (var i = 0; i < rows.length; i++)
+//                                                                    {
+//                                                                        // Get HTML of 3rd column (for example)
+//                                                                        cells.push($(rows[i]).find("td:eq(1)").html());
+//                                                                        alert("cells[i]");
+//                                                                    }
+//                                                                    console.log($("input#observaciones").attr('value'));                                                                    
+//                                                                    if (pacienteSelected == true && t.data().length > 0) {
+//                                                                        alert("fino");
+//                                                                    } else {
+//
+//                                                                    }
+
                                                                 });
                                                             });
                                                         </script>
