@@ -13,7 +13,7 @@
 	"sLoadingRecords": "Cargando...",
 	"oPaginate": {
 		"sFirst":    "Primero",
-		"sLast":     "Ãšltimo",
+		"sLast":     "Ultimo",
 		"sNext":     "Siguiente",
 		"sPrevious": "Anterior"
 	},
