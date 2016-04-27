@@ -401,7 +401,7 @@
 //                                                                    var rows = t.rows(0).data();
 //                                                                    alert((rows[0][2]));
                                                                     alert(rows);
-                                                                                                                                        var cells = [];
+                                                                    var cells = [];
 //                                                                    for (var i = 0; i < rows.length; i++)
 //                                                                    {
 //                                                                        // Get HTML of 3rd column (for example)
