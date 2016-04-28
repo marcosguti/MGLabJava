@@ -390,15 +390,20 @@
 //                                                                    });
 //                                                                var rows = $('#tablaResultados').dataTable().fnGetNodes();
                                                                 $('#buttonGuardar').click(function () {
-//                                                                    alert($("#pacienteId").attr('value'));
-//
-//                                                                    alert($("#observaciones").val());
+                                                                    alert($("#pacienteId").attr('value'));
+
+                                                                    alert($("#observaciones").val());
 //                                                                    var data = t.rows().data();
 //                                                                    data.each(function (value, index) {
 //                                                                        alert('Data in index: ' + index + ' is: ' + value);
 //                                                                    });
-                                                                    var rows = t.rows(0).cells[0].value;
+                                                                    t.rows().iterator('row', function (context, index) {
+                                                                        alert($(this.row(index).node()).attr('data-id'));
+                                                                        
+                                                                    });
+//                                                                    var rows = t.rows(0).cells[0].value;
 //                                                                    var rows = t.rows(0).data();
+//                                                                    console.log(rows);
 //                                                                    alert((rows[0][2]));
                                                                     alert(rows);
                                                                     var cells = [];
