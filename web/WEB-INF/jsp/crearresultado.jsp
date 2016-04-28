@@ -376,25 +376,49 @@
     //                                                                    data.each(function (value, index) {
     //                                                                        alert('Data in index: ' + index + ' is: ' + value);
     //                                                                    });
-                    jsonObj = [];
-                    t.rows().iterator('row', function (context, index) {
-    //                                                                        alert($(this.row(index).node()).attr('data-id'));
-                        var id=$(this.row(index).node()).attr('data-id');
-    //                                                                        var valor=$((this.row(index).node())).val();
-                         var datos = t.rows(index).data(); 
-//                         alert(t.rows(index).data()[0][2]);
-                         var nameInput = $(this.rows(index)).closest('input').val();
-//                         console.log('input',nameInput);
-                        item = {}
-                        item ["idPrueba"] = id;
-//                        alert('id ',id);
-                        item ["valor"] = $('#'+id).val();
-                        var valor=document.getElementById('59').value;
-                        alert(valor);
-//                        alert('valor',$("#"+id).val());
-                        jsonObj.push(item);
+//                    jsonObj = [];
+//                    t.rows().iterator('row', function (context, index) {
+//    //                                                                        alert($(this.row(index).node()).attr('data-id'));
+//                        var id=$(this.row(index).node()).attr('data-id');
+//    //                                                                        var valor=$((this.row(index).node())).val();
+//                         var datos = t.rows(index).data(); 
+////                         alert(t.rows(index).data()[0][2]);
+//                         var nameInput = $(this.row(index)).find('#'+id).val();
+//                         console.log(t.rows(index).data());
+//
+//                        item = {}
+//                        item ["idPrueba"] = id;
+////                        alert('id ',id);
+//                        item ["valor"] = $('#'+id).val();
+//                        var valor=document.getElementById('observaciones').value;
+////                        alert(valor);
+////                        alert('valor',$("#"+id).val());
+//                        jsonObj.push(item);
+//                    });
+//                    console.log(jsonObj);
+                    var pacienteId=$("#pacienteId").attr('value');
+//
+                    var observaciones=$("#observaciones").val();
+                     jsonObj = [];
+                    $ ("#tablaResultados tbody tr").each(function (index) {
+                        var id=$(this).attr('data-id');
+            //            alert(id);
+                            $(this).children("td").each(function (index2) {
+            //                    alert("fila"+index+"- columna "+index2);
+
+                                if(index2==1){
+                                    alert("id prueba "+id)
+                                    alert("valor "+$(this).children("input").val()); 
+                                    item = {}
+                                    item ["idPrueba"] = id;
+//                                    item ["valor"] = $(this).children("input").val();
+                                    jsonObj.push(item);
+                                   
+                                }
+                            });
+                        console.log(jsonObj);
                     });
-                    console.log(jsonObj);
+                    
                         
 //                    var datos = t.rows().data()[0][2];
     //                                                                    var rows = t.rows(0).cells[0].value;
