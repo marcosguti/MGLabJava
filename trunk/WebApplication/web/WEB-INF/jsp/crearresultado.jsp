@@ -326,7 +326,7 @@
                     var valor = $(this);
                     var rowNode = t.row.add([
                         valor.attr("data-grupo"), valor.attr("data-nombre"),
-                        "<input type=\"text\"  class=\"form-control\" name=\"name\" onkeypress=\'return ((event.charCode >= 48 && event.charCode <= 57)||event.charCode==44||event.charCode==46||event.charCode==0)\' maxlength=\"10\" title=\"Introduzca el Valor del Resultado\" id=\"inputSuccess\" required>", valor.attr("data-unidad")
+                        "<input type=\"text\"  class=\"form-control\" name=\"name\" onkeypress=\'return ((event.charCode >= 48 && event.charCode <= 57)||event.charCode==44||event.charCode==46||event.charCode==0)\' maxlength=\"10\" title=\"Introduzca el Valor del Resultado\" id=\""+valor.attr("id")+"\" required>", valor.attr("data-unidad")
                     ]).draw(false).draw().node();
                     $(rowNode).attr('data-id', valor.attr("id"));
 
@@ -369,9 +369,9 @@
     //                                                                    });
     //                                                                var rows = $('#tablaResultados').dataTable().fnGetNodes();
                 $('#buttonGuardar').click(function () {
-                    alert($("#pacienteId").attr('value'));
-
-                    alert($("#observaciones").val());
+//                    alert($("#pacienteId").attr('value'));
+////
+//                    alert($("#observaciones").val());
     //                                                                    var data = t.rows().data();
     //                                                                    data.each(function (value, index) {
     //                                                                        alert('Data in index: ' + index + ' is: ' + value);
@@ -381,33 +381,23 @@
     //                                                                        alert($(this.row(index).node()).attr('data-id'));
                         var id=$(this.row(index).node()).attr('data-id');
     //                                                                        var valor=$((this.row(index).node())).val();
-    //                                                                        console.log("valor "+valor);
+                         var datos = t.rows(index).data(); 
+//                         alert(t.rows(index).data()[0][2]);
+                         var nameInput = $(this.rows(index)).closest('input').val();
+//                         console.log('input',nameInput);
                         item = {}
-                        item ["id"] = id;
-                        item ["valor"] = 'valor';
-
+                        item ["idPrueba"] = id;
+//                        alert('id ',id);
+                        item ["valor"] = $('#'+id).val();
+                        var valor=document.getElementById('59').value;
+                        alert(valor);
+//                        alert('valor',$("#"+id).val());
                         jsonObj.push(item);
                     });
                     console.log(jsonObj);
-
+                        
+//                    var datos = t.rows().data()[0][2];
     //                                                                    var rows = t.rows(0).cells[0].value;
-    //                                                                    var rows = t.rows(0).data();
-    //                                                                    console.log(rows);
-    //                                                                    alert((rows[0][2]));
-    //                                                                    alert(rows);
-    //                                                                    var cells = [];
-    //                                                                    for (var i = 0; i < rows.length; i++)
-    //                                                                    {
-    //                                                                        // Get HTML of 3rd column (for example)
-    //                                                                        cells.push($(rows[i]).find("td:eq(1)").html());
-    //                                                                        alert("cells[i]");
-    //                                                                    }
-    //                                                                    console.log($("input#observaciones").attr('value'));                                                                    
-    //                                                                    if (pacienteSelected == true && t.data().length > 0) {
-    //                                                                        alert("fino");
-    //                                                                    } else {
-    //
-    //                                                                    }
 
                 });
             });
