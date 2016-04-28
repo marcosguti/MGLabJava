@@ -397,15 +397,22 @@
 //                                                                    data.each(function (value, index) {
 //                                                                        alert('Data in index: ' + index + ' is: ' + value);
 //                                                                    });
+                                                                    jsonObj = [];
                                                                     t.rows().iterator('row', function (context, index) {
-                                                                        alert($(this.row(index).node()).attr('data-id'));
-                                                                        
+//                                                                        alert($(this.row(index).node()).attr('data-id'));
+                                                                        var id=$(this.row(index).node()).attr('data-id');
+                                                                        item = {}
+                                                                        item ["id"] = id;
+                                                                        item ["email"] = 'qwe';
+
+                                                                        jsonObj.push(item);
                                                                     });
+                                                                    console.log(jsonObj);
 //                                                                    var rows = t.rows(0).cells[0].value;
 //                                                                    var rows = t.rows(0).data();
 //                                                                    console.log(rows);
 //                                                                    alert((rows[0][2]));
-                                                                    alert(rows);
+//                                                                    alert(rows);
                                                                     var cells = [];
 //                                                                    for (var i = 0; i < rows.length; i++)
 //                                                                    {
