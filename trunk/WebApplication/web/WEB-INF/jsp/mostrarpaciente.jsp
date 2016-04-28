@@ -68,7 +68,7 @@
 
                     <div class="form-group">
                         <label for="disabledSelect">Fecha</label>
-                        <input class="form-control input-sm"  type="text" disabled="">
+                        <input class="form-control input-sm" id="fecha"  type="text" disabled="">
                     </div>
                 </div>
             </div>
@@ -165,7 +165,9 @@
     <script>
         $(document).ready(function () {
 //            alert("hola");
- $("#mostrarFecha").val( new Date());
+        var date=new Date();
+        var fecha=date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear();
+            $("#fecha").val(fecha );
         });
     </script>
 
