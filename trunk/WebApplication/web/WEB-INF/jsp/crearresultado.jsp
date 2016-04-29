@@ -364,38 +364,9 @@
                     else
                         $('#buttonGuardar').attr('disabled', 'disabled');
                 });
-    //                                                                 $("#observaciones").on('keyup',function () {
-    //                                                                        alert($(this).val());
-    //                                                                    });
-    //                                                                var rows = $('#tablaResultados').dataTable().fnGetNodes();
+
                 $('#buttonGuardar').click(function () {
-//                    alert($("#pacienteId").attr('value'));
-////
-//                    alert($("#observaciones").val());
-    //                                                                    var data = t.rows().data();
-    //                                                                    data.each(function (value, index) {
-    //                                                                        alert('Data in index: ' + index + ' is: ' + value);
-    //                                                                    });
-//                    jsonObj = [];
-//                    t.rows().iterator('row', function (context, index) {
-//    //                                                                        alert($(this.row(index).node()).attr('data-id'));
-//                        var id=$(this.row(index).node()).attr('data-id');
-//    //                                                                        var valor=$((this.row(index).node())).val();
-//                         var datos = t.rows(index).data(); 
-////                         alert(t.rows(index).data()[0][2]);
-//                         var nameInput = $(this.row(index)).find('#'+id).val();
-//                         console.log(t.rows(index).data());
-//
-//                        item = {}
-//                        item ["idPrueba"] = id;
-////                        alert('id ',id);
-//                        item ["valor"] = $('#'+id).val();
-//                        var valor=document.getElementById('observaciones').value;
-////                        alert(valor);
-////                        alert('valor',$("#"+id).val());
-//                        jsonObj.push(item);
-//                    });
-//                    console.log(jsonObj);
+
                     var pacienteId=$("#pacienteId").attr('value');
 //
                     var observaciones=$("#observaciones").val();
@@ -407,18 +378,43 @@
             //                    alert("fila"+index+"- columna "+index2);
 
                                 if(index2==1){
-                                    alert("id prueba "+id)
-                                    alert("valor "+$(this).children("input").val()); 
+//                                    alert("id prueba "+id)
+//                                    alert("valor "+$(this).children("input").val()); 
                                     item = {}
                                     item ["idPrueba"] = id;
-//                                    item ["valor"] = $(this).children("input").val();
+                                    item ["valor"] = $(this).children("input").val();
                                     jsonObj.push(item);
                                    
                                 }
                             });
-                        console.log(jsonObj);
+                        
                     });
-                    
+                    datos = {}
+                    datos ["pacienteId"] = pacienteId;
+                    datos ["observaciones"] = observaciones;
+                    datos ["pruebas"] = jsonObj;
+                    console.log(jsonObj);
+                        $("#includedContent").load("/Laboratorio/resultados", {
+                            pacienteId:pacienteId,
+                            observaciones:observaciones
+//                            pruebas:jsonObj
+                        });
+//                        $.ajax(
+//                           {
+//                                url: "/Laboratorio/resultados",
+//                                type: "POST",
+//                                data: {
+//                                    pacienteId:pacienteId,
+//                                    observaciones:observaciones
+////                                    pruebas:jsonObj
+//                                },
+//                                dataType: 'json',
+//                                async: false,
+//                                success: function(msg) {
+//                                    alert("hola");
+//                                }
+//                            }
+//                        );
                         
 //                    var datos = t.rows().data()[0][2];
     //                                                                    var rows = t.rows(0).cells[0].value;
