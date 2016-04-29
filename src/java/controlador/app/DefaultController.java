@@ -18,8 +18,14 @@ import hibernateUtil.BussinessException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import javax.servlet.http.HttpServletRequest;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -58,11 +64,21 @@ public class DefaultController {
     }
 
     @RequestMapping(value = "/resultados", method = RequestMethod.POST)
-    public String guardarResultado(Model model,@RequestParam("pacienteId") String pacienteId,@RequestParam("observaciones") String observaciones) throws BussinessException {
-        
-        List<Resultado> resultados = resultadoDAO.getAllOrdered();
-        model.addAttribute("resultados", resultados);
-        return "buscarresultado";
+//    public String guardarResultado(Model model,@RequestParam("pacienteId") String pacienteId,@RequestParam("observaciones") String observaciones,@RequestParam("pruebas") Object pruebas ) throws BussinessException {
+        public String action(HttpServletRequest request ) throws ParseException{
+            
+            Map parameterMap = request.getParameterMap();
+            String[] pruebas = new String[2];
+            pruebas = (String[]) (parameterMap.get("pruebas"));
+            String pr = pruebas[0];
+            
+            //JSONObject json = (JSONObject) new JSONParser().parse(pruebas);
+//            System.out.println("name=" + json.get("name"));
+//            System.out.println("width=" + json.get("width"));
+//            Model model= new Model;
+//            List<Resultado> resultados = resultadoDAO.getAllOrdered();
+//            model.addAttribute("resultados", resultados);
+            return "home_1";
     }
     
     @RequestMapping(value = "/buscarresultado", method = RequestMethod.GET)
@@ -198,4 +214,21 @@ public class DefaultController {
         }
         return mapPruebas;
     }
+    
+    
+private Map getParameters(HttpServletRequest request) {
+    Map parametersInput = request.getParameterMap();
+    Map parameters = new HashMap();
+
+    Set s = parametersInput.entrySet();
+    Iterator it = s.iterator();
+    while (it.hasNext()) {
+        Map.Entry<String, String[]> entry = (Map.Entry<String, String[]>) it
+        .next();
+        String key = entry.getKey();
+        String[] value = entry.getValue();
+        parameters.put(key, value[0].toString());
+    }
+    return parameters;
+}
 }
