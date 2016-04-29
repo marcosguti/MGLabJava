@@ -50,16 +50,25 @@
         <title>JSP Page</title>
         <style>
             @import url("<c:url value='/resources/bower_components/bootstrap/dist/css/bootstrap.min.css' />");
-            #barraPrincipal{
-                /*background-color: #337ab7 !important;*/
+            .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse, .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{
+                background-color: #337ab7 !important;
             }
+            
+            .navbar-nav>li>a {
+                color: white !important;
+            }
+/*            .navbar-inverse {
+                color: black !important;
+            }*/
+            .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover{
+                color : white !important;    
+            }
+            
             .panelColor{
                 background-color: #1E1A1A;
                 border-color: #1E1A1A;
             }
-            .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
-                /*background-color: #2F79BA !important;*/
-            }
+           
             body {
                     background-size: cover;
                 background-image: url("<c:url value='/resources/images/Lab.jpg' />"); 
@@ -76,25 +85,25 @@
         <script>
             $(document).ready(function () {
 
-                $('.botonMenuPacientes').click(function () {
+                $('.botonMenuPacientes').mouseenter(function () {
                     $('#listSubMenuPacientes').slideDown();
                 });
                 $('.menuPacientes').mouseleave(function () {
                     $('#listSubMenuPacientes').slideUp();
                 });
-                $('.botonMenuResultados').click(function () {
+                $('.botonMenuResultados').mouseenter(function () {
                     $('#listSubMenuResultados').slideDown();
                 });
                 $('.menuResultados').mouseleave(function () {
                     $('#listSubMenuResultados').slideUp();
                 });
-                $('.botonMenuPruebas').click(function () {
+                $('.botonMenuPruebas').mouseenter(function () {
                     $('#listSubMenuPruebas').slideDown();
                 });
                 $('.menuPruebas').mouseleave(function () {
                     $('#listSubMenuPruebas').slideUp();
                 });
-                $('.botonMenuGrupoPruebas').click(function () {
+                $('.botonMenuGrupoPruebas').mouseenter(function () {
                     $('#listSubMenuGrupoPruebas').slideDown();
                 });
                 $('.menuGrupoPruebas').mouseleave(function () {
