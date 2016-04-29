@@ -370,7 +370,7 @@
                     var pacienteId=$("#pacienteId").attr('value');
 //
                     var observaciones=$("#observaciones").val();
-                     jsonObj = [];
+                    var jsonObj = [];
                     $ ("#tablaResultados tbody tr").each(function (index) {
                         var id=$(this).attr('data-id');
             //            alert(id);
@@ -393,25 +393,33 @@
                     datos ["pacienteId"] = pacienteId;
                     datos ["observaciones"] = observaciones;
                     datos ["pruebas"] = jsonObj;
-                    console.log(jsonObj);
-                        $("#includedContent").load("/Laboratorio/resultados", {
-                            pacienteId:pacienteId,
-                            observaciones:observaciones
+//                    console.log('jsonObject',jsonObj);
+//                    datos2={
+//                            pacienteId:pacienteId,
+//                            observaciones:observaciones,
 //                            pruebas:jsonObj
-                        });
+//                    };
+//                    console.log('datos ',datos2);
+                    $("#includedContent").load("/Laboratorio/resultados", {
+                        pacienteId:pacienteId,
+                        observaciones:observaciones,
+                         pruebas:JSON.stringify(jsonObj)
+//                        pruebas:JSON.stringify(jsonObj)
+                    });
 //                        $.ajax(
 //                           {
 //                                url: "/Laboratorio/resultados",
 //                                type: "POST",
+//                                  contentType: "application/json; charset=utf-8",
 //                                data: {
 //                                    pacienteId:pacienteId,
-//                                    observaciones:observaciones
-////                                    pruebas:jsonObj
+//                                    observaciones:observaciones,
+//                                    pruebas:jsonObj
 //                                },
 //                                dataType: 'json',
 //                                async: false,
 //                                success: function(msg) {
-//                                    alert("hola");
+//                                    alert("fino o que");
 //                                }
 //                            }
 //                        );
