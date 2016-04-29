@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -67,14 +68,31 @@ public class DefaultController {
 //    public String guardarResultado(Model model,@RequestParam("pacienteId") String pacienteId,@RequestParam("observaciones") String observaciones,@RequestParam("pruebas") Object pruebas ) throws BussinessException {
         public String action(HttpServletRequest request ) throws ParseException{
             
-            Map parameterMap = request.getParameterMap();
-            String[] pruebas = new String[2];
-            pruebas = (String[]) (parameterMap.get("pruebas"));
-            String pr = pruebas[0];
+//            Map parameterMap = request.getParameterMap();
+            //System.out.println(parameterMap.get("pruebas").toString()+" - "+parameterMap.get(0));
+            Map param = getParameters(request);
             
-            //JSONObject json = (JSONObject) new JSONParser().parse(pruebas);
-//            System.out.println("name=" + json.get("name"));
-//            System.out.println("width=" + json.get("width"));
+            String pruebas = (String)(param.get("pruebas"));
+            String pacienteId = (String)(param.get("pacienteId"));
+            String obs = (String)(param.get("observaciones"));
+            
+            
+            JSONArray json = (JSONArray) new JSONParser().parse(pruebas);
+            System.out.println("paciente "+pacienteId);
+            System.out.println("obs "+obs);
+            System.out.println("pruebas "+pruebas);
+            ArrayList pruebaValor = new ArrayList();
+            String p,v;
+            for(int i = 0 ; i < json.size(); i++){
+                JSONObject row = (JSONObject) json.get(i);
+                System.out.println(json.get(i));
+                p = (String) row.get("idPrueba");
+                v = (String) row.get("valor");
+                System.out.println("prueba: "+p);
+                System.out.println("valor: "+v);
+            }
+//            System.out.println("idPrueba=" + json.get("idPrueba"));
+//            System.out.println("valor=" + json.get("valor"));
 //            Model model= new Model;
 //            List<Resultado> resultados = resultadoDAO.getAllOrdered();
 //            model.addAttribute("resultados", resultados);
