@@ -71,19 +71,22 @@
         th.sorting::after{
             display:none;
         }
+        #tablaPacientesHead{
+           display:  none;   
+        }
     </style>
 </head>
     <body>
         <div id="wrapper">
             <div class="row">
                 <div class="col-lg-12 ">
-                    <div class="panel panel-primary panelBorderColor">
-                        <div class="panel-heading panelHeaderColor">
+                    <div >
+<!--                        <div class="panel-heading panelHeaderColor">
                             Crear Resultado
-                        </div>
-                        <div class="panel-body center">
+                        </div>-->
+                        <div>
                             <div class="row">
-                                <div class="col-lg-4">
+                                <div class="col-lg-3 col-lg-offset-1">
                                     <div class="panel panel-primary panelBorderColor">
 
 
@@ -94,23 +97,21 @@
                                             <div class="dataTable_wrapper">
                                                 <table  style="font-size: 11px;" class="table table-striped table-bordered table-hover" width="100%" id="tablaPaciente">
                                                     <thead  style=" text-align: center" id="tablaPacientesHead">
-                                                    <strong> 
                                                         <tr >
                                                             <th>Nombre</th>
                                                             <th>Cedula</th>
                                                             <th>ID</th>
                                                             <!--<th ></th>-->
                                                         </tr>
-                                                        <strong>
-                                                            </thead>
+                                                   </thead>
             <!--                                                <h1><c:out value="${mapPacientes['22'].nombres}"/></h1>-->
                                                             <tbody style="cursor:pointer; text-align:center" >  <c:forEach var="ob" varStatus="status" items="${mapPacientes}">
-                                                                <strong> <tr class="odd gradeX" title="Click Para Seleccionar El Paciente"> 
+                                                                <!--<strong> <tr class="odd gradeX" title="Click Para Seleccionar El Paciente">--> 
+                                                                <strong> <tr class="odd gradeX" > 
 
-                                                                        <td><c:out value="${ob.value.nombres}"/></td>
-                                                                        <td><c:out value="${ob.value.cedula}"/></td>
-
-                                                                        <td><c:out value="${ob.value.id}"/></td>
+                                                                        <td title="Nombre del Paciente"><c:out value="${ob.value.nombres}"/></td>
+                                                                        <td title="Documento del Paciente"><c:out value="${ob.value.cedula}"/></td>
+                                                                        <td title="ID del Paciente"><c:out value="${ob.value.id}"/></td>
                                                                     </tr>                                                         
                                                                 </strong>
 
@@ -155,7 +156,7 @@
 
                                                             <!-- /.panel -->
                                 </div> 
-                                <div class="col-lg-8">
+                                <div class="col-lg-7">
                                     <div class="panel panel-primary panelBorderColor">
 
                                         <!--<input type="text" value="un \"gran\" hombre" />-->
