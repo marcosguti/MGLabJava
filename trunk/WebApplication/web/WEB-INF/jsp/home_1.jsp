@@ -70,8 +70,8 @@
                 background-size: cover;
                 margin-top: 12%;    */
             }
-          
-            }
+                    
+            
         </style>
         <script>
             $(document).ready(function () {
