@@ -57,6 +57,14 @@ public class DefaultController {
         return "buscarpaciente";
     }
 
+    @RequestMapping(value = "/resultados", method = RequestMethod.POST)
+    public String guardarResultado(Model model,@RequestParam("pacienteId") String pacienteId,@RequestParam("observaciones") String observaciones,@RequestParam("pruebas") Object pruebas) throws BussinessException {
+        
+        List<Resultado> resultados = resultadoDAO.getAllOrdered();
+        model.addAttribute("resultados", resultados);
+        return "buscarresultado";
+    }
+    
     @RequestMapping(value = "/buscarresultado", method = RequestMethod.GET)
     public String buscarResultado(Model model) throws BussinessException {
         List<Resultado> resultados = resultadoDAO.getAllOrdered();
