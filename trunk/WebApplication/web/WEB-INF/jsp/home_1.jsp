@@ -71,7 +71,7 @@
            
             body {
                     background-size: cover;
-                background-image: url("<c:url value='/resources/images/Lab.jpg' />"); 
+                /*background-image: url("<c:url value='/resources/images/Lab.jpg' />");*/ 
 /*                no-repeat center center fixed;
                 -webkit-background-size: cover;
                 -moz-background-size: cover;
