@@ -74,6 +74,7 @@
         #tablaPacientesHead{
            display:  none;   
         }
+       
     </style>
 </head>
     <body>
@@ -371,6 +372,8 @@
                     var pacienteId=$("#pacienteId").attr('value');
 //
                     var observaciones=$("#observaciones").val();
+                    var precio=$("#precio").val();
+                    
                     var jsonObj = [];
                     $ ("#tablaResultados tbody tr").each(function (index) {
                         var id=$(this).attr('data-id');
@@ -392,6 +395,7 @@
                     });
                     datos = {}
                     datos ["pacienteId"] = pacienteId;
+                    datos ["precio"] = precio;
                     datos ["observaciones"] = observaciones;
                     datos ["pruebas"] = jsonObj;
 //                    console.log('jsonObject',jsonObj);
@@ -404,6 +408,7 @@
                     $("#includedContent").load("/Laboratorio/resultados", {
                         pacienteId:pacienteId,
                         observaciones:observaciones,
+                        precio:precio,
                          pruebas:JSON.stringify(jsonObj)
 //                        pruebas:JSON.stringify(jsonObj)
                     });

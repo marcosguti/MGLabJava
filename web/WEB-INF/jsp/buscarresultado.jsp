@@ -71,6 +71,26 @@
         th.sorting::after{
             display:none;
         }
+        .vertical-alignment-helper {
+            display:table;
+            height: 100%;
+            width: 100%;
+            pointer-events:none;
+        }
+        .vertical-align-center {
+            /* To center vertically */
+            display: table-cell;
+            vertical-align: middle;
+            pointer-events:none;
+        }
+        .modal-content {
+            /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+            width:inherit;
+            height:inherit;
+            /* To center horizontally */
+            margin: 0 auto;
+            pointer-events:all;
+        }
     </style>
 </head>
 
@@ -138,7 +158,8 @@
                         <!--</div>-->
                     </div>
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                        <div class="modal-dialog" role="document">
+                        <div class="vertical-alignment-helper">
+                        <div class="modal-dialog vertical-align-center" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -152,7 +173,7 @@
                                     <button type="submit" class="btn btn-primary" id="confirmarBorrar" data-dismiss="modal">Si</button>
                                 </div>
                             </div>
-                        </div>
+                        </div></div>
                     </div>
                     <!-- /.panel-body -->
                 </div>
@@ -256,28 +277,16 @@
 
             $('#ver').on('click', function () {
 
-                var datos = [];
+                var idr ;
                 $(".selected td").each(function () {
 //                alert($(this).text());
-                    switch ($(this).index()) {
-                        case 1:
-                            datos.push($(this).text());
-//                            alert($(this).text());
-                            break;
-                        case 4:
-                            datos.push($(this).text());
-//                            alert($(this).text());
-                            break;
-                        case 5:
-                            datos.push($(this).text());
-//                            alert($(this).text());
-                            break;
+                    if($(this).index()==5) {
+                           idr=$(this).text();
                     }
                 });
-                var idp = datos[0].toString();
-                var idr = datos[2].toString();
+               
 //                document.location.href = "${pageContext.request.contextPath}/viewReporte?idResultado="+idr+"&idPaciente="+idp+"?type=individual";
-                window.open("${pageContext.request.contextPath}/viewReporte?idResultado=" + idr + "&idPaciente=" + idp, '_blank');
+                window.open("${pageContext.request.contextPath}/viewReporte?idResultado=" + idr , '_blank');
 ////alert(datos);
 //                    var pet = $("p").text();
 //                    alert(pet);
