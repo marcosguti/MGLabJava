@@ -49,7 +49,7 @@ public class ReportDaoImpl implements ReportDao {
 //                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pruebareportes", "root", "r00t");
             Class.forName("org.postgresql.Driver");
 
-            Connection con = DriverManager.getConnection("jdbc:postgresql://10.14.165.215:5432/Laboratorio", "postgres", "postgres");
+            Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Laboratorio", "postgres", "312967");
 
             return con;
 

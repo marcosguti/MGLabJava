@@ -6,15 +6,21 @@
 package controlador.app;
 
 import controller.PacienteController;
+import controller.PruebaResultadoController;
+import controller.ResultadoController;
 import dao.GrupoPruebasDAOImpl;
 import dao.PacienteDAOImpl;
 import dao.PruebaDAOImpl;
+import dao.PruebaResultadoDAOImpl;
+import dao.ReportDaoImpl;
 import dao.ResultadoDAOImpl;
 import domain.GrupoPruebas;
 import domain.Paciente;
 import domain.Prueba;
+import domain.PruebaResultado;
 import domain.Resultado;
 import hibernateUtil.BussinessException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -45,7 +51,7 @@ public class DefaultController {
 
     PruebaDAOImpl pruebaDAO = new PruebaDAOImpl();
     GrupoPruebasDAOImpl grupoPruebasDAO = new GrupoPruebasDAOImpl();
-
+    PruebaResultadoDAOImpl pruebaResultadoDAO = new PruebaResultadoDAOImpl();
     PacienteDAOImpl pacienteDAO = new PacienteDAOImpl();
     ResultadoDAOImpl resultadoDAO = new ResultadoDAOImpl();
 
@@ -66,39 +72,66 @@ public class DefaultController {
 
     @RequestMapping(value = "/resultados", method = RequestMethod.POST)
 //    public String guardarResultado(Model model,@RequestParam("pacienteId") String pacienteId,@RequestParam("observaciones") String observaciones,@RequestParam("pruebas") Object pruebas ) throws BussinessException {
-        public String action(HttpServletRequest request ) throws ParseException{
-            
+    public String action(HttpServletRequest request, Model model) throws ParseException, BussinessException {
+
 //            Map parameterMap = request.getParameterMap();
-            //System.out.println(parameterMap.get("pruebas").toString()+" - "+parameterMap.get(0));
-            Map param = getParameters(request);
-            
-            String pruebas = (String)(param.get("pruebas"));
-            String pacienteId = (String)(param.get("pacienteId"));
-            String obs = (String)(param.get("observaciones"));
-            
-            
-            JSONArray json = (JSONArray) new JSONParser().parse(pruebas);
-            System.out.println("paciente "+pacienteId);
-            System.out.println("obs "+obs);
-            System.out.println("pruebas "+pruebas);
-            ArrayList pruebaValor = new ArrayList();
-            String p,v;
-            for(int i = 0 ; i < json.size(); i++){
-                JSONObject row = (JSONObject) json.get(i);
-                System.out.println(json.get(i));
-                p = (String) row.get("idPrueba");
-                v = (String) row.get("valor");
-                System.out.println("prueba: "+p);
-                System.out.println("valor: "+v);
-            }
+        //System.out.println(parameterMap.get("pruebas").toString()+" - "+parameterMap.get(0));
+        Map param = getParameters(request);
+
+        String pruebas = (String) (param.get("pruebas"));
+        String pacienteId = (String) (param.get("pacienteId"));
+        String obs = (String) (param.get("observaciones"));
+        String pr = (String) (param.get("precio"));
+        pr=pr.substring(0, pr.length()-4);
+        JSONArray json = (JSONArray) new JSONParser().parse(pruebas);
+        System.out.println("paciente " + pacienteId);
+        System.out.println("obs " + obs);
+        System.out.println("pruebas " + pruebas);
+
 //            System.out.println("idPrueba=" + json.get("idPrueba"));
 //            System.out.println("valor=" + json.get("valor"));
 //            Model model= new Model;
 //            List<Resultado> resultados = resultadoDAO.getAllOrdered();
 //            model.addAttribute("resultados", resultados);
-            return "home_1";
+//        StaticVarsBusiness.PruebasEnTabla
+//        JTablePruebas.dtm
+        Resultado resultado = new Resultado();
+        resultado.setObservaciones(obs);
+        resultado.setPaciente(pacienteDAO.get(Integer.parseInt(pacienteId)));
+//            java.util.Date date = new java.util.Date();
+//            Timestamp ts_now = new Timestamp(date.getTime());
+        SimpleDateFormat formatter;
+        formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date today = new Date();
+        resultado.setFecha(today);
+        resultado.setPrecio(Integer.parseInt(pr));
+        resultadoDAO.saveOrUpdate(resultado);
+        int precioTotal = 0;
+        ArrayList pruebaValor = new ArrayList();
+        Integer idP;
+        String Valor;
+        for (int i = 0; i < json.size(); i++) {
+            PruebaResultado pruebaResultado = new PruebaResultado();
+
+            JSONObject row = (JSONObject) json.get(i);
+//                System.out.println(json.get(i));
+            String idPrueba, valor;
+            idPrueba=(String) row.get("idPrueba");
+            valor=(String) row.get("valor");
+            Prueba prueba = pruebaDAO.get(Integer.parseInt(idPrueba) );
+            pruebaResultado.setPrueba(prueba);
+            pruebaResultado.setValor(valor);
+            pruebaResultado.setResultado(resultado);
+            pruebaResultadoDAO.saveOrUpdate(pruebaResultado);
+        }
+
+        resultadoDAO.saveOrUpdate(resultado);
+
+        List<Resultado> resultados = resultadoDAO.getAllOrdered();
+        model.addAttribute("resultados", resultados);
+        return "buscarresultado";
     }
-    
+
     @RequestMapping(value = "/buscarresultado", method = RequestMethod.GET)
     public String buscarResultado(Model model) throws BussinessException {
         List<Resultado> resultados = resultadoDAO.getAllOrdered();
@@ -181,7 +214,7 @@ public class DefaultController {
     }
 
     @RequestMapping(value = "/modificarpaciente", method = RequestMethod.POST)
-    public String modificarPaciente(Model model, @RequestParam("id") String id,@RequestParam("nombre") String nombre, @RequestParam("cedula") String cedula, @RequestParam("selectDoc") String selectDoc, @RequestParam("edad") String edad, @RequestParam("sexo") String sexo, @RequestParam("direccion") String direccion, @RequestParam("telefono") String telefono) throws BussinessException {
+    public String modificarPaciente(Model model, @RequestParam("id") String id, @RequestParam("nombre") String nombre, @RequestParam("cedula") String cedula, @RequestParam("selectDoc") String selectDoc, @RequestParam("edad") String edad, @RequestParam("sexo") String sexo, @RequestParam("direccion") String direccion, @RequestParam("telefono") String telefono) throws BussinessException {
         Paciente paciente = new Paciente();
         paciente.setNombres(nombre);
         paciente.setCedula(selectDoc + "-" + cedula);
@@ -191,7 +224,7 @@ public class DefaultController {
         paciente.setTelefono(telefono);
         paciente.setId(Integer.parseInt(id));
         pacienteDAO.saveOrUpdate(paciente);
-        System.out.println(paciente.getNombres()+"   "+paciente.getId());
+        System.out.println(paciente.getNombres() + "   " + paciente.getId());
         List<Paciente> pacientes = pacienteDAO.getAllOrdered();
         model.addAttribute("pacientes", pacientes);
         return "home_1";
@@ -232,21 +265,20 @@ public class DefaultController {
         }
         return mapPruebas;
     }
-    
-    
-private Map getParameters(HttpServletRequest request) {
-    Map parametersInput = request.getParameterMap();
-    Map parameters = new HashMap();
 
-    Set s = parametersInput.entrySet();
-    Iterator it = s.iterator();
-    while (it.hasNext()) {
-        Map.Entry<String, String[]> entry = (Map.Entry<String, String[]>) it
-        .next();
-        String key = entry.getKey();
-        String[] value = entry.getValue();
-        parameters.put(key, value[0].toString());
+    private Map getParameters(HttpServletRequest request) {
+        Map parametersInput = request.getParameterMap();
+        Map parameters = new HashMap();
+
+        Set s = parametersInput.entrySet();
+        Iterator it = s.iterator();
+        while (it.hasNext()) {
+            Map.Entry<String, String[]> entry = (Map.Entry<String, String[]>) it
+                    .next();
+            String key = entry.getKey();
+            String[] value = entry.getValue();
+            parameters.put(key, value[0].toString());
+        }
+        return parameters;
     }
-    return parameters;
-}
 }

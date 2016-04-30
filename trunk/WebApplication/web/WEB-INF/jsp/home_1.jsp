@@ -86,28 +86,28 @@
             $(document).ready(function () {
 
                 $('.botonMenuPacientes').mouseenter(function () {
-                    $('#listSubMenuPacientes').slideDown();
+                    $('#listSubMenuPacientes').slideDown(20);
                 });
                 $('.menuPacientes').mouseleave(function () {
-                    $('#listSubMenuPacientes').slideUp();
+                    $('#listSubMenuPacientes').slideUp(20);
                 });
                 $('.botonMenuResultados').mouseenter(function () {
-                    $('#listSubMenuResultados').slideDown();
+                    $('#listSubMenuResultados').slideDown(20);
                 });
                 $('.menuResultados').mouseleave(function () {
-                    $('#listSubMenuResultados').slideUp();
+                    $('#listSubMenuResultados').slideUp(20);
                 });
                 $('.botonMenuPruebas').mouseenter(function () {
-                    $('#listSubMenuPruebas').slideDown();
+                    $('#listSubMenuPruebas').slideDown(20);
                 });
                 $('.menuPruebas').mouseleave(function () {
-                    $('#listSubMenuPruebas').slideUp();
+                    $('#listSubMenuPruebas').slideUp(20);
                 });
                 $('.botonMenuGrupoPruebas').mouseenter(function () {
-                    $('#listSubMenuGrupoPruebas').slideDown();
+                    $('#listSubMenuGrupoPruebas').slideDown(20);
                 });
                 $('.menuGrupoPruebas').mouseleave(function () {
-                    $('#listSubMenuGrupoPruebas').slideUp();
+                    $('#listSubMenuGrupoPruebas').slideUp(20);
                 });
 
                 $('#registrarPacientes').click(function () {
@@ -141,7 +141,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">MGLab</a>
+                        <a class="navbar-brand" href="/Laboratorio">MGLab</a>
                     </div>
                     <div class="navbar-left ">
                         <ul class="nav navbar-nav">

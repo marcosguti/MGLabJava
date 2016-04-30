@@ -2,6 +2,8 @@ package controlador.app;
 
 import dao.ReportDao;
 import dao.ReportDaoImpl;
+import dao.ResultadoDAOImpl;
+import domain.Resultado;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -34,7 +36,7 @@ import org.springframework.stereotype.Controller;
 public class ReportController extends HttpServlet {
     
     private ReportDao reportDao;
-    
+    ResultadoDAOImpl resultadoDAO = new ResultadoDAOImpl();
     public void setReportDao(ReportDao reportDao) {
         this.reportDao = reportDao;
     }
@@ -55,15 +57,15 @@ public class ReportController extends HttpServlet {
         try {
 //            HashMap param = new HashMap();
              HashMap reportMap = new HashMap();
-            System.out.println(request.getParameter("idPaciente"));
-            System.out.println(request.getParameter("idResultado"));
-            
+//            System.out.println(request.getParameter("idPaciente"));
+//            System.out.println(request.getParameter("idResultado"));
              Integer resultadoId= Integer.parseInt(request.getParameter("idResultado"));
-             Integer pacienteId= Integer.valueOf(request.getParameter("idPaciente"));
+//             Integer pacienteId= Integer.valueOf(request.getParameter("idPaciente"));
+             Resultado resultado= resultadoDAO.get(resultadoId);
             reportMap.put("resultado_id",resultadoId);
-            reportMap.put("paciente_id", pacienteId);
-            reportMap.put("observaciones", "TODO FINO");
-            reportMap.put("fecha", "29/03/2016");
+            reportMap.put("paciente_id", resultado.getPaciente().getId());
+            reportMap.put("observaciones", resultado.getObservaciones());
+            reportMap.put("fecha", resultado.getFecha());
             //param.put("idWell", idWell);
 //            param.put("id", 2);
             JRExporter exporter = new JRPdfExporter();
