@@ -82,7 +82,7 @@ public class DefaultController {
         String pacienteId = (String) (param.get("pacienteId"));
         String obs = (String) (param.get("observaciones"));
         String pr = (String) (param.get("precio"));
-        pr=pr.substring(0, pr.length()-4);
+        pr = pr.substring(0, pr.length() - 4);
         JSONArray json = (JSONArray) new JSONParser().parse(pruebas);
         System.out.println("paciente " + pacienteId);
         System.out.println("obs " + obs);
@@ -116,9 +116,9 @@ public class DefaultController {
             JSONObject row = (JSONObject) json.get(i);
 //                System.out.println(json.get(i));
             String idPrueba, valor;
-            idPrueba=(String) row.get("idPrueba");
-            valor=(String) row.get("valor");
-            Prueba prueba = pruebaDAO.get(Integer.parseInt(idPrueba) );
+            idPrueba = (String) row.get("idPrueba");
+            valor = (String) row.get("valor");
+            Prueba prueba = pruebaDAO.get(Integer.parseInt(idPrueba));
             pruebaResultado.setPrueba(prueba);
             pruebaResultado.setValor(valor);
             pruebaResultado.setResultado(resultado);
@@ -190,7 +190,7 @@ public class DefaultController {
     @RequestMapping(value = "/registrarpaciente", method = RequestMethod.GET)
     public String pacienteView() {
 
-        return "reporte";
+        return "registrarpaciente";
     }
 
     @RequestMapping(value = "/registrarprueba", method = RequestMethod.GET)
@@ -200,34 +200,36 @@ public class DefaultController {
         return "registrarprueba";
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    public String registrarPaciente(Model model, @RequestParam("nombre") String nombre, @RequestParam("cedula") String cedula, @RequestParam("selectDoc") String selectDoc, @RequestParam("edad") String edad, @RequestParam("sexo") String sexo, @RequestParam("direccion") String direccion, @RequestParam("telefono") String telefono) throws BussinessException {
+    @RequestMapping(value = "/guardarpaciente", method = RequestMethod.POST)
+    public String registrarPaciente(Model model, @RequestParam("nombre") String nombre, @RequestParam("documento") String documento, @RequestParam("selectDoc") String selectDoc, @RequestParam("edad") String edad, @RequestParam("sexo") String sexo, @RequestParam("direccion") String direccion, @RequestParam("telefono") String telefono) throws BussinessException {
         Paciente paciente = new Paciente();
         paciente.setNombres(nombre);
-        paciente.setCedula(selectDoc + "-" + cedula);
+        paciente.setCedula(selectDoc + "-" + documento);
         paciente.setSexo(sexo);
         paciente.setDireccion(direccion);
         paciente.setEdad(Integer.parseInt(edad));
         paciente.setTelefono(telefono);
         pacienteDAO.saveOrUpdate(paciente);
-        return "home_1";
+        List<Paciente> pacientes = pacienteDAO.getAllOrdered();
+        model.addAttribute("pacientes", pacientes);
+        return "buscarpaciente";
     }
 
     @RequestMapping(value = "/modificarpaciente", method = RequestMethod.POST)
-    public String modificarPaciente(Model model, @RequestParam("id") String id, @RequestParam("nombre") String nombre, @RequestParam("cedula") String cedula, @RequestParam("selectDoc") String selectDoc, @RequestParam("edad") String edad, @RequestParam("sexo") String sexo, @RequestParam("direccion") String direccion, @RequestParam("telefono") String telefono) throws BussinessException {
+    public String modificarPaciente(Model model, @RequestParam("id") String id, @RequestParam("nombre") String nombre/*, @RequestParam("documento") String documento, @RequestParam("tipoDoc") String tipoDoc*/, @RequestParam("edad") String edad/*, @RequestParam("sexo") String sexo*/, @RequestParam("direccion") String direccion/*, @RequestParam("telefono") String telefono*/) throws BussinessException {
         Paciente paciente = new Paciente();
         paciente.setNombres(nombre);
-        paciente.setCedula(selectDoc + "-" + cedula);
-        paciente.setSexo(sexo);
-        paciente.setDireccion(direccion);
-        paciente.setEdad(Integer.parseInt(edad));
-        paciente.setTelefono(telefono);
+//        paciente.setCedula(tipoDoc + "-" + documento);
+//        paciente.setSexo(sexo);
+//        paciente.setDireccion(direccion);
+//        paciente.setEdad(Integer.parseInt(edad));
+//        paciente.setTelefono(telefono);
         paciente.setId(Integer.parseInt(id));
-        pacienteDAO.saveOrUpdate(paciente);
-        System.out.println(paciente.getNombres() + "   " + paciente.getId());
+//        pacienteDAO.saveOrUpdate(paciente);
+//        System.out.println(paciente.getNombres() + "   " + paciente.getId());
         List<Paciente> pacientes = pacienteDAO.getAllOrdered();
         model.addAttribute("pacientes", pacientes);
-        return "home_1";
+        return "buscarpaciente";
     }
 
     @RequestMapping(value = "/registroPrueba", method = RequestMethod.POST)

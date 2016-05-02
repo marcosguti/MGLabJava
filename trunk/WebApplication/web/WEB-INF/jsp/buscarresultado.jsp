@@ -144,18 +144,8 @@
 
                     </div>
                     <div class="panel-body center-block">
-                        <!--<p>${pageContext.request.contextPath}/viewReporte</p>-->
-                        <!--<form value="${pageContext.request.contextPath}/viewReporte" method="POST">-->
                         <button id="ver" value="${pageContext.request.contextPath}/viewReporte"  disabled="disabled" type="submit" class="btn btn-default">Ver</button>
                         <button type="button" class="btn btn-danger " id="borrar" disabled="disabled" data-toggle="modal" data-target ="#myModal">Borrar</button>
-
-                        <!--</form>--> 
-
-                        <!--<div class="bs-example">--> 
-                        <!--<button type="submit" class="btn btn-default">Guardar</button>-->
-
-                        <!--<button type="button"class="btn btn-primary" data-toggle="modal" data-target ="#myModal">Guardar</button>-->
-                        <!--</div>-->
                     </div>
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="vertical-alignment-helper">

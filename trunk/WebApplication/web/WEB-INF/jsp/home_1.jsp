@@ -141,7 +141,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="/Laboratorio">MGLab</a>
+                        <a class="navbar-brand" href="/Laboratorio/#">MGLab</a>
                     </div>
                     <div class="navbar-left ">
                         <ul class="nav navbar-nav">
