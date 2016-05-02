@@ -74,7 +74,9 @@
         #tablaPacientesHead{
            display:  none;   
         }
-       
+        .panelBorderColor{
+               border-color: #337ab7; 
+        }
     </style>
 </head>
     <body>

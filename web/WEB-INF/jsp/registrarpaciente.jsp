@@ -53,7 +53,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <form role="form"  method="POST" id="register-form" >
+                                <form role="form" action="/Laboratorio/guardarpaciente"  method="POST" id="register-form" >
                                     <div class="col-lg-12">
                                         <div class="row">
                                             <div class="col-lg-12">
@@ -179,20 +179,37 @@
     <script src="<c:url value='/resources/bower_components/morrisjs/morris.min.js' />"></script>
     <script src="<c:url value='/resources/js/morris-data.js' />"></script>
     <script>
-        $(document).ready(function () {
-            $("form").submit(function(){
-                $("#includedContent").load("/Laboratorio/guardarpaciente", {
-                    nombre: $("#nombre").val(),
-                    selectDoc: $("#selectDoc option:selected" ).text(),
-                    documento: $("#documento").val(),
-                    edad: $("#edad").val(),
-                    sexo: $("#sexo option:selected" ).text(),
-                    telefono: $("#telefono").val(),
-                    direccion: $("#direccion").val()
-                    
-                });
-            });
-        });
+//        $(document).ready(function () {
+//            $("#register-form").submit(function(){
+//                $("#includedContent").load("/Laboratorio/guardarpaciente", {
+//                    nombre: $("#nombre").val(),
+//                    selectDoc: $("#selectDoc option:selected" ).text(),
+//                    documento: $("#documento").val(),
+//                    edad: $("#edad").val(),
+//                    sexo: $("#sexo option:selected" ).text(),
+//                    telefono: $("#telefono").val(),
+//                    direccion: $("#direccion").val()
+//                    
+//                });
+//            });
+//        });
+
+//        $(document).ready(function () {
+//            $("#register-form").submit(function(){
+//                $("#includedContent").load("/Laboratorio/guardarpaciente", {
+//                    nombre: $("#nombre").val(),
+//                    selectDoc: $("#selectDoc option:selected" ).text(),
+//                    documento: $("#documento").val(),
+//                    edad: $("#edad").val(),
+//                    sexo: $("#sexo option:selected" ).text(),
+//                    telefono: $("#telefono").val(),
+//                    direccion: $("#direccion").val()
+//                    
+//                });
+//            });
+//        });
+
+
     </script>   
 </body>
 </html>
