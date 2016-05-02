@@ -212,14 +212,10 @@
 
 
                                     <div class="modal-footer">
-                                        <!--<div class="row">-->
-                                        <!--<div class="col-lg-6 ">-->
-                                        <button id="guardar" type="submit" class="btn btn-primary">Guardar</button>
+                                        <button id="guardar" type="button" class="btn btn-primary">Guardar</button>
                                         <button type="reset" class="btn btn-primary">Reestablecer</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Atras</button>
-                                        <!--<button type="submit" class="btn btn-primary" id="confirmarBorrar" data-dismiss="modal">Si</button>-->
-                                        <!--</div>-->
-                                        <!--</div>-->
+                        
 
                                     </div>
                                 </form> 
@@ -230,23 +226,25 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="modal fade" id="modalBorrar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Paciente</h4>
+                        <div class="vertical-alignment-helper">
+                        <div class="modal-dialog vertical-align-center" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Resultado</h4>
+                                </div>
+                                <div class="modal-body">
+                                    Desea Borrar El Paciente?    
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                    <button type="submit" class="btn btn-primary" id="confirmarBorrar" data-dismiss="modal">Si</button>
+                                </div>
                             </div>
-                            <div class="modal-body">
-                                Desea Borrar El Paciente?    
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                                <button type="submit" class="btn btn-primary" id="confirmarBorrar" data-dismiss="modal">Si</button>
-                            </div>
-                        </div>
+                        </div></div>
                     </div>
-                </div>
                 <!-- /.panel-body -->
             </div>
             <!-- /.panel -->
@@ -318,9 +316,7 @@
         $('#confirmarBorrar').on('click', function () {
             var idDelete = $(".selected>td:last-child").text();
 //                alert(idDelete);
-            $("#includedContent").load("/Laboratorio/eliminarpaciente", {id: idDelete}, function () {
-//                customAlert("Se borro");
-            });
+            $("#includedContent").load("/Laboratorio/eliminarpaciente", {id: idDelete});
 //               alert( $(".selected").html());
         });
         $('#buttonModificar').on('click', function () {
@@ -345,23 +341,33 @@
 //                $("#includedContent").load("/Laboratorio/eliminarresultado", {id: idDelete});
 //               alert( $(".selected").html());
         });
-//        $('#guardar').on('click', function () {
-////                var idDelete=$(".selected>td:last-child").text();
-////                alert(idDelete);
-////                var nombre= $("#includedContent")
-////            var ID = $("#id").val();
-//            $("#includedContent").load("/Laboratorio/modificarpaciente",{
-//                    nombre: $("#nombre").val(),
-//                    tipoDoc: $("#tipoDoc").val(),
+        $('#guardar').on('click', function () {
+//                var idDelete=$(".selected>td:last-child").text();
+//                alert(idDelete);
+//                var nombre= $("#includedContent")
+//            var ID = $("#id").val();
+//            alert($("#nombre").val());
+         
+//        var nombre=$("#nombre").val();
+//        var tipoDoc=$("#tipoDoc").val();
+//        var documento=$("#documento").val();
+//        var edad=$("#edad").val();
+//        var sexo=$("#sexo").val();
+//        var nombre=$("#nombre").val();
+              
+            $("#includedContent").load("/Laboratorio/modificarpaciente",{
+                    nombre: $("#nombre").val(),  
+//                    tipoDoc: $("#selectDoc").val(),
 //                    documento: $("#documento").val(),
-//                    edad: $("#edad").val(),
+                    edad: $("#edad").val(),
 //                    sexo: $("#sexo").val(),
+                    direccion: $("#direccion").val(),
 //                    telefono: $("#telefono").val(),
 //
-//                id: $("#sexo").val()
-//            });
-//////               alert( $(".selected").html());
-//        });
+                id: $("#id").val()
+            });
+////               alert( $(".selected").html());
+        });
 //        $('td:nth-child(1)').on('click', function () { 
 //            alert($(this).text());
 //        });

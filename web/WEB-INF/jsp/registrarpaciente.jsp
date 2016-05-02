@@ -53,7 +53,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <form role="form" action="/Laboratorio/#" method="POST" id="register-form" >
+                                <form role="form"  method="POST" id="register-form" >
                                     <div class="col-lg-12">
                                         <div class="row">
                                             <div class="col-lg-12">
@@ -69,14 +69,14 @@
                                                     <label>Documento</label>
                                                     <div class="form-inline"> 
                                                         <!--                                                        <div class="col-lg-4">-->
-                                                        <select name="selectDoc" class="form-control">
+                                                        <select id="selectDoc" name="selectDoc" class="form-control">
                                                             <option>V</option>
                                                             <option>E</option>
                                                             <option>J</option>
                                                         </select>
                                                         <!--</div>-->
                                                         <!--<div class="col-lg-8">-->
-                                                        <input name="cedula" class="form-control" minlength="8" maxlength="8" pattern="[0-9]{1,9}(\.[0-9]{0,2})?$" title="Introduzca Solo Numeros" placeholder="N° de Documento" required>
+                                                        <input id="documento" name="documento" class="form-control" minlength="8" maxlength="8" pattern="[0-9]{1,9}(\.[0-9]{0,2})?$" title="Introduzca Solo Numeros" placeholder="N° de Documento" required>
                                                         <!--</div>-->
                                                     </div>
                                                 </div>
@@ -89,14 +89,14 @@
                                                 <div class="form-group ">
                                                     <label>Edad</label>
                                                     <div class="form-inline">
-                                                        <input id="age" name="edad" class="form-control " placeholder="Edad" maxlength="3" pattern="[0-1]{1}[0-9]{0,2}" title="Introduzca Una Edad Valida" size="3" required>
+                                                        <input id="edad" name="edad" class="form-control " placeholder="Edad" maxlength="3" pattern="[0-1]{1}[0-9]{0,2}" title="Introduzca Una Edad Valida" size="3" required>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-3 ">
                                                 <div class="form-group ">
                                                     <label>Sexo</label>
-                                                    <select name="sexo" class="form-control" >
+                                                    <select id="sexo" name="sexo" class="form-control" >
                                                         <option>M</option>
                                                         <option>F</option>
 
@@ -106,14 +106,14 @@
                                             <div class="col-lg-6 ">
                                                 <div class="form-group">
                                                     <label>Telefono</label>
-                                                    <input name="telefono"  class="form-control" maxlength="13" placeholder="Telefono" pattern="^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$" required>
+                                                    <input id="telefono" name="telefono"  class="form-control" maxlength="13" placeholder="Telefono" pattern="^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$" required>
                                                 </div>
                                             </div>
                                             <!--</div>-->
                                         </div>
                                         <div class="form-group">
                                             <label>Direccion</label>
-                                            <input name="direccion" class="form-control" maxlength="40" placeholder="Direccion" required>
+                                            <input id="direccion" name="direccion" class="form-control" maxlength="40" placeholder="Direccion" required>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6 ">
@@ -178,6 +178,21 @@
     <script src="<c:url value='/resources/bower_components/raphael/raphael-min.js' />"></script>
     <script src="<c:url value='/resources/bower_components/morrisjs/morris.min.js' />"></script>
     <script src="<c:url value='/resources/js/morris-data.js' />"></script>
-
+    <script>
+        $(document).ready(function () {
+            $("form").submit(function(){
+                $("#includedContent").load("/Laboratorio/guardarpaciente", {
+                    nombre: $("#nombre").val(),
+                    selectDoc: $("#selectDoc option:selected" ).text(),
+                    documento: $("#documento").val(),
+                    edad: $("#edad").val(),
+                    sexo: $("#sexo option:selected" ).text(),
+                    telefono: $("#telefono").val(),
+                    direccion: $("#direccion").val()
+                    
+                });
+            });
+        });
+    </script>   
 </body>
 </html>
