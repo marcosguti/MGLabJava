@@ -12,7 +12,23 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Reporte</h1>
-        <object type="application/pdf" data="http://localhost:8080/spring/viewReporte" width="1000" height="650"></object>
+<!--        <p id="p1">${idResultado}</p>
+        <p id="p2">${pageContext.request.contextPath}</p>-->
+        <%
+//            String id = request.getParameter("idResultado");
+//            String proy = request.getContextPath();
+//            //String redirectURL = "http://whatever.com/myJSPFile.jsp";
+//            response.sendRedirect(
+        %>
+        <!--${pageContext.request.contextPath}/viewReporte?${idResultado}-->
+        
+        
+        <script>
+            $(document).ready(function () {
+                window.open("${pageContext.request.contextPath}/viewReporte?idResultado=${idResultado}");
+            });
+        </script>
+
     </body>
+
 </html>
