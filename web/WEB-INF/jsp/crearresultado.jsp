@@ -77,9 +77,9 @@
         .panelBorderColor{
                border-color: #337ab7; 
         }
-        #datosResultado{
+/*        #datosResultado{
                 visibility: hidden;
-        }
+        }*/
     </style>
 </head>
     <body>
@@ -171,20 +171,20 @@
                                         </div>
                                         <div class="panel-body center ">
                                             <div class="panel panel-primary panelBorderColor "> 
-                                                <div class="panel-heading panelHeaderColor">
+                                                <div class="panel-heading panelHeaderColor text-center">
                                                     Datos del Paciente
 
                                                 </div>
                                                 <div class="panel-body center panel-collapse collapse" id ="datosPaciente">
-                                                    <p>No Hay Datos</p>  
+                                                    
                                                 </div>
                                             </div>
                                             <div class="panel panel-primary panelBorderColor "> 
-                                                <div class="panel-heading panelHeaderColor">
+                                                <div class="panel-heading panelHeaderColor text-center">
                                                     Datos de las Pruebas
 
                                                 </div>
-                                                <div class="panel-body center __web-inspector-hide-shortcut__" id ="datosResultado">
+                                                <div class="panel-body center panel-collapse collapse " id ="datosResultado">
                                                     <div class="panel-group">
                                                         <div class="dataTable_wrapper">
 
@@ -277,7 +277,6 @@
                         $(this).attr('title', 'Click Para Seleccionar El Paciente');
                         $("#buttonGuardar").attr('disabled', 'disabled');
                         $("#datosPaciente").empty();
-                        $("#datosPaciente").append("<p>No Hay Datos</p>");
                         $("#datosPaciente").removeClass('in');
                         pacienteSelected = false;
                     } else {
@@ -376,10 +375,10 @@
                 });
                 $(".addRow, #buttonBorrarPrueba ").click(function () {
                      if (t.data().length > 0){
-                        $("#datosResultado").css('visibility', 'visible');
+                        $("#datosResultado").addClass('in');
                         
                      }else{
-                       $("#datosResultado").css('visibility', 'hidden');;
+                       $("#datosResultado").removeClass('in');
                     }
                 });
                 $('#buttonGuardar').click(function () {
