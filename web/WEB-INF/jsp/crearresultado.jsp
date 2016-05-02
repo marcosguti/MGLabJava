@@ -24,8 +24,8 @@
     <!-- Bootstrap Core CSS -->
     <link href="<c:url value='/resources/bower_components/bootstrap/dist/css/bootstrap.min.css' />" rel="stylesheet">
     <!-- JQuery  -->
-    <script src="<c:url value='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js' />"></script>
-    <!-- MetisMenu CSS -->
+<!--    <script src="<c:url value='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js' />"></script>
+     MetisMenu CSS -->
     <link href="<c:url value='/resources/bower_components/metisMenu/dist/metisMenu.min.css' />" rel="stylesheet">
 
     <!-- Timeline CSS -->
@@ -33,8 +33,8 @@
     <!-- DataTables CSS -->
     <link href="<c:url value='/resources/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css' />" rel="stylesheet">
 
-    <!-- DataTables Responsive CSS -->
-    <link href="<c:url value='/resources/bower_components/datatables-responsive/css/dataTables.responsive.css' />" rel="stylesheet">
+<!--     DataTables Responsive CSS 
+    <link href="<c:url value='/resources/bower_components/datatables-responsive/css/dataTables.responsive.css' />" rel="stylesheet">-->
     <!-- Custom CSS -->
     <link href="<c:url value='/resources/dist/css/sb-admin-2.css' />" rel="stylesheet">
 
@@ -76,6 +76,9 @@
         }
         .panelBorderColor{
                border-color: #337ab7; 
+        }
+        #datosResultado{
+                visibility: hidden;
         }
     </style>
 </head>
@@ -166,13 +169,13 @@
                                         <div class="panel-heading panelHeaderColor">
                                             Resultado
                                         </div>
-                                        <div class="panel-body center">
+                                        <div class="panel-body center ">
                                             <div class="panel panel-primary panelBorderColor "> 
                                                 <div class="panel-heading panelHeaderColor">
                                                     Datos del Paciente
 
                                                 </div>
-                                                <div class="panel-body center" id ="datosPaciente">
+                                                <div class="panel-body center panel-collapse collapse" id ="datosPaciente">
                                                     <p>No Hay Datos</p>  
                                                 </div>
                                             </div>
@@ -275,6 +278,7 @@
                         $("#buttonGuardar").attr('disabled', 'disabled');
                         $("#datosPaciente").empty();
                         $("#datosPaciente").append("<p>No Hay Datos</p>");
+                        $("#datosPaciente").removeClass('in');
                         pacienteSelected = false;
                     } else {
                         tt.$('tr.selected').removeClass('selected');
@@ -285,6 +289,7 @@
     //                                                                        $("#datosPaciente").append("<div class=\"form-group\"><label class=\"control-label\">Nombre: </label><input type=\"text\" class=\"form-control\" placeholder=\"Disabled input\" disabled=\"disabled\" value=\"" + data[0] + "\"></div><div class=\"form-group\"<label>  Cedula: </label><p class=\"form-control-static\">" + data[1] + "</p></div>");
                         $("#datosPaciente").load("/Laboratorio/mostrarpaciente", {id: data[2]}).animate({left: '250px'});
                         pacienteSelected = true;
+                        $("#datosPaciente").addClass('in' );
                         if (t.data().length > 0)
                             $('#buttonGuardar').removeAttr('disabled');
                     }
@@ -371,9 +376,10 @@
                 });
                 $(".addRow, #buttonBorrarPrueba ").click(function () {
                      if (t.data().length > 0){
-                        $("#datosResultado").removeClass("__web-inspector-hide-shortcut__");
+                        $("#datosResultado").css('visibility', 'visible');
+                        
                      }else{
-                       $("#datosResultado").addClass("__web-inspector-hide-shortcut__");
+                       $("#datosResultado").css('visibility', 'hidden');;
                     }
                 });
                 $('#buttonGuardar').click(function () {

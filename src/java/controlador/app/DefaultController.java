@@ -128,8 +128,10 @@ public class DefaultController {
         resultadoDAO.saveOrUpdate(resultado);
 
         List<Resultado> resultados = resultadoDAO.getAllOrdered();
-        model.addAttribute("resultados", resultados);
-        return "buscarresultado";
+//        model.addAttribute("resultados", resultados);
+        model.addAttribute("idResultado", resultado.getId());
+//        return "buscarresultado";
+        return  "report";
     }
 
     @RequestMapping(value = "/buscarresultado", method = RequestMethod.GET)
