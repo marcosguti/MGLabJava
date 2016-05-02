@@ -181,7 +181,7 @@
                                                     Datos de las Pruebas
 
                                                 </div>
-                                                <div class="panel-body center" id ="datosResultado">
+                                                <div class="panel-body center __web-inspector-hide-shortcut__" id ="datosResultado">
                                                     <div class="panel-group">
                                                         <div class="dataTable_wrapper">
 
@@ -363,12 +363,19 @@
                     $('#precio').attr('value', precio + " Bs.");
                     t.row('.selected').remove().draw(false);
                     $('#buttonBorrarPrueba').attr('disabled', 'disabled');
+                    
                     if (t.data().length > 0 && pacienteSelected == true)
                         $('#buttonGuardar').removeAttr('disabled');
                     else
                         $('#buttonGuardar').attr('disabled', 'disabled');
                 });
-
+                $(".addRow, #buttonBorrarPrueba ").click(function () {
+                     if (t.data().length > 0){
+                        $("#datosResultado").removeClass("__web-inspector-hide-shortcut__");
+                     }else{
+                       $("#datosResultado").addClass("__web-inspector-hide-shortcut__");
+                    }
+                });
                 $('#buttonGuardar').click(function () {
 
                     var pacienteId=$("#pacienteId").attr('value');
