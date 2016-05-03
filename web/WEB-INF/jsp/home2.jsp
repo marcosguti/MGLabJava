@@ -272,7 +272,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="dropdown menuGrupoPruebas">
+<!--                            <li class="dropdown menuGrupoPruebas">
                                 <a href="" class="dropdown-toggle botonMenuGrupoPruebas" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-archive fa-fw "></i> Area</a>
                                 <ul class="dropdown-menu" id="listSubMenuGrupoPruebas" style="display: none;">
                                     <li>
@@ -282,7 +282,7 @@
                                         <a href="#" id="tablaGrupoPruebas"><i class="fa fa-search fa-fw "></i>Buscar</a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li>-->
                         </ul>
 
                     </div>

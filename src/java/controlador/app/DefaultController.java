@@ -214,7 +214,7 @@ public class DefaultController {
         pacienteDAO.saveOrUpdate(paciente);
         List<Paciente> pacientes = pacienteDAO.getAllOrdered();
         model.addAttribute("pacientes", pacientes);
-        return "buscarpaciente";
+        return "home2";
     }
 
     @RequestMapping(value = "/modificarpaciente", method = RequestMethod.POST)
@@ -231,7 +231,7 @@ public class DefaultController {
 //        System.out.println(paciente.getNombres() + "   " + paciente.getId());
         List<Paciente> pacientes = pacienteDAO.getAllOrdered();
         model.addAttribute("pacientes", pacientes);
-        return "buscarpaciente";
+        return "home2";
     }
 
     @RequestMapping(value = "/registroPrueba", method = RequestMethod.POST)
