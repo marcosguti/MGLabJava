@@ -20,7 +20,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>MGLab</title>
+        <title>Laboratorio</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="<c:url value='/resources/bower_components/bootstrap/dist/css/bootstrap.min.css' />" rel="stylesheet">
