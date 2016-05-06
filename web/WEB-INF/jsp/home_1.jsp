@@ -109,10 +109,13 @@
                 border-radius: 15px;
                 border-color: #337ab7;
             }
-            table, th, td {
-                border-color: #337ab7;
-            }              
-
+            tr.odd>td {
+                border-color: #337ab7 !important;
+            }
+            tr.odd.selected>td {
+                border-color: white !important;
+            } 
+            
         </style>
         <script>
             $(document).ready(function () {

@@ -103,8 +103,8 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody style="cursor:pointer; text-align:center" >  <c:forEach var="ob" varStatus="status" items="${mapPacientes}">
-                                                        <!--<strong> <tr class="odd gradeX" title="Click Para Seleccionar El Paciente">--> 
-                                                        <strong> <tr class="odd gradeX" > 
+                                                        <!--<strong> <tr class="odd" title="Click Para Seleccionar El Paciente">--> 
+                                                        <strong> <tr class="odd" > 
 
                                                                 <td title="Nombre del Paciente"><c:out value="${ob.value.nombres}"/></td>
                                                                 <td title="Documento del Paciente"><c:out value="${ob.value.cedula}"/></td>
