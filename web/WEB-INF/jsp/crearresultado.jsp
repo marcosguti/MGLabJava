@@ -54,6 +54,9 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
+        
+
+
         #tablaPaciente_paginate{
             visibility: hidden;
         }
@@ -101,30 +104,29 @@
                                         </div>
                                         <div class="panel-body center">
                                             <div class="dataTable_wrapper">
-                                                <table  style="font-size: 11px;" class="table table-striped table-bordered table-hover" width="100%" id="tablaPaciente">
+                                                <table  style="font-size: 11px;" class="table table-bordered" width="100%" id="tablaPaciente">
                                                     <thead  style=" text-align: center" id="tablaPacientesHead">
-                                                        <tr >
+                                                        <tr>
                                                             <th>Nombre</th>
                                                             <th>Cedula</th>
                                                             <th>ID</th>
                                                             <!--<th ></th>-->
                                                         </tr>
-                                                   </thead>
-            <!--                                                <h1><c:out value="${mapPacientes['22'].nombres}"/></h1>-->
-                                                            <tbody style="cursor:pointer; text-align:center" >  <c:forEach var="ob" varStatus="status" items="${mapPacientes}">
-                                                                <!--<strong> <tr class="odd gradeX" title="Click Para Seleccionar El Paciente">--> 
-                                                                <strong> <tr class="odd gradeX" > 
+                                                    </thead>
+                                                    <tbody style="cursor:pointer; text-align:center" >  <c:forEach var="ob" varStatus="status" items="${mapPacientes}">
+                                                        <!--<strong> <tr class="odd gradeX" title="Click Para Seleccionar El Paciente">--> 
+                                                        <strong> <tr class="odd gradeX" > 
 
-                                                                        <td title="Nombre del Paciente"><c:out value="${ob.value.nombres}"/></td>
-                                                                        <td title="Documento del Paciente"><c:out value="${ob.value.cedula}"/></td>
-                                                                        <td title="ID del Paciente"><c:out value="${ob.value.id}"/></td>
-                                                                    </tr>                                                         
-                                                                </strong>
+                                                                <td title="Nombre del Paciente"><c:out value="${ob.value.nombres}"/></td>
+                                                                <td title="Documento del Paciente"><c:out value="${ob.value.cedula}"/></td>
+                                                                <td title="ID del Paciente"><c:out value="${ob.value.id}"/></td>
+                                                            </tr>                                                         
+                                                        </strong>
 
 
-                                                            </c:forEach>
-                                                            </tbody>
-                                                            </table>
+                                                    </c:forEach>
+                                                    </tbody>
+                                                </table>
                                             </div>
 
                                         </div>
@@ -217,10 +219,9 @@
                                                 </div>
 
                                             </div>
-                                            <div class="panel-body center-block">
+                                            <div class="panel-body center-block hide" id="panelButtons">
                                                 <!--<div class="bs-example">--> 
                                                 <button type="submit" class="btn btn-default" id="buttonGuardar" disabled="disabled">Guardar</button>
-                                                <button type="reset" class="btn btn-default" disabled="disabled">Imprimir</button>
                                                 <button type="button" class="btn btn-danger " id="buttonBorrarPrueba" disabled="disabled">Borrar Prueba</button>
                                                 <!--</div>-->
                                             </div>
@@ -278,6 +279,7 @@
                         $("#buttonGuardar").attr('disabled', 'disabled');
                         $("#datosPaciente").empty();
                         $("#datosPaciente").removeClass('in');
+                        $('#panelButtons').aClass('hide')
                         pacienteSelected = false;
                     } else {
                         tt.$('tr.selected').removeClass('selected');
@@ -289,8 +291,10 @@
                         $("#datosPaciente").load("/Laboratorio/mostrarpaciente", {id: data[2]}).animate({left: '250px'});
                         pacienteSelected = true;
                         $("#datosPaciente").addClass('in' );
-                        if (t.data().length > 0)
+                        if (t.data().length > 0){
                             $('#buttonGuardar').removeAttr('disabled');
+                            $('#panelButtons').removeClass('hide');
+                        }
                     }
     //                                                                   
                     var fecha = new Date();
@@ -338,9 +342,10 @@
                     ]).draw(false).draw().node();
                     $(rowNode).attr('data-id', valor.attr("id"));
 
-                    if (t.data().length > 0 && pacienteSelected == true)
+                    if (t.data().length > 0 && pacienteSelected == true){
                         $('#buttonGuardar').removeAttr('disabled');
-
+                        $('#panelButtons').removeClass('hide');
+                    }
                     $(rowNode).attr('data-precio', valor.attr("data-precio"));
                     precio += +$(rowNode).attr('data-precio');
                     $('#precio').attr('value', precio + " Bs.");
@@ -368,10 +373,14 @@
                     t.row('.selected').remove().draw(false);
                     $('#buttonBorrarPrueba').attr('disabled', 'disabled');
                     
-                    if (t.data().length > 0 && pacienteSelected == true)
+                    if (t.data().length > 0 && pacienteSelected == true){
                         $('#buttonGuardar').removeAttr('disabled');
-                    else
+                        $('#panelButtons').removeClass('hide');
+                    }
+                    else{
                         $('#buttonGuardar').attr('disabled', 'disabled');
+                        $('#panelButtons').addClass('hide');
+                    }
                 });
                 $(".addRow, #buttonBorrarPrueba ").click(function () {
                      if (t.data().length > 0){
@@ -426,28 +435,9 @@
                          pruebas:JSON.stringify(jsonObj)
 //                        pruebas:JSON.stringify(jsonObj)
                     });
-//                        $.ajax(
-//                           {
-//                                url: "/Laboratorio/resultados",
-//                                type: "POST",
-//                                  contentType: "application/json; charset=utf-8",
-//                                data: {
-//                                    pacienteId:pacienteId,
-//                                    observaciones:observaciones,
-//                                    pruebas:jsonObj
-//                                },
-//                                dataType: 'json',
-//                                async: false,
-//                                success: function(msg) {
-//                                    alert("fino o que");
-//                                }
-//                            }
-//                        );
-                        
-//                    var datos = t.rows().data()[0][2];
-    //                                                                    var rows = t.rows(0).cells[0].value;
 
                 });
+//               
             });
         </script>
 
