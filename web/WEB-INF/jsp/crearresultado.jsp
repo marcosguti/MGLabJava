@@ -54,16 +54,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
-        
 
-
-        #tablaPaciente_paginate{
-            visibility: hidden;
-        }
-        .bs-example{
-            margin: 20px;
-        }
-        /* Fix alignment issue of label on extra small devices in Bootstrap 3.2 */
         .form-horizontal .control-label{
             padding-top: 7px;
         }
@@ -71,9 +62,7 @@
             background-color: #337ab7 !important;
             color: white;
         }
-        th.sorting::after{
-            display:none;
-        }
+      
         #tablaPacientesHead{
            display:  none;   
         }
@@ -192,7 +181,7 @@
 
                                                             <table class="table  table-bordered " width="100%" id="tablaResultados">
                                                                 <thead>
-                                                                    <tr>
+                                                                    <tr class="hide">
                                                                         <th>Grupo</th>
                                                                         <th>Prueba</th>
                                                                         <th>Valor</th>

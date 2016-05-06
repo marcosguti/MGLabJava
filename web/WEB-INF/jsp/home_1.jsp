@@ -81,8 +81,38 @@
                 background-size: cover;
                 margin-top: 12%;    */
             }
-                    
-            
+            .btn[disabled] {
+                cursor: default !important;
+            }  
+            .form-control[disabled] {
+                cursor: default !important;
+                background-color: white !important;
+            }    
+            table{
+                border-radius 10px !important;
+            }
+            table#tablaPaciente {
+                border-radius: 15px;
+                border: 1px solid black;
+                border-color: #337ab7;
+            }
+            input.form-control.input-sm {
+                border-color: #337ab7;
+            }
+/*            tablaPaciente_wrapper>div>div>.dataTables_scrollBody {
+                border-radius: 15px;
+            }*/
+            .dataTables_scrollHead{
+                visibility:  hidden;
+            }
+            #tablaPaciente_wrapper>div>div.dataTables_scrollBody {
+                border-radius: 15px;
+                border-color: #337ab7;
+            }
+            table, th, td {
+                border-color: #337ab7;
+            }              
+
         </style>
         <script>
             $(document).ready(function () {
